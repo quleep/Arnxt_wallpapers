@@ -27,6 +27,674 @@
 .App-link {
   color: #61dafb;
 }
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar{
+  width: 100%;
+  height: 100px;
+  background-color: rgb(45, 45, 146);
+  position: fixed;
+  top: 0;
+}
+
+
+
+.navbarinside{
+  
+  height: 70px;
+  width: 400px;
+  margin-left: 700px;
+  padding-top: 20px;
+ 
+}
+
+.checkinput{
+
+
+ 
+  width: 20px;
+  height: 20px;
+  border: solid #0079bf;
+  border-width: 0 2px 2px 0;
+ accent-color: white;
+ 
+}
+
+.navbarinside a{
+  font-size: 20px;
+  font-family: monospace;
+}
+
+.tablediv{
+  display: none;
+}
+
+
+.navbarinside a{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  cursor: pointer;
+
+}
+.navbarinside a:hover{
+  color: green;
+}
+
+.logincontainer{
+  display: flex;
+ 
+  width: 100%;
+  height: 500px;
+  margin-top: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginbox{
+  
+  display: flex;
+  flex-direction: column;
+ 
+  height: 400px;
+  width: 600px;
+ margin-top: 120px;
+ margin-bottom: 120px;
+ background-color: yellow;
+ border-radius: 5px;
+ box-shadow: 5px 5px 5px 5px gray;
+
+}
+.logindiv1{
+  flex: 1;
+ 
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.logindiv2{
+  flex: 1;
+ 
+  margin-bottom: 80px;
+
+}
+.logindiv3{
+  flex: 6;
+}
+.logindiv1 input{
+  width: 200px;
+  height: 40px;
+  border: none;
+  box-shadow: 5px 5px 5px 5px gray;
+  border-radius: 5px;
+
+}
+.logindiv1 input:focus{
+  outline: none;
+}
+.logindiv1 label{
+  font-size: 25px;
+  font-family:  monospace;
+  margin-right: 20px;
+}
+.logindiv2 input{
+  width: 200px;
+  height: 40px;
+  border: none;
+  box-shadow: 5px 5px 5px 5px gray;
+  border-radius: 5px;
+
+}
+.logindiv2 input:focus{
+  outline: none;
+}
+.logindiv2 label{
+  font-size: 25px;
+  font-family: monospace;
+  margin-right: 20px;
+}
+.logindiv3 button{
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgb(47, 47, 201);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.logindiv3 button:hover{
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: black;
+  border: 2px solid black;
+  font-family: monospace;
+}
+
+.imagecontainer{
+ 
+  margin-top: 200px;
+  animation: tilt-shaking 1s ease-in-out infinite;
+
+width: 500px;
+height: 250px;
+}
+
+.wallpapercontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.footernew{
+  display: none;
+  width: 100%;
+  height: 250px;
+
+  background-color: rgb(45, 45, 146);
+}
+
+
+.divmainimage{
+  display: flex;
+  flex-direction: column;
+
+  height: auto;
+  width: 600px;
+
+  padding-left: 60px;
+ 
+ 
+ 
+}
+
+.imgmaindiv{
+  width: 100%;
+  height: 100%;
+}
+
+.productlistcontainer{
+  display: none;
+}
+
+.cameracontainer{
+  display: flex;
+ 
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+ 
+  height: auto;
+
+}
+
+.takepicturecontainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-right: 20px;
+  
+}
+
+.inputdistancefile{
+  display: flex;
+  width: 140px;
+  height: 40px;
+  border: 2px solid #0079bf;
+  box-shadow: 2px 2px 2px 2px #adc1cc;
+  border-radius: 10px;
+  font-family: monospace;
+}
+.inputdistancefile:focus{
+  outline: none;
+}
+
+.optioncontainer{
+  display: flex;
+ 
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 500px;
+  margin-left: -200px;
+  height: 120px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+ 
+
+}
+
+.optioncontainer>*{
+  flex: 1 1 auto;
+  border: 2px dotted black;
+  height: 90px;
+  width: 90px;
+ 
+  margin: 10px;
+}
+
+.productlistdiv{
+  display: flex;
+  height: auto;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
+  margin-top: 120px;
+ margin-bottom: 40px;  
+}
+.productlistdiv>*{
+  flex: 1 1 auto;
+  width: 300px;
+  height: 500px;
+   background-color: rgb(234, 227, 243);
+  margin: 20px;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
+.takepicture{
+  width: 140px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #0079bf;
+  border: none;
+  color: white;
+  font-family: monospace;
+  cursor: pointer;
+ 
+}
+.takepicture:hover{
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  border-radius: 20px;
+}
+
+.refreshbutton{
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #0079bf;
+  border: none;
+  color: white;
+  font-family: monospace;
+  cursor: pointer;
+
+}
+
+.cameramessage{
+ 
+  color: red;
+  font-size: 18px;
+  font-family: monospace;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.refreshbutton:hover{
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  border-radius: 20px;
+}
+
+.inputdistance{
+  width: 120px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+.inputdistance:focus{
+  outline: none;
+}
+
+.checkboxcontainer{
+ 
+  height: 40px;
+
+ 
+}
+.checkboxcontainer {
+  padding-left: 250px;
+ 
+}
+
+.cardcontainer{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
+.logoutcontainer{
+  width: 200px;
+  height: 40px;
+ 
+  float: right;
+  margin-top: -60px;
+
+}
+
+.logoutcontainer a {
+  color: white;
+  font-size: 20px;
+  font-family: monospace;
+  cursor: pointer;
+}
+.logoutcontainer a:hover{
+  color: green;
+}
+.cardproductheader{
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid gray;
+   
+ 
+}
+
+
+.cardproductheader label{
+  font-size: 20px;
+  font-family: monospace;
+ 
+}
+.cardproductheader p{
+  font-size: 20px;
+  font-family: monospace;
+}
+.cardproductbody{
+  flex: 3;
+
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
+
+  transition: all 1s ease;
+
+ 
+
+
+}
+.cardproductbody:hover{
+  transform: scale(1.2);
+}
+.cardproductfooter label{
+  font-size: 20px;
+  font-family: monospace;
+
+}
+.cardproductfooter p{
+  font-size: 20px;
+  font-family: monospace;
+
+}
+.cardproductfooter{
+  border-top: 1px solid gray;
+
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
+}
+
+.camdiv{
+  display: none;
+  margin-bottom: 80px;
+}
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hidden{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+
+
+.camdivnew{
+  display: none;
+  z-index: 1;
+  position: fixed;
+  left: 150px;
+  top: 250px;
+  
+}
+
+.displayimagediv{
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  flex-wrap: nowrap;
+  left: 150px;
+  top: 250px;
+  width: 400px;
+  height: 300px;
+  background-color: #F5F5F5;
+
+ 
+ 
+ 
+
+
+
+}
+
+.displayfilesdiv{
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  flex-wrap: nowrap;
+  left: 150px;
+  top: 250px;
+  width: 400px;
+  height: 300px;
+  background-color: #F5F5F5;
+
+}
+
+.displaycameracontainer{
+  display: none;
+}
+
+.displayfilescontainer{
+  display: none;
+}
+
+.loadingdiv{
+
+ display: none;
+
+ width: 0px;
+ height: 0px;
+ border: 1px solid black;
+ margin-left: 160px;
+
+
+ 
+
+  
+}
+
+.loadingdivnew{
+
+  display: none;
+
+  width: 0px;
+  height: 0px;
+  border: 1px solid black;
+  margin-left: 160px;
+
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  
+}
+
+.btn {
+
+  width: 140px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #0079bf ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+ font-family: monospace;
+
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  
+}
+
+
+
+
+
+
+.fileinput{
+  width: 140px;
+  height: 40px;
+
+  position: relative;
+  display: flex;
+ 
+
+}
+
+.fileinput input{
+
+ 
+}
+
+
+
+
+
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to { 
+      transform: rotate(360deg);
+  }
+}
+
+
+@-webkit-keyframes rotate {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to { 
+      -webkit-transform: rotate(360deg);
+  }
+}
+
+.load {
+width: 60px;
+height: 60px;
+margin: 110px auto 0;
+border:solid 10px rgb(47, 47, 201);
+border-radius: 50%;
+border-right-color: transparent;
+border-bottom-color: transparent;
+ -webkit-transition: all 0.5s ease-in;
+  -webkit-animation-name:             rotate; 
+  -webkit-animation-duration:         2.0s; 
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function: linear;
+    
+     transition: all 0.5s ease-in;
+  animation-name:             rotate; 
+  animation-duration:         1.0s; 
+  animation-iteration-count:  infinite;
+  animation-timing-function: linear; 
+ 
+}
+
+.loadnew{
+
+  width: 60px;
+height: 60px;
+margin: 110px auto 0;
+border:solid 10px rgb(47, 47, 201);
+border-radius: 50%;
+border-right-color: transparent;
+border-bottom-color: transparent;
+ -webkit-transition: all 0.5s ease-in;
+  -webkit-animation-name:             rotate; 
+  -webkit-animation-duration:         2.0s; 
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function: linear;
+    
+     transition: all 0.5s ease-in;
+  animation-name:             rotate; 
+  animation-duration:         1.0s; 
+  animation-iteration-count:  infinite;
+  animation-timing-function: linear; 
+
+}
+
+
+
+
+.footer{
+  width: 100%;
+  height: 300px;
+  background-color: rgb(45, 45, 146) ;
+
+  bottom: 0;
+  position: fixed;
+
+
+
+}
 
 @keyframes App-logo-spin {
   from {
@@ -36,3 +704,33 @@
     transform: rotate(360deg);
   }
 }
+
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #3c8dbc;
+  overflow-x: auto;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
