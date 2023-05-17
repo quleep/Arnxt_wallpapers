@@ -11,6 +11,13 @@ import {
 } from "react-router-dom";
 import Wallpapers from './Wallpapers';
 import Camera from './Camera';
+import Brand from './Brand';
+import Wall from './Wall';
+import Wallpaper from './Wallpaper';
+import WallMurals from './WallMurals';
+import ChangeWalls from './ChangeWalls';
+
+
 
 function App() {
   return (
@@ -21,8 +28,23 @@ function App() {
       <Router>
         <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/wallpapers" component={Wallpapers} />
+        <Route exact path="/walls" component={Wall} />
         <Route exact path="/camera" component={Camera} />
+        <Route exact path="/home" component={Brand} />
+        <Route exact path="/Wallpapers" component={Wallpaper} />
+        <Route exact path="/wallarts" component={Wallpapers} />
+
+        <Route exact path="/WallMurals" component={WallMurals} />
+        <Route exact path="/view" component={ChangeWalls} />
+      
+
+        
+
+    
+
+
+
+
      
 
 

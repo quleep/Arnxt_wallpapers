@@ -50,7 +50,7 @@ const Login = () => {
                 sessionStorage.setItem('user', JSON.stringify(res.data))
 
                
-                history.push('/wallpapers')
+                history.push('/home')
 
             }
         }).catch(error=>{

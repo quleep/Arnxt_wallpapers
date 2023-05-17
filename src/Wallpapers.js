@@ -9,7 +9,7 @@ import { FaTimes } from 'react-icons/fa';
 import Webcam from 'react-webcam'
 import { useRef } from 'react'
 
-import images from '../src/images/camnew.PNG'
+import images from '../src/images/cameraimage.png'
 
 import DataTable, { createTheme } from "react-data-table-component";
 const branddetailsurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/brands/details'
@@ -36,6 +36,8 @@ const Wallpapers = () => {
   const [file, setFile] = useState();
 
   const [walldistance, setWallDistance] = useState('');
+
+  const [checkdiv, setCheckDiv] = useState(true)
 
   
   const webref= useRef(null)
@@ -167,6 +169,7 @@ const checkboxClick=(val,len)=>{
   if(checked){
 
     setItemArray([...itemarray, val])
+    document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
    
   }
 
@@ -177,6 +180,8 @@ const checkboxClick=(val,len)=>{
    
     item != val
       ))
+    document.querySelector(`#divselect_${len}`).style= 'border: none'
+
 
   }
 
@@ -236,6 +241,7 @@ const takePicture=()=>{
 
   if(camera){
     document.querySelector('.cameramessage').innerHTML= 'image already taken please refresh to take new'
+   
     setCameraOnStatus(false)
     setTimeout(() => {
     document.querySelector('.cameramessage').innerHTML= ''
@@ -297,7 +303,7 @@ const handleImagesend=(val)=>{
  
 
   if(camera){
-    setImageUrlFinal(null)
+    setImageUrlFinal(camera)
 
    
 
@@ -527,6 +533,7 @@ const handleFile=(e)=>{
   }
 
 
+}
 
 
 
@@ -534,12 +541,20 @@ const handleFile=(e)=>{
 
 
 
-  
+
 
  
 
 
-}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -592,6 +607,32 @@ const handleFile=(e)=>{
       </div>
 
       */}
+
+
+      {
+        /*
+
+
+
+    <div  className='checkboxinsidetwo'>
+ <img src={item.previewLocation} width='200px' height='200px'/>
+
+
+    </div>
+
+
+  
+
+
+
+<div className='cardproductfooter'>
+ 
+  <p>{item.modelName}</p>
+
+</div>
+
+  */
+      }
    
 
 
@@ -604,39 +645,39 @@ const handleFile=(e)=>{
         {
 
         branditems && branditems.data.map((item,i)=>(
+
+         
+          <div  id={`divselect_${i}`} >
+
+<label htmlFor= {`check_${i}`}>
+
+  <div className='checkboxmain' >
+<input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=>checkboxClick(item,i)} />
+
+<div className='imagedivcontainer' >
+<img src={item.previewLocation} width='200px' height='200px'/>
+
+
+
+</div>
+<div className='modelnamecontainer'> 
+
+<p>{item.modelName}</p>
+
+</div>
+
+
+  </div>
+
+
+
+</label>
+
+
+ </div>
        
     
-             <div>
-
-
-<div  className='cardcontainer'>
-  <div className='checkboxcontainer' >
- 
-  <input type='checkbox'  className='checkinput' id= {`check_${i}`} value={item} onClick={()=>checkboxClick(item,i)} />
-
-     
-    </div>
-
-<div className='cardproductheader'>
- 
-  <p>{item.modelId}</p>
-
-
-
-</div>
-<div className='cardproductbody'>
-  <img src={item.previewLocation} width='200px' height='200px'/>
-
-</div>
-<div className='cardproductfooter'>
-  <label>{`Texture ${i+1}`}</label>
-  <p>{item.modelName}</p>
-
-</div>
-
-</div>
-
-             </div>
+             
           
 
         ))
@@ -645,12 +686,17 @@ const handleFile=(e)=>{
       
         
         }
+
+
+
        
 
        
 
 
       </div>
+
+
 
       </div>
 
@@ -733,6 +779,15 @@ screenshotQuality={1}
   
 
 </div>
+   <div  className='picturedisplaydiv'>
+
+    {
+      camera && 
+
+      <img src= {camera} />
+    }
+     
+   </div>
 
       <div  className='camdiv'>
 
@@ -749,7 +804,7 @@ screenshotQuality={1}
 
 
           ))
-        }
+        }                     
         
         
 
@@ -759,7 +814,7 @@ screenshotQuality={1}
 
 
       <div style={{marginRight:'20px'}} >
-     <a  onClick={openCamera}  > <img     src={images} width='120px' height='100px' alt='cam' /></a>
+     <a  onClick={openCamera}  > <img     src={images} width='80px' height='80px' alt='cam' /></a>
 
 
       </div>
