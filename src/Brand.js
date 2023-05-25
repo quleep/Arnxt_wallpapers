@@ -6,9 +6,22 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import MultiRangeSlider from "multi-range-slider-react";
 
+import bestdeal from '../src/images/bestdeals.png';
+import toppicks from '../src/images/toppicks.png';
+import featured from '../src/images/featured.png';
+import collection from '../src/images/collections.png';
+import wallpaper from '../src/images/77308-1_2.jpg';
+import wallmurals from '../src/images/ED-20949_2.jpg';
+
+
+
+
+
+
 import checked from '../src/Assets/checked.svg'
 import unChecked from '../src/Assets/unchecked.svg'
 import { useHistory, useLocation } from 'react-router-dom';
+import { FaArrowRight, FaCamera, FaEye, FaRestroom } from 'react-icons/fa';
 
 const categoryimageurl= 'https://api.arnxt.com/model/allcategories'
 
@@ -26,6 +39,11 @@ const getalldesginstyles= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.c
 const getallcolors= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getcolorstable'
 const getallcollections='https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getcollectiontable'
 const getalltags= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/alltagstable'
+const branddetailsurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/brands/details'
+const roomtypeimageurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/rooms'
+const getroomsbybrandurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getroomsofbrand'
+const gettagsbybrandurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagsofbrand'
+
 
 const Brand = () => {
 
@@ -53,6 +71,11 @@ const Brand = () => {
 
     const [subcategorydata, setSubCategoryData] = useState()
     const [filterTags, setFilterTags] = useState([])
+    const [brandimage, setBrandImage] = useState()
+
+    const [rooms, setRooms] = useState()
+    const [roomimage, setRoomImage] = useState()
+    const [tags, setTags] = useState()
 
     const history= useHistory()
 
@@ -81,6 +104,22 @@ const Brand = () => {
     const brandidnew= brandid.brand.toLowerCase()
 
     const [accActive, setAccActive] = useState(false)
+
+
+    useEffect(()=>{
+      const brandbody={
+        brandID: brandid.brand
+      }
+    
+      axios.post(branddetailsurl, brandbody).then(res=>{
+        console.log(res)
+        setBrandImage(res.data.infoImageUrl)
+      }).catch(error=>{
+        console.log(error)
+      })
+
+    },[])
+
 
 
     let accordionData = [
@@ -410,18 +449,84 @@ useEffect(()=>{
         brand: brandidnew
     }
     axios.post(getcatsubcaturl, body).then(res=>{
-       setCatData(res.data)
+      setCatData(res.data)
     }).catch(error=>{
         console.log(error)
     })
+
+ 
 },[])
+
+
+useEffect(()=>{
+  const body={
+    brand: brandidnew
+  }
+
+  axios.post(getroomsbybrandurl, body).then(res=>{
+     setRooms(res.data)
+
+  }).catch(error=>{
+    console.log(error)
+  })
+
+},[])
+
+useEffect(()=>{
+  const body={
+    brand: brandidnew
+  }
+
+  axios.post(gettagsbybrandurl, body).then(res=>{
+     setTags(res.data)
+
+  }).catch(error=>{
+    console.log(error)
+  })
+
+},[])
+
+
 
 function removerepeat(data){
   return [...new Set(data)]
 }
 
+console.log(catdata)
 
+
+{
+  /*
+
+let roomarray =[]
 let catarr=[]
+  catdata && catdata.map(item=>{
+    item.roomtype.map(it=>{
+      if(roomarray.includes(it)){
+
+      }
+      else{
+        roomarray = [...roomarray]
+        roomarray.push(it)
+      }
+    })
+  })
+
+  let tagsgroup= []
+  catdata && catdata.map(item=>{
+    item.tags.map(it=>{
+      if(tagsgroup.includes(it)){
+
+      }
+      else{
+        tagsgroup = [...tagsgroup]
+        tagsgroup.push(it)
+      }
+    })
+  })
+
+
+
 
 
 catdata && catdata.map(item=>{
@@ -450,18 +555,60 @@ catdata && catdata.map(item=>{
     
 })
 
-let newcat;
 
-const handlesubcategory=(item)=>{
+*/}
 
+
+const handlesubcategory=(item, len)=>{
+  if(len === 1){
+    return
+  }
+
+  if(len === 2){
+    return
+  }
+
+  if(len === 0){
     history.push({
-        pathname: `/${item}`,
-        state: item
-    })
+      pathname: `/wallpapers`,
+      state: item
+  })
+  
+
+  }
+
+
+ 
+ 
+
+  
+  
  
 
 
 }
+
+const handleRoomsClick=(item)=>{
+
+  history.push({
+      pathname: '/room',
+      state: item
+  })
+
+
+
+}
+const handleTagsClick=(item)=>{
+
+  history.push({
+      pathname: '/search',
+      state: item
+  })
+
+
+
+}
+
 
 
 const filterHandler = (event, val) => {
@@ -569,56 +716,242 @@ for(let i= 0; i<get.length; i++){
 get[i].checked= false;}
   
 }
+
+
+const handleviewinar=()=>{
+    history.push('/view')
+}
+
+
+useEffect(()=>{
+  axios.get(roomtypeimageurl).then(res=>{
+    setRoomImage(res.data)
+  }).catch(error=>{
+    console.log(error)
+  })
+},[])
+
+console.log(roomimage)
+
+
+const tagsimages= [
+
+  {
+    tagname: 'New',
+    tagimage:  collection
+  },
+  {
+    tagname: 'Best Deals',
+    tagimage: bestdeal
+  },
+  {
+    tagname: 'Featured',
+    tagimage: featured
+  },
+  {
+    tagname: 'Top Picks',
+    tagimage: toppicks
+  }
+]
+
+
+
  
   return (
     <div>
 
         <Navbar/>
 
-
+      
         <div  className='mainbrandbody'>
+       
+
+          <div className='categorytopcontainer'>
+            <div className='brandcontainer'>
+            <div className='brandimagecontainer'>
+          <img  src={brandimage} />
+
+          </div>
+
+            </div>
+            <div className='categoryitem'>
+            {
+                            catdata &&    catdata.map((item,i)=>(
+                                  <label htmlFor='' >
+                                    <div className='categorycontainer'> 
+                                       
+                                     
+                                       <h3 onClick={()=>handlesubcategory(item, i)} >{item}</h3>
+
+                                       
+                                        
+                                        
+                                    </div>
+                                    </label>
+
+                                ))
+                                  }
+             
+
+            </div>
+
+          </div>
+
+          <div className='viewinroom'>
+          <div className='itemspara'>
+           <h3>Visualise Our Products In Your Space </h3>
+           <span>
+           <FaArrowRight  className='icondiv'/>
+            </span>
+
+            <div className='trybutton'>
+              <button  type='submit' onClick={handleviewinar} >Try In Your Room <FaCamera/> </button>
+            </div>
+          </div>
+
+          </div>
+          <div className='itemspara'>
+           <h3>Visualise By Category</h3>
+           <span>
+           <FaArrowRight  className='icondiv'/>
+            </span>
+          </div>
+
+      <div className=''>
+        
+        {
+                              catdata &&  catdata.map((item,i)=>(
+                                  <label htmlFor= {`check_${i}`} >
+                                    <div  className=''> 
+                                    <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=> handlesubcategory(item,i)} />
+                                     
+                                        {
+                                          
+                                          <div  className='imagedivtags'>
+                                       <img src=  { i === 0 ?  wallpaper : wallmurals} />
+                                       <p  >{item}</p>
+
+                                            </div> 
+
+                                        }
+                                      
+                                    
+                                     
+                                      
+                                        
+                                    </div>
+                                    </label>
+
+                                ))
+                                        }
+        
+       
 
     
+  
+        
+    
+
+
+      </div>
+      <div className='itemspara'>
+           <h3>Visualise By Rooms</h3>
+           <span>
+           <FaArrowRight  className='icondiv'/>
+            </span>
+          </div>
+          <div className=''>
+          {  
+                              rooms &&  rooms.map((item,i)=>(
+                                  <label htmlFor={`checkroom_${i}`} >
+                                    <div  className=''> 
+                                    <input type='checkbox'   className='checkinput' id= {`checkroom_${i}`} value={item} onClick={()=>handleRoomsClick(item,i)} />
+                                      {
+                                       roomimage && roomimage.data.map(itemnew=>(
+                                           itemnew.roomname === item ?
+
+                                           <div className='imagedivtags' >
+                                           <img src= {itemnew.iconurl}/>
+                                           <p>{item}</p>
+                                          
+
+                                            </div>
+                                           :<p></p>
+
+                                        ))
+                                      }
+                                       
+
+                                      
+                                      
+                                       
+                                        
+                                    </div>
+                                    </label>
+
+                                ))
+                                     }
+        
+       
+            
+       
+
+
+          </div>
+          <div className='itemspara'>
+           <h3>Explore Like Never Before</h3>
+           <span>
+           <FaArrowRight  className='icondiv'/>
+            </span>
+          </div>
+          <div className=''>
+          {
+                             
+                             
+                                tags && tags.map((item,i)=>(
+                                  <label htmlFor= {`checktags_${i}`} >
+                                    <div> 
+                                    <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                        
+                                        {
+                                         tagsimages.map(itemnew=>(
+                                            itemnew.tagname === item ?
+                                            <div className='imagedivtags'>
+                                                 <img  src={itemnew.tagimage} />
+                                                <p>{itemnew.tagname}</p>
+                                              </div>:<p></p>
+                                      
+                                         ))
+
+                                        }
+                                        
+                                        
+                                    </div>
+                                    </label>
+
+                                ))
+
+
+                          
+                             
+                                       }
+        
+       
+            
+       
+
+
+          </div>
      
            
 
-            <div  className='filtercontainer'>
+       
 
-            <a class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-                Filter <i class='bx bx-filter'></i></a>
-           
-
-              </div>
-
-            <div className='categorydiv' >
-                {
-                    catarr.map(item=>(
-                        <p>{item}</p>
-                    ))
-                }
-            </div>
+        
             <div  className='subcategorydiv'>
 
               
-                        <div  className='subcatimagediv'>
-
-                            {
-                                subcatarr.map((item,i)=>(
-                                    <div>
-                                        <p onClick={()=>handlesubcategory(item)} >{item}</p>
-
-                                    </div>
-
-                                ))
-                            }
-                           
-                            <div></div>
-                            <div></div>
-                            
-                           
-
-
-                        </div>
+                   
 
                         <div  className='productscontainer'>
 

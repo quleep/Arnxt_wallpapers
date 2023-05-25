@@ -6,9 +6,7 @@ import Navbar from './Navbar'
 
 const getcatsubcaturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorysubcat'
 
-const WallMurals = () => {
-
-
+const Floors = () => {
     const [catdata, setCatData] = useState()
     const [itemdata, setItemData] = useState()
     const [subcategorydata, setSubCategoryData] = useState()
@@ -60,11 +58,9 @@ setSubCategoryData(newcat)
 }
 
 
-console.log(subcategorydata)
   return (
     <div>
-
-<Navbar/>
+                 <Navbar/>
 
           
 <div  className='mainbrandbody'>
@@ -142,10 +138,9 @@ console.log(subcategorydata)
 
 
 </div>
-
       
     </div>
   )
 }
 
-export default WallMurals
+export default Floors

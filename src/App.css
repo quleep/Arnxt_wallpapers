@@ -126,6 +126,7 @@ body{
  background-color: yellow;
  border-radius: 5px;
  box-shadow: 5px 5px 5px 5px gray;
+ padding-top: 40px;
 
 }
 .logindiv1{
@@ -571,7 +572,9 @@ height: 250px;
   height: 100%;
 
   margin-left: 400px;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+
 
 }
 .filterproductscontainer{
@@ -713,6 +716,19 @@ height: 250px;
 
 .btn {
 
+  width: 120px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #0079bf ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+ font-family: monospace;
+
+}
+
+.buttonfilterdiv button{
   width: 140px;
   height: 40px;
   border: none;
@@ -725,6 +741,75 @@ height: 250px;
 
 }
 
+.buttonfilter button{
+  width: 100px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #0079bf ;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+ font-family: monospace;
+
+}
+.divmaincontainer{
+ display: flex;
+  width: auto;
+  height: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.imagedivinside{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 300px;
+  height: 300px;
+  
+}
+.imagedivtags{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 300px;
+  height: 300px;
+  gap: 20px;
+  border: 1px solid gray;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 40px;
+  background-color: #f7f6f6;
+  padding-bottom: 20px;
+ 
+ 
+}
+.imagedivtags img{
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+
+}
+.imagedivtags p{
+  font-family: monospace;
+  font-size: 20px;
+}
+.imagedivinside img{
+  width: 100%;
+   height: 100%;
+   border-radius: 20px;
+}
+
+
 .upload-btn-wrapper input[type=file] {
   font-size: 100px;
   position: absolute;
@@ -732,6 +817,84 @@ height: 250px;
   top: 0;
   opacity: 0;
   
+}
+
+.productdetailsdiv{
+  display: flex;
+  width: 90%;
+  height: 800px;
+  
+  padding: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.productimagecontainer{
+  flex: 2;
+ 
+  height: 100%;
+ 
+}
+.productdetailscontainer{
+  flex:4 ;
+ 
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.productdetailscontainer>*{
+  flex: 1 1 250px;
+
+  height: auto;
+  margin: 10px;
+}
+.productimagecontainer img{
+  width: 100%;
+  height: 100%;
+}
+.mrpdiv{
+  display: flex;
+  margin: 10px;
+}
+.mrpdiv label{
+  font-size: 20px;
+  margin-right: 10px;
+  font-family: monospace;
+}
+.mrpdiv p{
+  font-size: 15px;
+  font-family: monospace;
+  margin-top: 5px;
+}
+.specificationdiv{
+  padding-left: 10px;
+}
+
+
+.specificationdiv p{
+  font-size: 15px;
+  font-family: monospace;
+  text-align: justify;
+}
+.itemnamediv{
+  display: flex;
+  padding-left: 10px;
+}
+.itemnamediv h2{
+  font-family: monospace;
+  text-transform: uppercase;
+
+}
+.productimagedivinside{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  height: 400px;
+  width: 400px;
+
+}
+.productimagedivinside img{
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -818,6 +981,24 @@ border-bottom-color: transparent;
   animation-timing-function: linear; 
  
 }
+.loadwebar{
+  display: none;
+  margin-top: -30px;
+  position: absolute;
+  left: 120px;
+
+ 
+ 
+}
+
+.loadwebardesk{
+  display: none;
+  margin-top: -30px;
+  position: absolute;
+  margin-left: 200px;
+ 
+
+}
 
 .loadnew{
 
@@ -842,6 +1023,13 @@ border-bottom-color: transparent;
 
 }
 
+.defaultimagedesk{
+  display: none;
+}
+.processimagedesk{
+  display: none;
+}
+
 
 
 
@@ -862,34 +1050,89 @@ border-bottom-color: transparent;
   width:  auto;
   height: 100%;
 
-  margin-left: 400px;
+
   flex-direction: column;
 
   
   
 }
+
+.categorytopcontainer{
+  display: flex;
+ 
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 150px;
+}
+
+.brandcontainer{
+  flex: 1;
+  background-color: #f0ecec;
+ 
+}
+.categoryitem{
+  flex: 8;
+ 
+  background-color: #f0ecec;
+  padding-top: 40px;
+}
 .productscontainer{
   display: flex;
-  height: auto;
+  height:  600px;
   width: auto;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+ 
  
 
 }
-.productscontainer>*{
-  flex: 1 1 250px;
+
+.itemspara{
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.itemspara h3{
+  font-size: 25px;
+  font-family: monospace;
+  font-weight: bold;
   padding: 10px;
- 
-  
- 
-  
-  
+
+}
+.icondiv{
+  margin-top: 15px;
+  font-size: 20px;
 }
 
 .categorydiv{
  
   width: 240px;
+}
+
+.roomsdiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: auto;
+  height:  auto;
+  border: 1px solid red;
+}
+.roomsdiv>*{
+  flex: 1 1  40px;
+  border: 1px solid green;
+}
+.roomsimage{
+  display: flex;
+
+}
+.roomsimage img{
+  min-width: 100%;
+  max-width: 100%;
 }
 
 
@@ -899,15 +1142,16 @@ a
     text-decoration: none;
 }
 .product-card {
-    width: 250px;
+    width:  auto;
     position: relative;
     box-shadow: 0 2px 7px #dfdfdf;
-    margin: 50px auto;
+  
     background: #fafafa;
-    height: auto;
+    height:  auto;
     border: 1px solid gray;
     border-radius: 10px;
     margin: 10px;
+    padding: 10px;
 }
 
 .badge {
@@ -924,38 +1168,24 @@ a
 
 .product-tumb {
     display: flex;
+   
+    height: 200px;
+    width: 200px;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    height: 250px;
    
-    background: white;
-}
-.filterproducts{
- 
-  display: flex;
-  flex-direction: column;
-
-  width:  250px;
-  height: auto;
- 
- 
-
-}
-
-
-.filterproducts>*{
-flex: 1 1 150px;
-border: 2px solid gray;
-padding: 10px;
-margin: 10px;
-border-radius: 10px;
-
-}
-.filterproducts img{
-  max-width: 100%;
-  max-height: 100%;
+   
+    margin-left: 20px;
+    margin-top: 10px;
+   
   
+   
 }
+
+
+
+
 .filterinside{
  
  
@@ -963,8 +1193,9 @@ border-radius: 10px;
 }
 
 .product-tumb img {
-    max-width: 100%;
-    max-height: 100%;
+   width : 100%;
+    height: 100%;
+     margin-left: 20px;
 }
 
 .product-details {
@@ -973,11 +1204,13 @@ border-radius: 10px;
 
 .product-catagory {
     display: block;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #ccc;
+    color: #706e6e;
     margin-bottom: 18px;
+    cursor: pointer;
+    
 }
 
 .product-details h4 a {
@@ -1018,6 +1251,25 @@ border-radius: 10px;
     font-size: 18px;
     color: #fbb72c;
     font-weight: 600;
+}
+.viewinar{
+  
+  display: flex;
+ 
+}
+
+.viewinar  button{
+  width: 120px;
+  height: 40px;
+  border: 1px solid gray;
+  background-color: transparent;
+  border-radius: 10px;
+  background-color: #d6cfcf;
+
+}
+.viewinar button:hover{
+  background-color: transparent;
+  border-radius: 20px;
 }
 
 .product-price small {
@@ -1061,27 +1313,13 @@ border-radius: 10px;
 }
 
 
-.categorycontainer{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width:  auto;
-  height: 100%;
- 
+
+.imageinsidediv{
+  border: 1px solid red;
+  width: fit-content;
 }
-
-.categorycontainer>*{
-  flex: 1 1 250px;
-
-  margin: 10px;
+.imageinsidediv img{
   padding: 10px;
-
-
- 
-
-
- 
-
 }
 
 
@@ -1334,8 +1572,299 @@ background-color: transparent;
 .proItems > img{
   width: 1.3rem;
 }
+.imagedivcontainer{
+  display: flex;
+  width: 100%;
+  height: 100%;
+ 
+
+}
 
 
+.filteritemcontainer{
+flex: 1;
+  flex-wrap: wrap;
+  height:  900px;
+  margin: 10px;
+  overflow: scroll;
+  
+ 
+  
+   
+}
+.displaycontainer{
+  flex: 2;
+  border: 2px solid rgb(187, 181, 181);
+  height: 900px;
+  margin: 10px;
+  width: auto;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  background-color: #e7e7e7;
+  
+}
+.buttonscontainer{
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.buttonscontainer>*{
+  flex: 1 1 60px;
+  
+  margin: 10px;
+  padding-top: 10px;
+ 
+}
+
+.filterobjectcontainer{
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
+ 
+ 
+
+}
+.filterobjectcontainer>*{
+  flex: 1 1 250px;
+ 
+  margin: 10px;
+}
+
+.filterimagecontainer{
+ 
+  display: flex;
+  flex-wrap: wrap; 
+  width: 250px;
+  height: 250px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  
+
+ }
+.filterimagecontainer img{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+
+}
+.itemdetailscontainer{
+
+  
+}
+
+.camdisplay{
+  display: none;
+  width: 100%;
+  height: auto;
+ 
+
+}
+.closecamera{
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
+  height: auto;
+ 
+}
+.closecamera>*{
+  flex: 1 1 80px;
+  margin: 10px;
+ 
+  
+}
+
+.clickimagedisplay{
+  display: flex;
+  width:  450px;
+  height: 300px;
+  border: 2px solid rgb(138, 138, 138);
+  flex-wrap: wrap;
+  margin: 20px;
+  padding: 20px;
+
+  border-radius: 10px;
+}
+.clickimagedisplay img{
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+
+
+.displayurlcontainer{
+  display: flex;
+  width:   auto;
+ padding: 20px;
+  height: 700px;
+  border: 2px solid rgb(138, 138, 138);
+  margin: 20px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  
+ 
+ 
+}
+.displayurlcontainer img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.itemdetailscontainer p{
+  font-size: 20px;
+  font-weight: bold;
+  font-family: monospace;
+  color: gray;
+}
+.filtercontainermain {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: auto;
+  width: auto;
+  border: 1px solid rgb(197, 190, 190);
+  border-radius: 10px;
+
+
+}
+.filterimagecontainer img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.handleimagebuttons{
+ 
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-left: 80px;
+  height: 90px;
+  
+}
+.buttonfilterdiv{
+  flex: 1;
+  
+ 
+  
+}
+.buttonimage{
+  flex: 1;
+  
+
+
+}
+.inputfordistance{
+  flex: 1;
+ 
+
+}
+.inputfordistance input{
+  border-radius: 10px;
+  border: none;
+  height: 40px;
+  box-shadow: 2px 2px 2px 2px rgb(165, 164, 164);
+  padding-left: 5px;
+}
+.inputfordistance input:focus{
+  outline: none;
+}
+
+.distanceinput input{
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+}
+.distanceinput input:focus{
+  outline: none;
+
+}
+
+.categorycontainer{
+  display: flex;
+  flex-direction: row;
+  width: auto;
+
+  flex-wrap: wrap;
+  gap: 10px;
+ 
+  padding: 10px;
+ 
+}
+.categorycontainer>*{
+  flex: 1 1 150px;
+  border: 1px solid gray;
+  
+  border-radius: 10px;
+  background-color: #f7f6f6;
+   
+ 
+
+}
+.categorycontainer p{
+  font-size: 20px;
+  font-family: monospace;
+ 
+  padding-left: 20px;
+}
+.categorycontainer h3{
+  font-size: 20px;
+  font-family: monospace;
+  padding-left: 10px;
+padding-right: 10px;
+cursor: pointer;
+ 
+
+}
+
+.categorycontainer img{
+  padding: 10px;
+ 
+  margin-top: 10px;
+}
+.viewinroom{
+  display: flex;
+  height: 80px;
+  
+ 
+}
+.trybutton{
+  display: flex;
+  margin-left: 50px;
+}
+.trybutton button{
+  border: 1px solid gray;
+  border-radius: 5px ;
+  background-color: #f7f6f6;
+  color: black;
+  font-family: monospace;
+}
+
+
+.brandimagecontainer{
+  display: flex;
+  width: 250px;
+  height: auto;
+
+}
+
+
+.brandimagecontainer img{
+  max-width: 100%;
+  min-width:  100%;
+}
 
 
 @keyframes App-logo-spin {
@@ -1375,8 +1904,133 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.mobilescreen{
+  display: none;
+ 
+  width: auto;
+  height: 100%;
+}
+.mobileinternal{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  height: 100%;
+  width: auto;
+}
+.mobilebuttonscontainer{
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: auto;
+  margin: 10px;
+  
+}
+.mobilebuttonscontainer>*{
+  flex : 1 1 80px;
+  margin: 5px;
+}
+.mobileimagecontainer{
+  display: flex;
+  height: 500px;
+  width: 100%;
+  
+  margin-top: 10px;
+  padding: 10px;
+}
+.mobilefiltercontainer{
+  display: flex;
+  height: 150px;
+  width:  350px;
+  margin-left: 10px;
+  overflow-x: scroll;
+  
+  margin-top: 10px;
+  flex-wrap: wrap;
+  flex-direction : column;
+  padding: 5px;
+}
+.mobileimagecontainer img{
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(119, 117, 117);
+  border-radius: 10px;
+}
+
+.mobilefiltercontainer>*{
+  flex: 1 1 60px;
+  
+  flex-wrap: wrap;
+  margin: 5px;
+  padding: 10px;
+ 
+}
+.mobileimage{
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+  height: 120px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+
+}
+.mobdivcontainer{
+  border: none;
+  border-radius: 10px;
+}
+
+.defaultimage{
+  display: none;
+}
+.processimage{
+  display: none;
+}
+.mobileimage p{
+  font-family: monospace;
+  font-size: 15px;
+}
+.mobileimage img{
+  width: 100%;
+  height: 100%;
+}
+
+.nodata{
+  display: none;
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  background-color: rgb(238, 235, 235);
+  position: absolute;
+   margin-left: 500px;
+   margin-top: 200px;
+  z-index: 1;
+}
+.nodata h2{
+  font-size: 20px;
+  font-family: monospace;
+  padding-top: 60px;
+}
+.crossnodata{
+  position: relative;
+  float: right;
+  cursor: pointer;
+}
+
 
 @media screen and (max-width: 500px) {
+
+.itemspara{
+  margin-top: 80px;
+}
+.itemspara h3{
+  font-size: 18px;
+}
+
+  .mobilescreen{
+    display: flex;
+  }
 .cameracontainer{
   flex-direction: column;
 }
@@ -1387,4 +2041,10 @@ input::-webkit-inner-spin-button {
   top: 50px;
   left: 60px;
 }
+.mainview{
+  display: none;
 }
+
+}
+
+

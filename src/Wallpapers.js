@@ -836,6 +836,14 @@ screenshotQuality={1}
   <button class="btn">Select Image</button>
   <input type="file"  id='fileinput' name="myfile" onChange={handleFile} />
 </div>
+<div>
+<input style={{}} 
+      type='file' 
+      accept="image/*"
+      capture="environment"
+      
+     />
+</div>
 
 
       </div>

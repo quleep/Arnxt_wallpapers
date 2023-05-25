@@ -16,6 +16,11 @@ import Wall from './Wall';
 import Wallpaper from './Wallpaper';
 import WallMurals from './WallMurals';
 import ChangeWalls from './ChangeWalls';
+import Test from './Test';
+import Rooms from './Rooms';
+import Search from './Search';
+import Floors from './Floors';
+import ProductDetails from './ProductDetails';
 
 
 
@@ -35,7 +40,17 @@ function App() {
         <Route exact path="/wallarts" component={Wallpapers} />
 
         <Route exact path="/WallMurals" component={WallMurals} />
+        <Route exact path="/floor" component={Floors} />
+
         <Route exact path="/view" component={ChangeWalls} />
+        <Route exact path="/test" component={Test} />
+        <Route exact path="/room" component={Rooms} />
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/productdetails" component={ProductDetails} />
+
+
+
+
       
 
         

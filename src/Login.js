@@ -69,7 +69,7 @@ const Login = () => {
 
   return (
     <div>
-       <Navbarmain/>
+     
        <Footer/>
 
        <div  className='logincontainer'> 

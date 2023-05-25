@@ -2,13 +2,18 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import { RiAddLine, RiArrowDownSLine } from 'react-icons/ri';
 import axios from 'axios';
+import Webcam from 'react-webcam'
+
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { FaCamera, FaTimes } from 'react-icons/fa';
 
 import MultiRangeSlider from "multi-range-slider-react";
 
 import checked from '../src/Assets/checked.svg'
 import unChecked from '../src/Assets/unchecked.svg'
 import { useHistory, useLocation } from 'react-router-dom';
+
+const filterdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/filterdata'
 
 const categoryimageurl= 'https://api.arnxt.com/model/allcategories'
 
@@ -39,6 +44,9 @@ const ChangeWalls = () => {
     const [tagstable, setTagsTable] = useState();
 
     const [searchvalue, setSearchValue] = useState(false)
+    const [cameraonstatus, setCameraOnStatus] = useState(false);
+    const [camera, setCamera] = useState();
+    const [file, setFile] = useState();
 
 
     const [colorarray, setColorArray] = useState([])
@@ -57,14 +65,45 @@ const ChangeWalls = () => {
 
     const [imageDataURL, setImageDataUrl] = useState('')
 
+    const [filtercolor, setFilterColor] = useState([])
+    const [filterdesign, setFilterDesign] = useState([])
+    const [filtercollection, setFilterCollection] = useState([])
+
+    const [filterdata, setFilterData] = useState()
+    const [imageurl, setImageUrl] = useState([])
+
+    const [imageurlfinal, setImageUrlFinal] = useState([])
+    const [fileexist, setFileExist] = useState(false)
+    const [clickpicture, setClickPicture] = useState(false)
+   const [distancewall, setDistanceWall] = useState('')
+
+   const [singleitem, setSingleItem] = useState()
+
+   const [mobileimage, setMobileImage] = useState([])
+
+   const [checked, setChecked] = useState(false)
+
+   const [walldistance, setWallDistance] = useState('');
+
+
+   const location = useLocation()
+
     const history= useHistory()
 
-    const ref= useRef()
 
 
-   
+    const webcamRef = useRef(null);
+    const [imgSrc, setImgSrc] = useState(null);
 
 
+   useEffect(()=>{
+    if(location.state){
+      setSingleItem(location.state)
+    }
+
+   },[])
+
+ 
 
     const handleInput = (e) => {
 
@@ -131,25 +170,234 @@ const ChangeWalls = () => {
     }
 
 
+ let dis = '5'
+
+ const checkboxSingle=(val)=>{
+  let checked = false
+
+  if(walldistance === ''){
+    document.querySelector('.distance').style = 'border: 1px solid red'
+    document.querySelector('.distancemessage').innerHTML = 'Required'
+    setTimeout(() => {
+    document.querySelector('.distancemessage').innerHTML = ''
+      
+    }, [3000]);
+    return
+  }
+  else{
+    document.querySelector('.distance').style = ''
+
+  }
+
+  if(document.querySelector('#checksingle:checked')){
+    checked = true;
+  } 
+  else{
+    checked = false;
+  }
+
+  if(checked){
+  document.querySelector('.loadwebar').style.display= 'block'
+
+    setImageUrlFinal('')
+    document.querySelector('#divsingle').style= 'border: 2px solid #2e6180'
+
+
+    
+    const body={
+      image: imageurl[0],
+      distance: walldistance,
+      url:  val.imageurl[0]
+     
+    }
+  
+    axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+
+    if(res){
+  document.querySelector('.loadwebar').style.display= 'none'
+
+    }
+
+       setImageUrlFinal( res.data.segmented_image_url)
+
+        
+
+   
+       
+
+      
+     
+  
+    }).catch(error =>{
+      console.log(error)
+    })
+
+  }
+  if(!checked){
+    setCollectionArray('')
+   
+    document.querySelector('#divsingle').style= 'border: none'
+
+  }
+
+ 
+
+
+
+ }
+
+ 
+
+ let mobilelen= '5'
+
+
+
+ const checkboxClickMobile=(val, len)=>{
+
+  console.log(val)
+ 
+  let checked = false
+ 
+
+ 
+
+  if(document.querySelector(`#check_${len}:checked`)){
+    checked = true;
+  } 
+  else{
+    checked = false;
+  }
+
+  if(checked){
+  document.querySelector('.loadwebar').style.display= 'block'
+
+  
    
 
+
+     document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
+    const body={
+      image: mobileimage[0],
+      distance: mobilelen,
+      url:  val.imageurl[0]
+     
+    }
+  
+    axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+
+    if(res){
+  document.querySelector('.loadwebar').style.display= 'none'
+  document.querySelector('.defaultimage').style.display = 'none'
+  document.querySelector('.processimage').style.display = 'block'
+
+
+
+    }
+        setImageUrl(res.data.segmented_image_url)
+
+        
+
+   
+       
+
+      
+     
+  
+    }).catch(error =>{
+      console.log(error)
+    })
+
+  }
+  if(!checked){
+    setCollectionArray('')
+    document.querySelector(`#divselect_${len}`).style= 'border: none'
+  
+
+  }
+
+ 
+ 
+
+ }
+
 const checkboxClick=(val, len)=>{
+  console.log(val)
     let checked = false
+   
+  if(walldistance === ''){
+    document.querySelector('.distance').style = 'border: 1px solid red'
+    document.querySelector('.distancemessage').innerHTML = 'Required'
+    setTimeout(() => {
+    document.querySelector('.distancemessage').innerHTML = ''
+      
+    }, [3000]);
+    return
+  }
+  else{
+    document.querySelector('.distance').style = ''
 
+  }
+ 
     if(document.querySelector(`#check_${len}:checked`)){
-        checked = true;
-      } 
-      else{
-        checked = false;
+      checked = true;
+    } 
+    else{
+      checked = false;
+    }
+
+    if(checked){
+    document.querySelector('.loadwebardesk').style.display= 'block'
+
+      setImageUrlFinal('')
+     
+
+
+       document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
+      const body={
+        image: imageurl[0],
+        distance: walldistance,
+        url:  val.imageurl[0]
+       
+      }
+    
+      axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+
+      if(res){
+        document.querySelector('.defaultimagedesk').style.display = 'none'
+        document.querySelector('.processimagedesk').style.display = 'block'
+
+
+    document.querySelector('.loadwebardesk').style.display= 'none'
+
       }
 
-      if(checked){
-        setCollectionArray(val)
-      }
-      if(!checked){
-        setCollectionArray('')
-      }
+         setImageUrlFinal( res.data.segmented_image_url)
 
+          
+
+     
+         
+
+        
+       
+    
+      }).catch(error =>{
+        console.log(error)
+      })
+
+    }
+    if(!checked){
+      setCollectionArray('')
+      document.querySelector(`#divselect_${len}`).style= 'border: none'
+    
+
+    }
+
+   
+   
+    
+
+ 
 }
 
 
@@ -401,27 +649,9 @@ useEffect(()=>{
 }
 
 
-const checkboxClickHomediv=(val,len)=>{
-
-}
 
 
 
-
-useEffect(()=>{
-    const body={
-        brand: brandidnew
-    }
-    axios.post(getcatsubcaturl, body).then(res=>{
-       setCatData(res.data)
-    }).catch(error=>{
-        console.log(error)
-    })
-},[])
-
-function removerepeat(data){
-  return [...new Set(data)]
-}
 
 
 let catarr=[]
@@ -483,12 +713,66 @@ const filterHandler = (event, val) => {
       )
     }
   }
-  let filteredDATA
+const filterColorHandler= (event)=>{
+
+       
+  if (event.target.checked) {
+
+      
+       
+    setFilterColor([...filtercolor, event.target.value])
+  } else {
+     
+    setFilterColor(
+     
+      filtercolor.filter((filtercolor) => filtercolor !== event.target.value)
+    )
+  }
+
+}
+
+const filterCollectionHandler= (event)=>{
+
+         
+  if (event.target.checked) {
+
+      
+       
+    setFilterCollection([...filtercollection, event.target.value])
+  } else {
+     
+    setFilterCollection(
+     
+      filtercollection.filter((filtercoll) => filtercoll !== event.target.value)
+    )
+  }
+
+}
+
+const filterDesignHandler = (event)=>{
+
+  if (event.target.checked) {
+
+      
+       
+    setFilterDesign([...filterdesign, event.target.value])
+  } else {
+     
+    setFilterDesign(
+     
+      filterdesign.filter((filtercoll) => filtercoll !== event.target.value)
+    )
+  }
+
+
+}
 
 
  
 
   
+ {
+  /*
  
 
   const filterdata = (catitems, filterarray)=>{
@@ -545,7 +829,11 @@ const filterproduct= filterdata(catdata, filterTags)
   
 console.log(filterproduct)
 
+*/}
+
 let pricevalue; 
+
+
 
 const handlepricebutton=()=>{
 
@@ -553,7 +841,7 @@ const handlepricebutton=()=>{
   
    
      
-     setFilterTags([...filterTags, {minvalue: minprice}, {maxvalue : maxprice}])
+    
     
 
 
@@ -563,7 +851,11 @@ const handlepricebutton=()=>{
 
 
 const handlefilterclear=()=>{
+  setFilterData('')
     setFilterTags([])
+    setFilterColor([])
+    setFilterCollection([])
+    setFilterDesign([])
 
     let get= document.getElementsByName('check');
 
@@ -603,7 +895,344 @@ const handleWallpaper=(val,len)=>{
 
 
 
+const handleApplyFilter=()=>{
+
+ 
+  const body={
+    brand: brandidnew,
+    tagvalue: filterTags,
+    colorvalue: filtercolor,
+    collectionvalue: filtercollection,
+    designstyle: filterdesign,
+    maxprice: Number(maxprice),
+    minprice: Number(minprice)
+  }
+
+  axios.post(filterdataurl, body).then(res=>{
+    if(res.status === 200){
+
+      console.log(res.data)
+
+   let newdata=    res.data.filter((item)=>(
+        item.subcategory === 'Wallpapers'
+      ))
+      setFilterData(newdata)
+    }
+
+  }).catch(error=>{
+    console.log(error)
+  })
+  
+
+}
+
+const closeCamera=()=>{
+  
+  document.querySelector('.closecamera').style.display= 'none'
+  document.querySelector('.camdisplay').style.display= 'none'
+
+
+
+}
+
+console.log(imgSrc)
+const handlePictureClick=()=>{
+
+
+  const imgsrc= webcamRef.current.getScreenshot()
+   if(imageurl.length > 0){
+    imageurl.pop()
+    setImageUrl([...imageurl, imgsrc])
+   } else{
+    setImageUrl([...imageurl, imgsrc])
+
+   }
+
+   document.querySelector('.defaultimagedesk').style.display= 'block'
+  
+  if(distancewall === ''){/*
+    document.querySelector('.inp').style = 'border: 2px solid red'
+    document.querySelector('#distancemessage').innerHTML= 'Required'
+    return
+
+*/}
+document.querySelector('.closecamera').style.display= 'none'
+document.querySelector('.camdisplay').style.display= 'none'
+
+document.querySelector('.displayurlcontainer').style.display= 'block'
+
+    
+
    
+    setCameraOnStatus(true)
+  
+
+}
+
+
+
+
+
+
+
+const openCamera=()=>{
+  document.querySelector('.camdisplay').style.display= 'block'
+  document.querySelector('.closecamera').style.display= 'block'
+
+  document.querySelector('.displayurlcontainer').style.display= 'none'
+
+
+
+  
+}
+
+
+
+const handleImageClick=(val)=>{
+  const body={
+    image: camera,
+  
+   
+  }
+
+  axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+    setImageUrlFinal(res.data.segmented_image_url)
+
+  }).catch(error =>{
+    console.log(error)
+  })
+
+}
+
+
+
+const fileToBase64 = (file, cb) => {
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onload = function () {
+    cb(null, reader.result)
+  }
+  reader.onerror = function (error) {
+    cb(error, null)
+  }
+}
+
+
+const handleImageUploadMobile=(e)=>{
+
+  let val= document.getElementById('filemobile').value;
+  let indx = val.lastIndexOf(".") + 1;
+  let filetype = val.substr(indx, val.length).toLowerCase();
+
+  if(filetype === "jpg"  || filetype === "png" || filetype === "jpeg" ){
+
+    let files = Array.from(e.target.files) 
+
+ 
+    files.forEach(file => {
+     fileToBase64(file, (err, result) => {
+       if (result) {
+
+      
+     document.querySelector('.defaultimage').style.display = 'block'
+  
+        if(mobileimage.length > 0){
+          mobileimage.pop()
+          setMobileImage([...mobileimage, result])
+        
+
+       }else{
+        setMobileImage([...mobileimage, result])
+       
+
+       
+       }
+       
+       
+     }
+ })
+    
+   
+   
+     
+     
+   
+     const reader = new FileReader();
+   
+     reader.onload = () => {
+      
+        
+        
+     }
+       
+   
+     
+     reader.readAsDataURL(file)
+     
+   })
+
+
+
+
+  }
+
+  else{
+    document.querySelector('.filemessage').innerHTML= 'Only .png, .jpg, .jpeg accepted'
+    setTimeout(() => {
+
+    document.querySelector('.filemessage').innerHTML= ''
+
+      
+    }, [3000]);
+  }
+
+  
+
+
+
+
+}
+
+const  handleImageUpload =(e)=>{
+ 
+
+  let val= document.getElementById('fileinput').value;
+  let indx = val.lastIndexOf(".") + 1;
+  let filetype = val.substr(indx, val.length).toLowerCase();
+
+  if(filetype === "jpg"  || filetype === "png" || filetype === "jpeg" ){
+
+    let files = Array.from(e.target.files) 
+
+ 
+    files.forEach(file => {
+     fileToBase64(file, (err, result) => {
+       if (result) {
+
+        document.querySelector('.defaultimagedesk').style.display= 'block' 
+        document.querySelector('.processimagedesk').style.display= 'none' 
+   
+    
+       if(imageurl.length > 0){
+          imageurl.pop()
+          setImageUrl([...imageurl, result])
+          setFileExist(true)
+
+       }else{
+        setImageUrl([...imageurl, result])
+        setFileExist(true)
+
+       
+       }
+      
+
+       
+     }
+ })
+    
+   
+   
+     
+     
+   
+     const reader = new FileReader();
+   
+     reader.onload = () => {
+      
+        
+        
+     }
+       
+   
+     
+     reader.readAsDataURL(file)
+     
+   })
+
+
+
+
+  }
+
+  else{
+    document.querySelector('.filemessage').innerHTML= 'Only .png, .jpg, .jpeg accepted'
+    setTimeout(() => {
+
+    document.querySelector('.filemessage').innerHTML= ''
+
+      
+    }, [3000]);
+  }
+
+
+}
+
+
+const handleMobileImage=(item, len)=>{
+
+    if(walldistance === ''){
+    document.querySelector('.distance').style = 'border: 1px solid red'
+      document.querySelector('.distancemessage').innerHTML = 'Required'
+      setTimeout(() => {
+      document.querySelector('.distancemessage').innerHTML = ''
+        
+      }, [3000]);
+      return
+    }
+    else{
+      document.querySelector('.distance').style = ''
+  
+    }
+
+  document.querySelector(`#mobdiv_${len}`).style= 'border: 2px solid gray'
+
+ 
+
+  document.querySelector('.loadwebar').style.display= 'block'
+
+   
+   
+
+
+     document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
+    const body={
+      image: mobileimage[0],
+      distance: walldistance,
+      url:  item.imageurl[0]
+     
+    }
+  
+    axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+
+    if(res){
+  document.querySelector('.loadwebar').style.display= 'none'
+  document.querySelector('.defaultimage').style.display= 'none'
+  document.querySelector('.processimage').style.display= 'block'
+
+
+    }
+   
+       setImageUrl( res.data.segmented_image_url)
+
+        
+
+   
+       
+
+      
+     
+  
+    }).catch(error =>{
+      console.log(error)
+    })
+
+
+
+ 
+
+ 
+ 
+}
 
 
 
@@ -611,83 +1240,285 @@ const handleWallpaper=(val,len)=>{
   return (
     <div>
         <Navbar/>
+
+        <div className='mobilescreen'>
+
+          <div className='mobileinternal'>
+            <div className='mobilebuttonscontainer'>
+            <div className='buttonfilterdiv'> 
+              
+              <button class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+  Filter <i class='bx bx-filter'></i></button>
+              </div>
+
+          
+              <div>
+              <div class="upload-btn-wrapper">
+  <button class="btn">Upload Image</button>
+  <input type="file"  id='filemobile' name="myfile" onChange={handleImageUploadMobile} />
+</div>
+              </div>
+              <div className='inputfordistance'>  
+              <input type='text' placeholder='distance from wall' className='distance'  value={walldistance} onChange={(e)=>setWallDistance(e.target.value)} />
+              <div style={{marginTop:'10px'}} >
+              <p className='distancemessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
+            </div>
+            </div>
+
+            </div>
+            <div className='mobileimagecontainer'>
+            <div className='loadwebar' >
+    <div className='load'>
+
+</div>
+
+    </div>
+              <img  className='defaultimage' src= {mobileimage && mobileimage}/>
+              <img  className='processimage' src= {imageurl && imageurl}/>
+
+              
+
+              </div>
+              <div className='mobilefiltercontainer'  >
+               {
+                filterdata && filterdata.map((item, i)=>(
+
+                 
+                  
+                       <div id={`mobdiv_${i}`}  className='mobdivcontainer'  >
+                   
+                    
+                        
+                    <div className='mobileimage'   onClick={()=> handleMobileImage(item, i)} >
+                   
+                    <img src= {item.imageurl[0]}/>
+                   
+
+                    </div>
+
+                    <p>{item.productname}</p>
+                    </div>
+
+                 
+               
+                ))
+               }
+             
+           
+                
+                </div>
+                
+  
+
+
+            </div>
+ 
+    
+
+        </div>
         <div className='mainview'>
-            <div className='filterproductscontainer'>
 
-               <div>
-               <div  className='filtercontainer'>
+          <div className='filteritemcontainer'>  
 
-<a class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-    Filter <i class='bx bx-filter'></i></a>
+          <div className='buttonscontainer'>
+            <div className='buttonfilterdiv'> 
+              
+            <button class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+Filter <i class='bx bx-filter'></i></button>
+            </div>
+  
+
+
+          </div>
+
+          {
+            singleitem && 
+
+            <div className=''   >
+
+             
+            <div  className='' id='divsingle' >
+            <label  htmlFor= 'checksingle'>
+              <div className='filterimagecontainer' >
+             
+                 <img src= { singleitem &&  singleitem.imageurl[0]}  />
+                  <input type='checkbox'   className='checkinput' id= 'checksingle' value={singleitem} onClick={()=>checkboxSingle(singleitem)} />
+
+              </div>
+              <div className='itemdetailscontainer'>
+                <p>{ singleitem && singleitem.productname}</p>
+               
+
+              </div>
+              </label> 
+            </div>
+           
+      
+
+            
+
+
+          </div>
+          }
+          {
+            filterdata && filterdata.map((item,i)=>(
+
+              <div className=''   >
+
+             
+              <div  className='' >
+              <label  htmlFor= {`check_${i}`}>
+                <div className='filterimagecontainer' id={`divselect_${i}`} >
+               
+                   <img src= {item.imageurl[0]}  />
+                    <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=>checkboxClick(item,i)} />
+  
+                </div>
+                <div className='itemdetailscontainer'>
+                  <p>{item.productname}</p>
+                 
+  
+                </div>
+                </label> 
+              </div>
+             
+        
+  
+              
+  
+  
+            </div>
+
+            ))
+          }
+
+  
+
+          </div>
+          <div className='displaycontainer'> 
+
+          {
+
+          }
+          <div  className='closecamera'>
+
+            <div   >
+           
+          <FaTimes onClick={closeCamera} style={{color:'red',borderRadius:'5px', fontSize:'20px', border:'1px solid red', cursor:'pointer'}}/>
+        
+
+            </div>
+            <div className='buttonfilterdiv'>
+              <button type='' onClick={handlePictureClick}>Click Picture</button>
+            </div>
+           
+      
+          </div>
+
+          <div  className='camdisplay'>
+         
+      
+ <Webcam ref= {webcamRef} 
+ style={{width:'100%', height:'100%'}}
+ mirrored={true}
+ screenshotFormat='image/jpeg'
+ screenshotQuality={1}
+ 
+ />
+   
+ 
+ </div>  
+
+   <div className='displayurlcontainer' >
+
+
+ 
+  {
+     
+  <img className='defaultimagedesk' src={imageurl &&    imageurl}  /> 
+
+ }
+
+ 
+ 
+  {
+    
+  <img  className='processimagedesk' src={imageurlfinal &&    imageurlfinal}  alt='image'/> 
+
+ }
+   
+
+ 
+ 
+
+    <div className='loadwebardesk' >
+    <div className='load'>
+
+</div>
+
+    </div>
+ 
+
+ </div>
+
+  <div className='handleimagebuttons'>
+  <div  className='buttonfilterdiv'>
+              <button type='submit' onClick={openCamera} > Take Picture    <FaCamera/> </button>
+          
+            </div>
+            <div  className='buttonimage'>
+            <div class="upload-btn-wrapper">
+  <button class="btn">Upload Image</button>
+  <input type="file"  id='fileinput' name="myfile" onChange={handleImageUpload} />
+</div>
+            </div>
+            
+            <div className='inputfordistance'>  
+              <input type='text' placeholder='distance from wall' className='distance'  value={walldistance} onChange={(e)=>setWallDistance(e.target.value)} />
+              <div style={{marginTop:'10px'}} >
+              <p className='distancemessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
+            </div>
+            </div>
+          
+
 
 
   </div>
-               </div>
-
-               <div>
-                <button type='submit'>take Picture</button>
-               </div>
-               <div>
-                <button>Upload Image</button>
-               </div>
-
-            </div>
-
-
-
-            <div className='filtereditemscontainer'>
-            <p>Filtered products</p>
-          
-
-                <div  className='filterproducts' >
-                   
-                
-
-                    {
-                        filterproduct && filterproduct.map((item,i)=>(
-           
-                            <label htmlFor= {`check_${i}`}>
-                                
-                            <div className='filterinside' style={{margin:"20px"}} id={`divselect_${i}`}>
-                            <input type='checkbox'   className='checkinput'  id= {`check_${i}`} value={item} onClick={()=>handleWallpaper(item, i)}   />
-                            <img src={item.imageurl[0]}/>
-                            <p>{item.productname}</p>
-                            
-                        </div>
-
-
-                            </label>
-
-                        ))
-                    }
-                    
-                    
 
 
 
 
-                
-                
-                
-                </div>
+ 
 
+          </div>
+  
 
-            </div>
 
         </div>
+
+
 
         
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
+    <div className='buttonfilter'>
     <button  type='submit' onClick={handlefilterclear} >Clear</button>
+
+
+    </div>
+    <div className='buttonfilter'>
+    <button type='submit'   onClick={handleApplyFilter}> Apply</button>
+
+
+    </div>
 
 
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
 
-  <div >
+  <div>
 
 
   <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -738,7 +1569,7 @@ const handleWallpaper=(val,len)=>{
                
 
                 <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
+                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterColorHandler(e)}/>
                 <p>{it}</p>
 
                  </div>
@@ -770,7 +1601,7 @@ const handleWallpaper=(val,len)=>{
                
 
                 <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
+                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterDesignHandler(e)}/>
                 <p>{it}</p>
 
                  </div>
@@ -802,7 +1633,7 @@ const handleWallpaper=(val,len)=>{
                
 
                 <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
+                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterCollectionHandler(e)}/>
                 <p>{it}</p>
 
                  </div>
@@ -831,9 +1662,9 @@ const handleWallpaper=(val,len)=>{
                                <div>
                                <div className="range">
        <MultiRangeSlider
-           min={5000}
+           min={2000}
            max={60000}
-           step={3000}
+           step={100}
        
            barInnerColor= "rgb(19, 209, 187)"
            ruler={false}
@@ -852,10 +1683,7 @@ const handleWallpaper=(val,len)=>{
         <input type='number' value={maxprice}  />
 
            </div>
-           <div className='rangeinput'>
-            <button  type='submit' onClick={handlepricebutton} >Go</button>
-
-           </div>
+         
        
     
           </div>
