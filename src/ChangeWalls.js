@@ -83,7 +83,8 @@ const ChangeWalls = () => {
 
    const [checked, setChecked] = useState(false)
 
-   const [walldistance, setWallDistance] = useState('');
+   const [walldistancedesk, setWallDistanceDesk] = useState('')
+   const [walldistancemob, setWallDistanceMob] = useState('')
 
 
    const location = useLocation()
@@ -173,21 +174,9 @@ const ChangeWalls = () => {
  let dis = '5'
 
  const checkboxSingle=(val)=>{
+ 
   let checked = false
 
-  if(walldistance === ''){
-    document.querySelector('.distance').style = 'border: 1px solid red'
-    document.querySelector('.distancemessage').innerHTML = 'Required'
-    setTimeout(() => {
-    document.querySelector('.distancemessage').innerHTML = ''
-      
-    }, [3000]);
-    return
-  }
-  else{
-    document.querySelector('.distance').style = ''
-
-  }
 
   if(document.querySelector('#checksingle:checked')){
     checked = true;
@@ -197,16 +186,36 @@ const ChangeWalls = () => {
   }
 
   if(checked){
-  document.querySelector('.loadwebar').style.display= 'block'
+   
+
+    if(walldistancedesk === ''){
+      document.querySelector('.distancefield').style = 'border: 2px solid red'
+      document.querySelector('.distanceerror').innerHTML = 'Required'
+      setTimeout(() => {
+
+      document.querySelector('.distanceerror').innerHTML = ''
+        
+      }, [3000]);
+document.querySelector('.loadwebardesk').style.display= 'none'
+
+
+      return
+  } 
+  else{
+    document.querySelector('.distancefield').style = 'border: none'
+
+  }
+
+  document.querySelector('.loadwebardesk').style.display= 'block'
 
     setImageUrlFinal('')
-    document.querySelector('#divsingle').style= 'border: 2px solid #2e6180'
+   
 
 
     
     const body={
       image: imageurl[0],
-      distance: walldistance,
+      distance: walldistancedesk,
       url:  val.imageurl[0]
      
     }
@@ -214,19 +223,18 @@ const ChangeWalls = () => {
     axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
 
     if(res){
-  document.querySelector('.loadwebar').style.display= 'none'
+  document.querySelector('.loadwebardesk').style.display= 'none'
+
+  document.querySelector('.defaultimagedesk').style.display = 'none'
+  document.querySelector('.processimagedesk').style.display = 'block'
+
+
 
     }
-
+      
        setImageUrlFinal( res.data.segmented_image_url)
 
-        
-
-   
        
-
-      
-     
   
     }).catch(error =>{
       console.log(error)
@@ -321,23 +329,13 @@ const ChangeWalls = () => {
  }
 
 const checkboxClick=(val, len)=>{
-  console.log(val)
+ 
     let checked = false
    
-  if(walldistance === ''){
-    document.querySelector('.distance').style = 'border: 1px solid red'
-    document.querySelector('.distancemessage').innerHTML = 'Required'
-    setTimeout(() => {
-    document.querySelector('.distancemessage').innerHTML = ''
-      
-    }, [3000]);
-    return
-  }
-  else{
-    document.querySelector('.distance').style = ''
-
-  }
  
+    
+
+    
     if(document.querySelector(`#check_${len}:checked`)){
       checked = true;
     } 
@@ -346,16 +344,37 @@ const checkboxClick=(val, len)=>{
     }
 
     if(checked){
+      document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
+      
+      if(walldistancedesk === ''){
+          document.querySelector('.distancefield').style = 'border: 2px solid red'
+          document.querySelector('.distanceerror').innerHTML = 'Required'
+          setTimeout(() => {
+
+          document.querySelector('.distanceerror').innerHTML = ''
+            
+          }, [3000]);
+    document.querySelector('.loadwebardesk').style.display= 'none'
+
+
+          return
+      } 
+      else{
+        document.querySelector('.distancefield').style = 'border: none'
+
+      }
+    
+
     document.querySelector('.loadwebardesk').style.display= 'block'
 
       setImageUrlFinal('')
      
 
 
-       document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
+     
       const body={
         image: imageurl[0],
-        distance: walldistance,
+        distance: walldistancedesk,
         url:  val.imageurl[0]
        
       }
@@ -394,7 +413,7 @@ const checkboxClick=(val, len)=>{
     }
 
    
-   
+  
     
 
  
@@ -1114,7 +1133,7 @@ const  handleImageUpload =(e)=>{
    
     
        if(imageurl.length > 0){
-          imageurl.pop()
+          imageurl &&  imageurl.pop()
           setImageUrl([...imageurl, result])
           setFileExist(true)
 
@@ -1170,21 +1189,28 @@ const  handleImageUpload =(e)=>{
 
 const handleMobileImage=(item, len)=>{
 
-    if(walldistance === ''){
-    document.querySelector('.distance').style = 'border: 1px solid red'
-      document.querySelector('.distancemessage').innerHTML = 'Required'
+  document.querySelector(`#mobdiv_${len}`).style= 'border: 2px solid gray'
+
+  if(walldistancemob === ''){
+    document.querySelector('.distancefieldmob').style = 'border: 1px solid red'
+      document.querySelector('.distancefieldmobmessage').innerHTML = 'Required'
       setTimeout(() => {
-      document.querySelector('.distancemessage').innerHTML = ''
+        document.querySelector('.distancefieldmobmessage').innerHTML = ''
+
         
       }, [3000]);
+  document.querySelector('.loadwebar').style.display= 'none'
+
       return
     }
     else{
-      document.querySelector('.distance').style = ''
+      document.querySelector('.distancefieldmob').style = ''
   
     }
 
-  document.querySelector(`#mobdiv_${len}`).style= 'border: 2px solid gray'
+
+
+ 
 
  
 
@@ -1194,10 +1220,9 @@ const handleMobileImage=(item, len)=>{
    
 
 
-     document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
     const body={
       image: mobileimage[0],
-      distance: walldistance,
+      distance: walldistancemob,
       url:  item.imageurl[0]
      
     }
@@ -1234,6 +1259,65 @@ const handleMobileImage=(item, len)=>{
  
 }
 
+const handleMobileImageSingle=(val)=>{
+
+  document.querySelector('#mobdiv').style = 'border: 1px solid gray'
+
+  if(walldistancemob === ''){
+    document.querySelector('.distancefieldmob').style = 'border: 1px solid red'
+      document.querySelector('.distancefieldmobmessage').innerHTML = 'Required'
+      setTimeout(() => {
+        document.querySelector('.distancefieldmobmessage').innerHTML = ''
+
+        
+      }, [3000]);
+  document.querySelector('.loadwebar').style.display= 'none'
+
+      return
+    }
+    else{
+      document.querySelector('.distancefieldmob').style = ''
+  
+    }
+  document.querySelector('.loadwebar').style.display= 'block'
+
+  const body={
+    image: mobileimage[0],
+    distance: walldistancemob,
+    url:  val.imageurl[0]
+   
+  }
+
+  axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+
+  if(res){
+document.querySelector('.loadwebar').style.display= 'none'
+document.querySelector('.defaultimage').style.display= 'none'
+document.querySelector('.processimage').style.display= 'block'
+
+
+  }
+ 
+     setImageUrl( res.data.segmented_image_url)
+
+      
+
+ 
+     
+
+    
+   
+
+  }).catch(error =>{
+    console.log(error)
+  })
+
+
+
+
+  
+}
+
 
 
  
@@ -1259,9 +1343,9 @@ const handleMobileImage=(item, len)=>{
 </div>
               </div>
               <div className='inputfordistance'>  
-              <input type='text' placeholder='distance from wall' className='distance'  value={walldistance} onChange={(e)=>setWallDistance(e.target.value)} />
+              <input type='text' placeholder='distance from wall' className= 'distancefieldmob'  value={walldistancemob}   onChange={(e)=>setWallDistanceMob(e.target.value)} />
               <div style={{marginTop:'10px'}} >
-              <p className='distancemessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
+              <p className='distancefieldmobmessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
             </div>
             </div>
 
@@ -1280,6 +1364,31 @@ const handleMobileImage=(item, len)=>{
 
               </div>
               <div className='mobilefiltercontainer'  >
+               {
+                singleitem &&
+                <div>
+                     <div id= 'mobdiv'  className='mobdivcontainer'  >
+                   
+                    
+                        
+                   <div className='mobileimage'   onClick={()=> handleMobileImageSingle(singleitem)} >
+                  
+                   <img src= {singleitem.imageurl[0]}/>
+                  
+
+                   </div>
+
+                   <p>{singleitem.productname}</p>
+                   </div>
+
+
+
+                  </div>
+
+               }
+
+
+
                {
                 filterdata && filterdata.map((item, i)=>(
 
@@ -1474,9 +1583,9 @@ Filter <i class='bx bx-filter'></i></button>
             </div>
             
             <div className='inputfordistance'>  
-              <input type='text' placeholder='distance from wall' className='distance'  value={walldistance} onChange={(e)=>setWallDistance(e.target.value)} />
+              <input type='text' placeholder='distance from wall' className='distancefield'  value={walldistancedesk} onChange= {(e)=>setWallDistanceDesk(e.target.value)} />
               <div style={{marginTop:'10px'}} >
-              <p className='distancemessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
+              <p className='distanceerror' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
             </div>
             </div>
           

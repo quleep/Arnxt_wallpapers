@@ -1062,7 +1062,7 @@ border-bottom-color: transparent;
  
   flex-direction: row;
   flex-wrap: wrap;
-  height: 150px;
+  height: auto;
 }
 
 .brandcontainer{
@@ -1093,7 +1093,7 @@ border-bottom-color: transparent;
 .itemspara{
   display: flex;
   flex-wrap: wrap;
-  height: 60px;
+  height: auto;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -1749,9 +1749,11 @@ flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  margin-left: 80px;
+  justify-content: space-between;
+ 
   height: 90px;
+ 
+
   
 }
 .buttonfilterdiv{
@@ -2018,14 +2020,77 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
+.navbarnew{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0079bf;
+  padding: 15px;
+
+}
+
+.navbarnew a{
+  text-decoration: none;
+  color: inherit;
+}
+.list{
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+#toggler,
+.navbar label{
+  display: none;
+}
+.hamburger{
+  display: none;
+}
+
+
 
 @media screen and (max-width: 500px) {
 
-.itemspara{
-  margin-top: 80px;
-}
+  .logincontainer{
+   
+    width: auto;
+  }
+
+  .imagedivtags{
+    width: 200px;
+    height: 200px;
+  }
+  .imagedivtags p{
+    font-size: 15px;
+  }
+
+ 
+  .menu{
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+  }
+  .list{
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .navbarnew label{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  #toggler:checked .menu{
+   max-height: 100%;
+  }
+
+
 .itemspara h3{
-  font-size: 18px;
+  font-size: 15px;
+}
+
+.icondiv{
+  margin-top: 10px;
 }
 
   .mobilescreen{
