@@ -756,11 +756,24 @@ const tagsimages= [
 
 
 
+
+
  
   return (
     <div>
 
         <Navbar/>
+
+        <div className='modalhome'>
+          <div className='brandmodal'>
+            <img  src= {brandimage}/>
+              
+            </div>
+            <div  className='load'>
+              
+            </div>
+
+        </div>
 
       
         <div  className='mainbrandbody'>

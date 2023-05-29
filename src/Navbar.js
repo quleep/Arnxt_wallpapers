@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaHamburger } from 'react-icons/fa';
+import { FaHamburger, FaHeart } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom'
 
 const Navbar = () => {
@@ -43,7 +43,7 @@ const Navbar = () => {
         </li>
       </ul>
       <form class="d-flex">
-       
+     
         <button class="btn btn-outline-success" type="submit"  onClick={logoutHandler}>Logout</button>
       </form>
     </div>

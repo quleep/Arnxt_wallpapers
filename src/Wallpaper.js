@@ -192,7 +192,8 @@ const handlefilterclear=()=>{
   
     axios.post(filterdataurl, body).then(res=>{
       if(res.status === 200){
-  
+        
+     
     setSubCategoryData(res.data)
   
     
@@ -321,7 +322,7 @@ const closemodal= ()=>{
 
 
 
-<div  className='subcategorydiv'>
+<div  className='subcategorydiv' >
 
   
        

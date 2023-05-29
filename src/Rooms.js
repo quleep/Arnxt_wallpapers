@@ -23,7 +23,7 @@ const Rooms = () => {
     
     const [catdata, setCatData] = useState()
     const [itemdata, setItemData] = useState()
-    const [subcategorydata, setSubCategoryData] = useState()
+    const [subcategorydata, setSubCategoryData] = useState('')
     const [designtable, setDesignTable] = useState();
     const [colortable, setColorTable] = useState();
     const [collectiontable, setCollectionTable] = useState();
@@ -70,7 +70,15 @@ useEffect(()=>{
  }
 
  axios.post(getroomsdataurl ,body).then(res=>{
-     setSubCategoryData(res.data)
+
+  let newdata=    res.data.filter((item)=>(
+    item.subcategory === 'Wallpapers'
+  ))
+     if(newdata.length === 0){
+      document.querySelector('.nodata').style.display = 'block'
+     }
+
+     setSubCategoryData(newdata)
     
  }).catch(error=>{
     console.log(error)
@@ -82,14 +90,6 @@ useEffect(()=>{
    
 },[])
 
-if(subcategorydata === ''){
-    document.querySelector('.nodata').style.display = 'block'
-  }
-  
-
-const closemodal= ()=>{
-    document.querySelector('.nodata').style.display= 'none'
-}
 
 
 
@@ -201,8 +201,12 @@ const handlefilterclear=()=>{
   
     axios.post(filterdataurl, body).then(res=>{
       if(res.status === 200){
+
+        let newdata=    res.data.filter((item)=>(
+          item.subcategory === 'Wallpapers'
+        ))
   
-    setSubCategoryData(res.data)
+    setSubCategoryData(newdata)
   
     
       
@@ -296,6 +300,13 @@ const handleInput = (e) => {
 
 
 
+const closemodaldata= ()=>{
+  document.querySelector('.nodata').style.display= 'none'
+}
+
+
+
+
   return (
     <div>
             <Navbar/>
@@ -309,14 +320,13 @@ const handleInput = (e) => {
 Filter <i class='bx bx-filter'></i></button>
       </div>
 </div>
-
-
-   
 <div className='nodata'> 
-          <span  className='crossnodata' onClick={closemodal} ><FaTimes style={{fontSize:'20px'}} /></span>
+          <span  className='crossnodata' onClick={closemodaldata} ><FaTimes style={{fontSize:'20px'}} /></span>
               <h2>No Data Available</h2>
 
           </div>
+
+
 
 
 

@@ -69,7 +69,16 @@ useEffect(()=>{
  }
 
  axios.post(gettagsdataurl,body).then(res=>{
-     setSubCategoryData(res.data)
+     
+  let newdata=    res.data.filter((item)=>(
+    item.subcategory === 'Wallpapers'
+  ))
+
+  if(newdata.length === 0){
+    document.querySelector('.nodata').style.display = 'block'
+  }
+
+     setSubCategoryData(newdata)
  }).catch(error=>{
     console.log(error)
  })
@@ -191,9 +200,12 @@ const handlefilterclear=()=>{
   
     axios.post(filterdataurl, body).then(res=>{
       if(res.status === 200){
+        let newdata=    res.data.filter((item)=>(
+          item.subcategory === 'Wallpapers'
+        ))
   
-    setSubCategoryData(res.data)
-    console.log(res.data)
+    setSubCategoryData(newdata)
+  
     
       
       }
@@ -283,15 +295,11 @@ const handleInput = (e) => {
     setMaxPrice(e.maxValue);
 
 };
-
-if(subcategorydata === ''){
-    document.querySelector('.nodata').style.display = 'block'
-  }
-  
-
 const closemodal= ()=>{
-    document.querySelector('.nodata').style.display= 'none'
+  document.querySelector('.nodata').style.display= 'none'
 }
+
+
 
 
   return (

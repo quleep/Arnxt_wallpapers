@@ -1302,20 +1302,9 @@ document.querySelector('.processimage').style.display= 'block'
 
       
 
- 
-     
-
-    
-   
-
   }).catch(error =>{
     console.log(error)
   })
-
-
-
-
-  
 }
 
 
