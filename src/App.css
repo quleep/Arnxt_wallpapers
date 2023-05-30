@@ -1153,6 +1153,7 @@ border-bottom-color: transparent;
   flex-wrap: wrap;
   height: auto;
   margin-top: 80px;
+ 
 }
 .categorytopcontainertoggle{
   display: flex;
@@ -1162,6 +1163,8 @@ border-bottom-color: transparent;
   height: auto;
  position: sticky;
  top: 0;
+ transform: translateY(-20px);
+ transition: 1s all ease;
  
 }
 
@@ -1527,11 +1530,15 @@ a
 .navbardisplay{
   opacity: 1;
  
+
 }
 .navbardisplaytoggle{
- 
   
+ 
+
   opacity: 0;
+  
+ 
 }
 .colorlistinside input{
   margin-right: 10px;
@@ -1976,6 +1983,7 @@ flex: 2;
  
   padding: 10px;
  
+ 
 }
 .categorycontainer>*{
   flex: 1 1 150px;
@@ -1997,6 +2005,7 @@ flex: 2;
   gap: 10px;
  
   padding: 10px;
+
  
  
 }
@@ -2309,7 +2318,13 @@ input::-webkit-inner-spin-button {
   .imagedivtags p{
     font-size: 15px;
   }
-
+  .imagedivtagstoggle{
+    width: 200px;
+    height: 200px;
+  }
+  .imagedivtagstoggle p{
+    font-size: 15px;
+  }
  
   .menu{
     width: 100%;
