@@ -1066,7 +1066,10 @@ border-bottom-color: transparent;
   display: none;
   margin-top: -30px;
   position: absolute;
-  margin-left: 200px;
+  
+   left: 65%;
+   top: 30%;
+  
  
 
 }
