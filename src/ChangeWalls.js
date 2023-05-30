@@ -85,6 +85,7 @@ const ChangeWalls = () => {
 
    const [walldistancedesk, setWallDistanceDesk] = useState('')
    const [walldistancemob, setWallDistanceMob] = useState('')
+   const [webar, setWebar] = useState(false)
 
 
    const location = useLocation()
@@ -947,8 +948,9 @@ const handleApplyFilter=()=>{
 
 const closeCamera=()=>{
   
-  document.querySelector('.closecamera').style.display= 'none'
   document.querySelector('.camdisplay').style.display= 'none'
+ 
+  document.querySelector('.closecamera').style.display= 'none'
 
 
 
@@ -959,14 +961,7 @@ const handlePictureClick=()=>{
 
 
   const imgsrc= webcamRef.current.getScreenshot()
-   if(imageurl.length > 0){
-    imageurl.pop()
-    setImageUrl([...imageurl, imgsrc])
-   } else{
-    setImageUrl([...imageurl, imgsrc])
-
-   }
-
+    setImageUrl(imgsrc)
    document.querySelector('.defaultimagedesk').style.display= 'block'
   
   if(distancewall === ''){/*
@@ -995,10 +990,11 @@ document.querySelector('.displayurlcontainer').style.display= 'block'
 
 
 const openCamera=()=>{
+ 
+  document.querySelector('.defaultimagedesk').style.display = 'none'
   document.querySelector('.camdisplay').style.display= 'block'
+ 
   document.querySelector('.closecamera').style.display= 'block'
-
-  document.querySelector('.displayurlcontainer').style.display= 'none'
 
 
 
@@ -1132,17 +1128,7 @@ const  handleImageUpload =(e)=>{
         document.querySelector('.processimagedesk').style.display= 'none' 
    
     
-       if(imageurl.length > 0){
-          imageurl &&  imageurl.pop()
-          setImageUrl([...imageurl, result])
-          setFileExist(true)
-
-       }else{
-        setImageUrl([...imageurl, result])
-        setFileExist(true)
-
-       
-       }
+       setImageUrl(result)
       
 
        
@@ -1307,11 +1293,30 @@ document.querySelector('.processimage').style.display= 'block'
   })
 }
 
+const filterbuttonClick =()=>{
+    setWebar(!webar)
+  document.querySelector('.container').classList.add('containertoggle')
+
+  document.querySelector('.maindivcontainerwebardefault').classList.remove()
+  document.querySelector('.maindivcontainerwebardefault').classList.add('maindivcontainerwebar')
+}
+
+const closefilterbutton =()=>{
+ 
+   setWebar(!webar)
+
+   document.querySelector('.container').classList.remove('containertoggle')
+ 
+ // document.querySelector('.maindivcontainer').classList.remove('maindivcontainer')
+
+ 
+
+}
 
 
  
   return (
-    <div>
+    <div  className=  {webar ? "maindivcontainerwebar" :'maindivcontainerwebardefault'}>
         <Navbar/>
 
         <div className='mobilescreen'>
@@ -1320,7 +1325,7 @@ document.querySelector('.processimage').style.display= 'block'
             <div className='mobilebuttonscontainer'>
             <div className='buttonfilterdiv'> 
               
-              <button class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+              <button class="filterlink" type="button"   data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
   Filter <i class='bx bx-filter'></i></button>
               </div>
 
@@ -1329,6 +1334,7 @@ document.querySelector('.processimage').style.display= 'block'
               <div class="upload-btn-wrapper">
   <button class="btn">Upload Image</button>
   <input type="file"  id='filemobile' name="myfile" onChange={handleImageUploadMobile} />
+  <p className='filemessage'></p>
 </div>
               </div>
               <div className='inputfordistance'>  
@@ -1421,7 +1427,7 @@ document.querySelector('.processimage').style.display= 'block'
           <div className='buttonscontainer'>
             <div className='buttonfilterdiv'> 
               
-            <button class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <button class="filterlink" type="button" disabled={webar ? true : false} onClick={filterbuttonClick} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
 Filter <i class='bx bx-filter'></i></button>
             </div>
   
@@ -1496,9 +1502,8 @@ Filter <i class='bx bx-filter'></i></button>
           <div className='displaycontainer'> 
 
           {
-
-          }
-          <div  className='closecamera'>
+            /*
+               <div  className='closecamera'>
 
             <div   >
            
@@ -1512,22 +1517,41 @@ Filter <i class='bx bx-filter'></i></button>
            
       
           </div>
+            */
+          } 
+       
 
-          <div  className='camdisplay'>
-         
-      
- <Webcam ref= {webcamRef} 
- style={{width:'100%', height:'100%'}}
- mirrored={true}
- screenshotFormat='image/jpeg'
- screenshotQuality={1}
- 
- />
    
- 
- </div>  
 
    <div className='displayurlcontainer' >
+   <div  className='closecamera'>
+
+<div   >
+
+<FaTimes onClick={closeCamera} style={{color:'red',borderRadius:'5px', fontSize:'20px', border:'1px solid red', cursor:'pointer'}}/>
+
+
+</div>
+<div className='buttonfilterdiv'>
+  <button type='' onClick={handlePictureClick}>Click Picture</button>
+</div>
+
+
+</div>
+
+   <div  className='camdisplay'>
+         
+      
+         <Webcam ref= {webcamRef} 
+       
+         mirrored={true}
+         screenshotFormat='image/jpeg'
+         screenshotQuality={1}
+         
+         />
+           
+         
+         </div> 
 
 
  
@@ -1599,7 +1623,7 @@ Filter <i class='bx bx-filter'></i></button>
         
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style={{fontFamily:'monospace'}}>Filter</h5>
     <div className='buttonfilter'>
     <button  type='submit' onClick={handlefilterclear} >Clear</button>
 
@@ -1612,7 +1636,7 @@ Filter <i class='bx bx-filter'></i></button>
     </div>
 
 
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close" onClick={closefilterbutton} data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
 
@@ -1622,7 +1646,7 @@ Filter <i class='bx bx-filter'></i></button>
   <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button class="accordion-button collapsed"  style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         Search By
       </button>
     </h2>
@@ -1654,7 +1678,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
        Colors
       </button>
     </h2>
@@ -1686,7 +1710,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+      <button class="accordion-button collapsed" type="button" style={{fontFamily:'monospace'}} data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
         Design Styles
       </button>
     </h2>
@@ -1718,7 +1742,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFour">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
        Collection
       </button>
     </h2>
@@ -1749,7 +1773,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFive">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}}  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
        Price
       </button>
     </h2>

@@ -12,6 +12,8 @@ import featured from '../src/images/featured.png';
 import collection from '../src/images/collections.png';
 import wallpaper from '../src/images/77308-1_2.jpg';
 import wallmurals from '../src/images/ED-20949_2.jpg';
+import  woddenfloors from '../src/images/wooden-floor-tiles-work-with-per-sq-ft-with-labour-charge--703.jpg';
+
 
 
 
@@ -754,15 +756,54 @@ const tagsimages= [
   }
 ]
 
+const categoryimage= [
+  {
+   
+    catimage: wallpaper
+  },
+  {
+    
+    catimage: wallmurals
+  },
+  {
+   
+    catimage: woddenfloors
+  }
+]
+
+const handleScroll = () => {
+  const scrollPosition = window.scrollY; // => scroll position
+  if(scrollPosition > 100){
+    document.querySelector('.navbardisplay').classList.add('navbardisplaytoggle')
+    document.querySelector('.categorytopcontainer').classList.add('categorytopcontainertoggle')
+
+  }
+  else{
+    document.querySelector('.navbardisplay').classList.remove('navbardisplaytoggle')
+    document.querySelector('.categorytopcontainer').classList.remove('categorytopcontainertoggle')
 
 
 
+  }
+ 
+
+}
+
+useEffect(() => {
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+  }, []);
 
  
   return (
     <div>
-
-        <Navbar/>
+         <div  className='navbardisplay'>
+         <Navbar/>
+          </div>
+       
 
         <div className='modalhome'>
           <div className='brandmodal'>
@@ -791,7 +832,7 @@ const tagsimages= [
             {
                             catdata &&    catdata.map((item,i)=>(
                                   <label htmlFor='' >
-                                    <div className='categorycontainer'> 
+                                    <div className={ i === 0 ? 'categorycontainer' : 'categorycontainertoggle'}> 
                                        
                                      
                                        <h3 onClick={()=>handlesubcategory(item, i)} >{item}</h3>
@@ -834,19 +875,37 @@ const tagsimages= [
         
         {
                               catdata &&  catdata.map((item,i)=>(
+
+                                  
+
+                                  
                                   <label htmlFor= {`check_${i}`} >
                                     <div  className=''> 
                                     <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=> handlesubcategory(item,i)} />
                                      
-                                        {
+                                        
+                                            
+                                         
                                           
-                                          <div  className='imagedivtags'>
-                                       <img src=  { i === 0 ?  wallpaper : wallmurals} />
-                                       <p  >{item}</p>
+                                          {
+                                           categoryimage.map((itemnew, index)=>(
+                                             index === i ?
+                                             <div  className= { i === 0 ? 'imagedivtags': 'imagedivtagstoggle' }>
+                                             <img src={itemnew.catimage}/>
 
-                                            </div> 
+                                             <p  >{item}</p>
 
-                                        }
+                                             </div>: <p></p> 
+                                           ))
+
+                                          }
+
+                                        
+                                    
+                                 
+                                       
+                                              
+                                        
                                       
                                     
                                      
@@ -855,7 +914,11 @@ const tagsimages= [
                                     </div>
                                     </label>
 
-                                ))
+                                   ))
+
+                               
+
+
                                         }
         
        

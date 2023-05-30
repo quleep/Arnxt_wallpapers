@@ -42,6 +42,7 @@ const Wallpaper = () => {
     const [filtercolor, setFilterColor] = useState([])
     const [filterdesign, setFilterDesign] = useState([])
     const [filtercollection, setFilterCollection] = useState([])
+    const [defaultwallpaper, setDefaultWallpaper] = useState(false)
 
     const [filterdata, setFilterData] = useState()
 
@@ -295,10 +296,33 @@ const closemodal= ()=>{
     document.querySelector('.nodata').style.display= 'none'
 }
 
+const filterbuttonClick =()=>{
+
+  setDefaultWallpaper(!defaultwallpaper)
+  document.querySelector('.container').classList.add('containertoggle')
+
+
+  document.querySelector('.maindivcontainerwallpaperdefault').classList.remove()
+ document.querySelector('.maindivcontainerwallpaperdefault').classList.add('maindivcontainerwallpaper')
+}
+
+const closefilterbutton =()=>{
+  document.querySelector('.container').classList.remove('containertoggle')
+
+ 
+   setDefaultWallpaper(!defaultwallpaper)
+
+ 
+ // document.querySelector('.maindivcontainerwallpaper').classList.remove('maindivcontainerwallpaper')
+
+ 
+
+}
+
 
 
   return (
-    <div>
+    <div className=  { defaultwallpaper ? 'maindivcontainerwallpaper': 'maindivcontainerwallpaperdefault' }>
           <Navbar/>
 
           
@@ -307,7 +331,7 @@ const closemodal= ()=>{
         <div  style={{marginTop:'20px'}}>
         <div className='buttonfilterdiv'> 
               
-              <button class="filterlink" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+              <button class="filterlink" type="button"  disabled ={defaultwallpaper ?  true: false}  onClick={filterbuttonClick} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
   Filter <i class='bx bx-filter'></i></button>
               </div>
         </div>
@@ -404,7 +428,7 @@ const closemodal= ()=>{
         
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style={{fontFamily:'monospace'}}>Filter</h5>
     <div className='buttonfilter'>
     <button  type='submit' onClick={handlefilterclear} >Clear</button>
 
@@ -417,7 +441,7 @@ const closemodal= ()=>{
     </div>
 
 
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close"  onClick={closefilterbutton} data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
 
@@ -427,7 +451,7 @@ const closemodal= ()=>{
   <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         Search By
       </button>
     </h2>
@@ -459,7 +483,7 @@ const closemodal= ()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
        Colors
       </button>
     </h2>
@@ -491,7 +515,7 @@ const closemodal= ()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
         Design Styles
       </button>
     </h2>
@@ -523,7 +547,7 @@ const closemodal= ()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFour">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
        Collection
       </button>
     </h2>
@@ -554,7 +578,7 @@ const closemodal= ()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFive">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
        Price
       </button>
     </h2>
