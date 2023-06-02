@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './Login';
 
+import ReactGA from 'react-ga';
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,10 +24,18 @@ import Rooms from './Rooms';
 import Search from './Search';
 import Floors from './Floors';
 import ProductDetails from './ProductDetails';
+import { useEffect } from 'react';
 
 
 
 function App() {
+  const TRACKING_ID = "UA-217190843-1"; 
+  ReactGA.initialize(TRACKING_ID);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <div className="App">
 
