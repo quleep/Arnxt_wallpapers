@@ -1446,7 +1446,7 @@ Filter <i class='bx bx-filter'></i></button>
               <div className='filterimagecontainer' >
              
                  <img src= { singleitem &&  singleitem.imageurl[0]}  />
-                  <input type='checkbox'   className='checkinput' id= 'checksingle' value={singleitem} onClick={()=>checkboxSingle(singleitem)} />
+                  <input type='checkbox'   className='checkinput' id= 'checksingle' value={singleitem} onClick={()=> checkboxSingle(singleitem)} />
 
               </div>
               <div className='itemdetailscontainer'>
