@@ -4,10 +4,13 @@ import Footer from './Footer'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import Navbarmain from './Navbarmain'
+import GoogleAnalytics from './GoogleAnalytics'
 
 const loginurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/users/loginweb'
 
 const Login = () => {
+
+    const gaEventTracker = GoogleAnalytics('Login');
 
     const history= useHistory();
 
@@ -16,7 +19,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [userdata, setUserData] = useState();
 
-    const submitHandler=(e)=>{
+    function  submitHandler (){
 
         if(userid === ''){
             document.querySelector('#loginmessage').innerHTML='loginid required'
@@ -38,7 +41,7 @@ const Login = () => {
                 }, [3000]);
             return
         }
-        e.preventDefault()
+       
 
         const body={
             loginid: userid,
@@ -84,7 +87,7 @@ const Login = () => {
             <input type='password'onChange={(e)=>setPassword(e.target.value)} />
         </div>
         <div className='logindiv3'>
-            <button type='submit'  onClick={submitHandler}>Login</button>
+            <button type='submit'  onClick ={ ()=> { submitHandler() ; gaEventTracker('Login');}  }>Login</button>
 
         </div>
         <p style={{color:'red', fontFamily:'monospace', fontSize:'20px'}} id= 'loginmessage'></p>
