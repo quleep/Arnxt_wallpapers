@@ -73,7 +73,7 @@ const Login = () => {
   return (
     <div>
      
-       <Footer/>
+    
 
        <div  className='logincontainer'> 
        <div className='loginbox'>

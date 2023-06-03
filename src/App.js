@@ -61,24 +61,6 @@ function App() {
 
 
 
-
-      
-
-        
-
-    
-
-
-
-
-     
-
-
-        
-
-
-          
-
         </Switch>
       </Router>
       
