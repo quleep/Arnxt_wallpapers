@@ -1,10 +1,17 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 
 const ProductDetails = () => {
+
+      const history = useHistory()
+    const user= sessionStorage.getItem('user')
+
+    if(!user){
+        history.push('/')
+    }
 
     const location = useLocation()
 
@@ -14,12 +21,26 @@ useEffect(()=>{
 
 },[])
 
+useEffect(() => {
+    function handleContextMenu(e) {
+      e.preventDefault(); 
+    }
+   
+    const rootElement = document.getElementById('my-component');
+    rootElement.addEventListener('contextmenu', handleContextMenu);
+   
+  
+    return () => {
+      rootElement.removeEventListener('contextmenu', handleContextMenu);
+    };
+  }, []);
+
 
   return (
     <div>
         <Navbar/>
 
-       <div className='productdetailsdiv'>
+       <div className='productdetailsdiv'id='my-component' >
         <div className='productimagecontainer'>
 
             <div className='productimagedivinside'>

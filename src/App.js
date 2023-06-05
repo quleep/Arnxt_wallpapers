@@ -11,6 +11,7 @@ import {
   Route,
   Redirect,
   withRouter,
+  useHistory,
 } from "react-router-dom";
 import Wallpapers from './Wallpapers';
 import Camera from './Camera';
@@ -25,10 +26,48 @@ import Search from './Search';
 import Floors from './Floors';
 import ProductDetails from './ProductDetails';
 import { useEffect } from 'react';
+import axios from 'axios';
 
+const verifytoken= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/verifytoken'
 
 
 function App() {
+
+ const history = useHistory()
+  useEffect(()=>{
+
+  /*
+    const user= sessionStorage.getItem('user')
+    
+
+    
+     const tokenid= JSON.parse(user)
+    const tokenvalue= tokenid.token
+  
+
+    const body={
+      loginid : tokenid.data.userID,
+      token : tokenid.token
+    }
+
+    axios.post(verifytoken, body).then(res=>{
+       if(res.data.message === 'verified'){
+        console.log('hellow')
+       } else{
+        history.push('/')
+       }
+    }).catch(error=>{
+      console.log(error)
+    })
+
+    
+
+    */
+
+
+  },[])
+
+  
   const TRACKING_ID = "UA-217190843-1"; 
   ReactGA.initialize(TRACKING_ID);
 

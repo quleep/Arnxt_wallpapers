@@ -45,12 +45,19 @@ const Wallpaper = () => {
     const [defaultwallpaper, setDefaultWallpaper] = useState(false)
 
     const [filterdata, setFilterData] = useState()
+    const history = useHistory()
+
 
     const user= sessionStorage.getItem('user')
+    
+  if(!user){
+    history.push('/')
+  }
+
+
     const brandid= JSON.parse(user)
   
-    const brandidnew= brandid.brand.toLowerCase()
-    const history = useHistory()
+    const brandidnew= brandid && brandid.data.brand.toLowerCase()
 
   
 
@@ -60,13 +67,27 @@ const location = useLocation()
 
 
 
-
 let newcat;
+
+
+useEffect(() => {
+  function handleContextMenu(e) {
+    e.preventDefault(); 
+  }
+ 
+  const rootElement = document.getElementById('my-component');
+  rootElement.addEventListener('contextmenu', handleContextMenu);
+ 
+
+  return () => {
+    rootElement.removeEventListener('contextmenu', handleContextMenu);
+  };
+}, []);
 
 useEffect(()=>{
 
  const body={
-    brand: brandidnew,
+    brand: brandidnew && brandidnew,
     subcategory: location.state
  }
 
@@ -322,7 +343,7 @@ const closefilterbutton =()=>{
 
 
   return (
-    <div className=  { defaultwallpaper ? 'maindivcontainerwallpaper': 'maindivcontainerwallpaperdefault' }>
+    <div   className=  { defaultwallpaper ? 'maindivcontainerwallpaper': 'maindivcontainerwallpaperdefault' }>
           <Navbar/>
 
           
@@ -351,7 +372,7 @@ const closefilterbutton =()=>{
   
        
 
-            <div  className='productscontainer'  >
+            <div  className='productscontainer' id='my-component' >
 
              
                 

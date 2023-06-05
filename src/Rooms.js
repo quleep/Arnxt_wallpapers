@@ -49,8 +49,12 @@ const Rooms = () => {
     const user= sessionStorage.getItem('user')
     const brandid= JSON.parse(user)
   
-    const brandidnew= brandid.brand.toLowerCase()
+    const brandidnew=  brandid && brandid.data.brand.toLowerCase()
     const history = useHistory()
+
+    if(!user){
+      history.push('/')
+    }
 
   
 
@@ -62,11 +66,24 @@ const location = useLocation()
 
 
 let newcat;
+useEffect(() => {
+  function handleContextMenu(e) {
+    e.preventDefault(); 
+  }
+ 
+  const rootElement = document.getElementById('my-component');
+  rootElement.addEventListener('contextmenu', handleContextMenu);
+ 
+
+  return () => {
+    rootElement.removeEventListener('contextmenu', handleContextMenu);
+  };
+}, []);
 
 useEffect(()=>{
 
  const body={
-    brand: brandidnew,
+    brand:  brandidnew && brandidnew,
     roomName: location.state
  }
 
@@ -328,7 +345,7 @@ setDefaultRooms(!defaultrooms)
 
 
   return (
-    <div className= { defaultrooms ? 'maindivcontainerrooms ': 'maindivcontainerroomsdefault'}>
+    <div   className= { defaultrooms ? 'maindivcontainerrooms ': 'maindivcontainerroomsdefault'}>
             <Navbar/>
 
                  <div  className='mainbrandbody'>
@@ -355,7 +372,7 @@ Filter <i class='bx bx-filter'></i></button>
 
 
 
-    <div  className='productscontainer'  >
+    <div  className='productscontainer' id='my-component' >
 
      
           

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useDebugValue, useEffect, useMemo, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import { RiAddLine, RiArrowDownSLine } from 'react-icons/ri';
 import axios from 'axios';
@@ -101,16 +101,25 @@ const Brand = () => {
  
 
     const user= sessionStorage.getItem('user')
+
+
+    if(!user){
+      history.push('/')
+    
+    }
+    
     const brandid= JSON.parse(user)
+ 
+   
+    const brandidnew=   brandid && brandid.data.brand.toLowerCase()
   
-    const brandidnew= brandid.brand.toLowerCase()
 
     const [accActive, setAccActive] = useState(false)
 
 
     useEffect(()=>{
       const brandbody={
-        brandID: brandid.brand
+        brandID: brandid && brandid.data.brand
       }
     
       axios.post(branddetailsurl, brandbody).then(res=>{
@@ -122,7 +131,7 @@ const Brand = () => {
 
     },[])
 
-
+    
 
     let accordionData = [
 
@@ -292,6 +301,10 @@ const checkboxClickCategory=(val, len)=>{
       
 
 }
+
+
+
+ 
 
 
 useEffect(()=>{
@@ -466,6 +479,7 @@ useEffect(()=>{
   }
 
   axios.post(getroomsbybrandurl, body).then(res=>{
+    console.log(res.data)
      setRooms(res.data)
 
   }).catch(error=>{
@@ -772,22 +786,43 @@ const categoryimage= [
 ]
 
 const handleScroll = () => {
-  const scrollPosition = window.scrollY; // => scroll position
-  if(scrollPosition > 100){
-    document.querySelector('.navbardisplay').classList.add('navbardisplaytoggle')
-    document.querySelector('.categorytopcontainer').classList.add('categorytopcontainertoggle')
 
-  }
-  else{
-    document.querySelector('.navbardisplay').classList.remove('navbardisplaytoggle')
-    document.querySelector('.categorytopcontainer').classList.remove('categorytopcontainertoggle')
-
-
+  if(user){
+    const scrollPosition = window.scrollY; // => scroll position
+    if(scrollPosition > 100){
+      document.querySelector('.navbardisplay').classList.add('navbardisplaytoggle')
+      document.querySelector('.categorytopcontainer').classList.add('categorytopcontainertoggle')
+  
+    }
+    else{
+  
+      
+      document.querySelector('.navbardisplay').classList.remove('navbardisplaytoggle')
+      document.querySelector('.categorytopcontainer').classList.remove('categorytopcontainertoggle')
+  
+  
+  
+    }
 
   }
  
+ 
 
 }
+
+useEffect(() => {
+  function handleContextMenu(e) {
+    e.preventDefault(); 
+  }
+ 
+  const rootElement = document.getElementById('my-component');
+ rootElement && rootElement.addEventListener('contextmenu', handleContextMenu);
+ 
+
+  return () => {
+   rootElement && rootElement.removeEventListener('contextmenu', handleContextMenu);
+  };
+}, []);
 
 useEffect(() => {
   handleScroll();
@@ -797,874 +832,887 @@ useEffect(() => {
   };
   }, []);
 
+   
+  const  usernew = sessionStorage.getItem('user')
+    
+  const uservalue= JSON.parse(usernew)
+
+console.log(rooms)
  
-  return (
-    <div>
-         <div  className='navbardisplay'>
-         <Navbar/>
-          </div>
-       
+  if(uservalue && uservalue.token){
 
-        <div className='modalhome'>
-          <div className='brandmodal'>
-            <img  src= {brandimage}/>
-              
+    return (
+      <div>
+           <div  className='navbardisplay'>
+           <Navbar/>
             </div>
-            <div  className='load'>
-              
-            </div>
-
-        </div>
-
-      
-        <div  className='mainbrandbody'>
-       
-
-          <div className='categorytopcontainer'>
-            <div className='brandcontainer'>
-            <div className='brandimagecontainer'>
-          <img  src={brandimage} />
-
+         
+  
+          <div className='modalhome'>
+            <div className='brandmodal'>
+              <img  src= {brandimage}/>
+                
+              </div>
+              <div  className='load'>
+                
+              </div>
+  
           </div>
-
-            </div>
-            <div className='categoryitem'>
-            {
-                            catdata &&    catdata.map((item,i)=>(
-                                  <label htmlFor='' >
-                                    <div className={ i === 0 ? 'categorycontainer' : 'categorycontainertoggle'}> 
-                                       
-                                     
-                                       <h3 onClick={()=>handlesubcategory(item, i)} >{item}</h3>
-
-                                       
-                                        
-                                        
-                                    </div>
-                                    </label>
-
-                                ))
-                                  }
-             
-
-            </div>
-
-          </div>
-
-          <div className='viewinroom'>
-          <div className='itemspara'>
-           <h3>Visualise Our Products In Your Space </h3>
-           <span>
-           <FaArrowRight  className='icondiv'/>
-            </span>
-
-            <div className='trybutton'>
-              <button  type='submit' onClick={handleviewinar} >Try In Your Room <FaCamera/> </button>
-            </div>
-          </div>
-
-          </div>
-          <div className='itemspara'>
-           <h3>Visualise By Category</h3>
-           <span>
-           <FaArrowRight  className='icondiv'/>
-            </span>
-          </div>
-
-      <div className=''>
+  
         
-        {
-                              catdata &&  catdata.map((item,i)=>(
-
-                                  
-
-                                  
-                                  <label htmlFor= {`check_${i}`} >
-                                    <div  className=''> 
-                                    <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=> handlesubcategory(item,i)} />
-                                     
-                                        
-                                            
+          <div  className='mainbrandbody'  id= 'my-component'>
+         
+  
+            <div className='categorytopcontainer'>
+              <div className='brandcontainer'>
+              <div className='brandimagecontainer'>
+            <img  src={brandimage} />
+  
+            </div>
+  
+              </div>
+              <div className='categoryitem'>
+              {
+                              catdata &&    catdata.map((item,i)=>(
+                                    <label htmlFor='' >
+                                      <div className={ i === 0 ? 'categorycontainer' : 'categorycontainertoggle'}> 
+                                         
+                                       
+                                         <h3 onClick={()=>handlesubcategory(item, i)} >{item}</h3>
+  
                                          
                                           
-                                          {
-                                           categoryimage.map((itemnew, index)=>(
-                                             index === i ?
-                                             <div  className= { i === 0 ? 'imagedivtags': 'imagedivtagstoggle' }>
-                                             <img src={itemnew.catimage}/>
-
-                                             <p  >{item}</p>
-
-                                             </div>: <p></p> 
-                                           ))
-
-                                          }
-
-                                        
-                                    
-                                 
-                                       
-                                              
-                                        
-                                      
-                                    
-                                     
-                                      
-                                        
-                                    </div>
-                                    </label>
-
-                                   ))
-
-                               
-
-
-                                        }
-        
-       
-
-    
-  
-        
-    
-
-
-      </div>
-      <div className='itemspara'>
-           <h3>Visualise By Rooms</h3>
-           <span>
-           <FaArrowRight  className='icondiv'/>
-            </span>
-          </div>
-          <div className=''>
-          {  
-                              rooms &&  rooms.map((item,i)=>(
-                                  <label htmlFor={`checkroom_${i}`} >
-                                    <div  className=''> 
-                                    <input type='checkbox'   className='checkinput' id= {`checkroom_${i}`} value={item} onClick={()=>handleRoomsClick(item,i)} />
-                                      {
-                                       roomimage && roomimage.data.map(itemnew=>(
-                                           itemnew.roomname === item ?
-
-                                           <div className='imagedivtags' >
-                                           <img src= {itemnew.iconurl}/>
-                                           <p>{item}</p>
                                           
-
-                                            </div>
-                                           :<p></p>
-
-                                        ))
-                                      }
-                                       
-
-                                      
-                                      
-                                       
-                                        
-                                    </div>
-                                    </label>
-
-                                ))
-                                     }
-        
-       
-            
-       
-
-
-          </div>
-          <div className='itemspara'>
-           <h3>Explore Like Never Before</h3>
-           <span>
-           <FaArrowRight  className='icondiv'/>
-            </span>
-          </div>
-          <div className=''>
-          {
-                             
-                             
-                                tags && tags.map((item,i)=>(
-                                  <label htmlFor= {`checktags_${i}`} >
-                                    <div> 
-                                    <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
-                                        
-                                        {
-                                         tagsimages.map(itemnew=>(
-                                            itemnew.tagname === item ?
-                                            <div className='imagedivtags'>
-                                                 <img  src={itemnew.tagimage} />
-                                                <p>{itemnew.tagname}</p>
-                                              </div>:<p></p>
-                                      
-                                         ))
-
-                                        }
-                                        
-                                        
-                                    </div>
-                                    </label>
-
-                                ))
-
-
-                          
-                             
-                                       }
-        
-       
-            
-       
-
-
-          </div>
-     
-           
-
-       
-
-        
-            <div  className='subcategorydiv'>
-
-              
-                   
-
-                        <div  className='productscontainer'>
-
-                            {
-                               subcategorydata && subcategorydata.map(item=>(
-
-                             
-
-                                <div class="product-card">
-		
-                                <div class="product-tumb">
-                                    <img src={item.imageurl[0]} alt=""/>
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-catagory">{item.productname}</span>
-                                    
-                                   <span  style={{display:'flex',  alignItems:'center', justifyContent:'center'}}>
-                                     <p style={{marginRight:'10px'}}>Roll Size</p>
-                                   <p>
-                                   
-                                    
-                                       
-                                        
-                                    {
-                               
-                                   Math.round(` ${ item.lengthprod * item.breadthprod * 10.764}`)
-                                   
-                                   
-                                   } /sqft   </p>
-                                   </span>
-                                 
-                                    <div class="product-bottom-details">
-                                        <div class="product-price"><small>₹{item.mrp}</small>₹{item.offerprice}</div>
-                                        <div class="product-links">
-                                            <a href=""><i class="fa fa-heart"></i></a>
-                                            <a href=""><i class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                         
-                                     
-
-
-                               ))
-
-                            }
-                           
-                  
-                        
-
-
-                        </div>
-             
-
-            </div>
-
-              <div className='categorycontainer'  style={{display:'none'}}>
-
-                {
-
-
-                 categoryimages && categoryimages.data.filter((item,index)=> index === index).map((newitems,i)=>(
-
-
-          <div  id={`divselect_${i}`}  style={{border:'1px solid red'}} >
-
-<label htmlFor= {`check_${i}`}>
-
-  <div className='checkboxmain' >
-<input type='checkbox'   className='checkinput' id= {`check_${i}`} value={newitems} onClick={()=>checkboxClickHomediv(newitems,i)} />
-
-<div className='imagedivcontainer' >
-<img src={newitems.iconUrl} width='150px' height='150px'/>
-
-
-
-</div>
-<div className='modelnamecontainer'> 
-
-<p>{newitems.catagoryId}</p>
-
-</div>
-
-
-  </div>
-
-
-
-</label>
-
-
- </div>
-                       )  )
-
-
-}
-
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                                      </div>
+                                      </label>
+  
+                                  ))
+                                    }
                
-                
-             
-           
-       
-           
-
-        
-               
-             
-
-      
+  
               </div>
-            
-
-
-
-        </div>
-
-
-           <div  className=''>
-
+  
+            </div>
+  
+            <div className='viewinroom'>
+            <div className='itemspara'>
+             <h3>Visualise Our Products In Your Space </h3>
+             <span>
+             <FaArrowRight  className='icondiv'/>
+              </span>
+  
+              <div className='trybutton'>
+                <button  type='submit' onClick={handleviewinar} >Try In Your Room <FaCamera/> </button>
+              </div>
+            </div>
+  
+            </div>
+            <div className='itemspara'>
+             <h3>Visualise By Category</h3>
+             <span>
+             <FaArrowRight  className='icondiv'/>
+              </span>
+            </div>
+  
+        <div className=''>
           
-       
-
-        </div>
-
-             
+          {
+                                catdata &&  catdata.map((item,i)=>(
+  
+                                    
+  
+                                    
+                                    <label htmlFor= {`check_${i}`} >
+                                      <div  className=''> 
+                                      <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=> handlesubcategory(item,i)} />
+                                       
+                                          
+                                              
+                                           
+                                            
+                                            {
+                                             categoryimage.map((itemnew, index)=>(
+                                               index === i ?
+                                               <div  className= { i === 0 ? 'imagedivtags': 'imagedivtagstoggle' }>
+                                               <img src={itemnew.catimage}/>
+  
+                                               <p  >{item}</p>
+  
+                                               </div>: <p></p> 
+                                             ))
+  
+                                            }
+  
+                                          
+                                      
+                                   
+                                         
+                                                
+                                          
+                                        
+                                      
+                                       
+                                        
+                                          
+                                      </div>
+                                      </label>
+  
+                                     ))
+  
+                                 
+  
+  
+                                          }
+          
+         
+  
       
-
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
-    <button  type='submit' onClick={handlefilterclear} >Clear</button>
-
-
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-
-  <div >
-
-
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Search By
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-        {
-         tagstable && tagstable.map(item=>(
-              item.tagsvalue.map(it=>(
-
-               
-
-                <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check'  value={it}  onChange={(e)=>filterHandler(e)}/>
-                <p>{it}</p>
-
-                 </div>
-              
-              
-              ))
-
-         ))
-
-           
-        }
-        
-
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-       Colors
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-      {
-         colortable && colortable.map(item=>(
-              item.colordata.map(it=>(
-
-               
-
-                <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
-                <p>{it}</p>
-
-                 </div>
-              
-              
-              ))
-
-         ))
-
-           
-        }
-
-
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Design Styles
-      </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-      {
-         designtable && designtable.map(item=>(
-              item.designs.map(it=>(
-
-               
-
-                <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
-                <p>{it}</p>
-
-                 </div>
-              
-              
-              ))
-
-         ))
-
-           
-        }
-
-
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingFour">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-       Collection
-      </button>
-    </h2>
-    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-      {
-         collectiontable && collectiontable.map(item=>(
-              item.collectionitems.map(it=>(
-
-               
-
-                <div className='colorlistinside'>
-                <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
-                <p>{it}</p>
-
-                 </div>
-              
-              
-              ))
-
-         ))
-
-           
-        }
-
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingFive">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-       Price
-      </button>
-    </h2>
-    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-
-      <div>
-                               <div>
-                               <div className="range">
-       <MultiRangeSlider
-           min={5000}
-           max={60000}
-           step={3000}
-       
-           barInnerColor= "rgb(19, 209, 187)"
-           ruler={false}
-         
-           onChange={(e) => {
-               handleInput(e);
-           }}
-       />
-       <div className='rangeinput'>
-           <label>MinPrice:</label>
-        <input type='number' value={minprice}  />
-
-       </div>
-       <div className='rangeinput'>
-           <label>MaxPrice:</label>
-        <input type='number' value={maxprice}  />
-
-           </div>
-           <div className='rangeinput'>
-            <button  type='submit' onClick={handlepricebutton} >Go</button>
-
-           </div>
-       
     
-          </div>
-
-
-   </div>
-                               </div>
-      </div>
-    </div>
-  </div>
-</div>
-   
-
-   
- 
-
-    
-
-
-
-    
-
-
-
-
+          
+      
   
-
   
-<div className='accordionContainer'>
-
-
-   
-
-   
-{/*
-       
-   {
-    
-     accordionData &&   accordionData.map((acc, index) => {
-           return (
-               <div className="accordion"
-                  >
-                   <div className='accordionHeading'  onClick={() => handleActive(index)} >
-
-                       <span className="addIcon"
-                           style={{
-                               transform: `${accActive === index ? 'rotate(180deg)' :
-                                   'rotate(0deg)'}`
-                           }}>
-                           <RiArrowDownSLine size={25} />
-                       </span>
-                       <h3>{acc.title}</h3>
-                   </div>
-                   {
-                     accActive === index ? <div className="accordionContent">
-
-
-
-
-{
-                           acc.accordianfor === 'Category' ? 
-
-                           
-                           <div>
-
-                               {
-                                   acc.accordionContent.map((item,i)=>(
-
-                                   <div className='colorlistcontainer'>
-
-                                       <div className='colorlistinside'>
-                                       <input type='checkbox' id= {`checkcategory_${i}`}  value={item.category}  onClick={()=>checkboxClickCategory(item.category, i)}/>
-                                       <p>{item.category}</p>
-
-                                        </div>
-                                      
-                                   
-
-                                   </div>
-
-
-                                   ))
-                               }
-                              
-
-
-                         </div>:<div></div>
-
-                             }
-
-{
-                           acc.accordianfor === 'tags' ? 
-
-                         
-
-                        
-                           <div  >
-
-    
-
-                               { 
-                              acc.accordionContent.map(item=>(
-                                       item.tagsvalue.map((it, i)=>(
-
-                                           <div className='colorlistcontainer'>
-
-                                           <div className='colorlistinside'>
-                                           <input type='checkbox' id= {`checktags_${i}`}  value={it}  onChange={(e)=>filterHandler(e, acc.accordianfor)}/>
-                                           <p>{it}</p>
-
-                                            </div>
+        </div>
+        <div className='itemspara'>
+             <h3>Visualise By Rooms</h3>
+             <span>
+             <FaArrowRight  className='icondiv'/>
+              </span>
+            </div>
+            <div className='roomscontainer'>
+            {  
+                                rooms &&  rooms.map((item,i)=>(
+                                    <label htmlFor={`checkroom_${i}`} >
+                                      <div  className='' > 
+                                      <input type='checkbox'   className='checkinput' id= {`checkroom_${i}`} value={item} onClick={()=>handleRoomsClick(item,i)} />
+                                        {
+                                         roomimage && roomimage.data.map( (itemnew ,j )=>(
+                                             itemnew.roomname === item  ?
+  
+                                             <div className='imagedivtags' >
+                                             <img src= {itemnew.iconurl}/>
+                                             <p>{item}</p>
+                                            
+                                            
+                                              </div>
+                                             :  <div></div>
+  
+                                          ))
+                                        }
+                                         
+  
+                                        
+                                        
+                                         
                                           
-                                       
-
-                                       </div>
-
-
-
-                                       ))
-                                       
-
-                               
-
-
-                                   ))
+                                      </div>
+                                      </label>
+  
+                                  ))
                                        }
-                              
-
-
-                         </div>: <div></div>
-
-                          }
-
-
-
-
-
-                          {
-                           acc.accordianfor === 'colorvalue' ? 
-
-                           
-                           <div>
-
-                               {
-                                   acc.accordionContent.map((item)=>(
-                                       item.colordata.map((it,i)=>(
-
-                                           <div className='colorlistcontainer'>
-
-                                           <div className='colorlistinside'>
-                                            <input type='checkbox' id= {`checkcolor_${i}`}  value={it}  onChange={(e)=>filterHandler(e, acc.accordianfor)}/>
-                                           <p>{it}</p>
-
-                                            </div>
-                                          
-                                       
-
-                                       </div>
-
-                                       ))
-
-                                
-
-
-                                   ))
-                               }
-                              
-
-
-                         </div>:<div></div>
-
-                          }
-
-
-
-{
-                           acc.accordianfor === 'Design' ? 
-
-                           
-                           <div>
-
-                               {
-                                   acc.accordionContent.map((item,i)=>(
-
-                                       item.designs.map((it,i)=>(
-
-                                           <div className='colorlistcontainer'>
-
-                                           <div className='colorlistinside'>
-                                           <input type='checkbox' id= {`check_${i}`}  value={it} onChange={filterHandler}/>
-                                           <p>{it}</p>
-
-                                            </div>
-                                          
-                                       
-
-                                       </div>
-
-                                       ))
-
-                                  
-
-
-                                   ))
-                               }
-                              
-
-
-                         </div>:<div></div>
-
-                          }
-
-
-{
-                           acc.accordianfor === 'Collection' ? 
-
-                           
-                           <div>
-
-                               {
-                                   acc.accordionContent.map((item)=>(
-
-                                   item.collectionitems.map((it,i)=>(
-                                       <div className='colorlistcontainer'>
-
-                                       <div className='colorlistinside'>
-                                       <input type='checkbox'  id= {`check_${i}`}  value={it}  onChange={filterHandler}/>
-                                       <p>{it}</p>
-
-                                        </div>
-                                      
-                                   
-
-                                   </div>
-
-                                   ))
-
-
-                                   ))
-                               }
-                              
-
-
-                         </div>:<div></div>
-
-                          }
-
-
-{
-                           acc.accordianfor === 'Price' ? 
-
-                           
-                           <div>
-                               <div>
-                               <div className="range">
-       <MultiRangeSlider
-           min={5000}
-           max={100000}
-           step={5000}
-           minValue={minValue}
-           maxValue={maxValue}
-           barInnerColor= "rgb(19, 209, 187)"
-           ruler={false}
+          
          
-           onInput={(e) => {
-               handleInput(e);
-           }}
-       />
-       <div className='rangeinput'>
-           <label>MinPrice:</label>
-        <input type='number' value={minValue}/>
-
-       </div>
-       <div className='rangeinput'>
-           <label>MaxPrice:</label>
-        <input type='number' value={maxValue}/>
-
-           </div>
+              
+         
+  
+  
+            </div>
+            <div className='itemspara'>
+             <h3>Explore Like Never Before</h3>
+             <span>
+             <FaArrowRight  className='icondiv'/>
+              </span>
+            </div>
+            <div className='roomscontainer'>
+            {
+                               
+                               
+                                  tags && tags.map((item,i)=>(
+                                    <label htmlFor= {`checktags_${i}`} >
+                                      <div> 
+                                      <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                          
+                                          {
+                                           tagsimages.map(itemnew=>(
+                                              itemnew.tagname === item ?
+                                              <div className='imagedivtags'>
+                                                   <img  src={itemnew.tagimage} />
+                                                  <p>{itemnew.tagname}</p>
+                                                </div>:<p></p>
+                                        
+                                           ))
+  
+                                          }
+                                          
+                                          
+                                      </div>
+                                      </label>
+  
+                                  ))
+  
+  
+                            
+                               
+                                         }
+          
+         
+              
+         
+  
+  
+            </div>
        
-    
-
-
-
-   </div>
-                               </div>
-
-
-
-
-                         </div>:<div></div>
-
-                          }
-
-
-
-
-                          
-                       </div> : <div></div>
-                   }
-
-
-
+             
+  
+         
+  
+          
+              <div  className='subcategorydiv'>
+  
+                
                      
-               </div>
-           )
-       })
-   }
-
-*/}
-</div>
-
-</div>
-    
+  
+                          <div  className='productscontainer'>
+  
+                              {
+                                 subcategorydata && subcategorydata.map(item=>(
+  
+                               
+  
+                                  <div class="product-card">
+      
+                                  <div class="product-tumb">
+                                      <img src={item.imageurl[0]} alt=""/>
+                                  </div>
+                                  <div class="product-details">
+                                      <span class="product-catagory">{item.productname}</span>
+                                      
+                                     <span  style={{display:'flex',  alignItems:'center', justifyContent:'center'}}>
+                                       <p style={{marginRight:'10px'}}>Roll Size</p>
+                                     <p>
+                                     
+                                      
+                                         
+                                          
+                                      {
+                                 
+                                     Math.round(` ${ item.lengthprod * item.breadthprod * 10.764}`)
+                                     
+                                     
+                                     } /sqft   </p>
+                                     </span>
+                                   
+                                      <div class="product-bottom-details">
+                                          <div class="product-price"><small>₹{item.mrp}</small>₹{item.offerprice}</div>
+                                          <div class="product-links">
+                                              <a href=""><i class="fa fa-heart"></i></a>
+                                              <a href=""><i class="fa fa-shopping-cart"></i></a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                           
+                                       
+  
+  
+                                 ))
+  
+                              }
+                             
+                    
+                          
+  
+  
+                          </div>
+               
+  
+              </div>
+  
+                <div className='categorycontainer'  style={{display:'none'}}>
+  
+                  {
+  
+  
+                   categoryimages && categoryimages.data.filter((item,index)=> index === index).map((newitems,i)=>(
+  
+  
+            <div  id={`divselect_${i}`}  style={{border:'1px solid red'}} >
+  
+  <label htmlFor= {`check_${i}`}>
+  
+    <div className='checkboxmain' >
+  <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={newitems} onClick={()=>checkboxClickHomediv(newitems,i)} />
+  
+  <div className='imagedivcontainer' >
+  <img src={newitems.iconUrl} width='150px' height='150px'/>
+  
+  
+  
   </div>
-</div>
-
-
-
-
-
-
-
-
+  <div className='modelnamecontainer'> 
+  
+  <p>{newitems.catagoryId}</p>
+  
+  </div>
+  
+  
     </div>
-  )
+  
+  
+  
+  </label>
+  
+  
+   </div>
+                         )  )
+  
+  
+  }
+  
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                 
+                  
+               
+             
+         
+             
+  
+          
+                 
+               
+  
+        
+                </div>
+              
+  
+  
+  
+          </div>
+  
+  
+             <div  className=''>
+  
+            
+         
+  
+          </div>
+  
+               
+        
+  
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter</h5>
+      <button  type='submit' onClick={handlefilterclear} >Clear</button>
+  
+  
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+  
+    <div >
+  
+  
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Search By
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          {
+           tagstable && tagstable.map(item=>(
+                item.tagsvalue.map(it=>(
+  
+                 
+  
+                  <div className='colorlistinside'>
+                  <input type='checkbox' id= '' name='check'  value={it}  onChange={(e)=>filterHandler(e)}/>
+                  <p>{it}</p>
+  
+                   </div>
+                
+                
+                ))
+  
+           ))
+  
+             
+          }
+          
+  
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+         Colors
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+        {
+           colortable && colortable.map(item=>(
+                item.colordata.map(it=>(
+  
+                 
+  
+                  <div className='colorlistinside'>
+                  <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
+                  <p>{it}</p>
+  
+                   </div>
+                
+                
+                ))
+  
+           ))
+  
+             
+          }
+  
+  
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+          Design Styles
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+        {
+           designtable && designtable.map(item=>(
+                item.designs.map(it=>(
+  
+                 
+  
+                  <div className='colorlistinside'>
+                  <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
+                  <p>{it}</p>
+  
+                   </div>
+                
+                
+                ))
+  
+           ))
+  
+             
+          }
+  
+  
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+         Collection
+        </button>
+      </h2>
+      <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+        {
+           collectiontable && collectiontable.map(item=>(
+                item.collectionitems.map(it=>(
+  
+                 
+  
+                  <div className='colorlistinside'>
+                  <input type='checkbox' id= '' name='check' value={it}  onChange={(e)=>filterHandler(e)}/>
+                  <p>{it}</p>
+  
+                   </div>
+                
+                
+                ))
+  
+           ))
+  
+             
+          }
+  
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+         Price
+        </button>
+      </h2>
+      <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+  
+        <div>
+                                 <div>
+                                 <div className="range">
+         <MultiRangeSlider
+             min={5000}
+             max={60000}
+             step={3000}
+         
+             barInnerColor= "rgb(19, 209, 187)"
+             ruler={false}
+           
+             onChange={(e) => {
+                 handleInput(e);
+             }}
+         />
+         <div className='rangeinput'>
+             <label>MinPrice:</label>
+          <input type='number' value={minprice}  />
+  
+         </div>
+         <div className='rangeinput'>
+             <label>MaxPrice:</label>
+          <input type='number' value={maxprice}  />
+  
+             </div>
+             <div className='rangeinput'>
+              <button  type='submit' onClick={handlepricebutton} >Go</button>
+  
+             </div>
+         
+      
+            </div>
+  
+  
+     </div>
+                                 </div>
+        </div>
+      </div>
+    </div>
+  </div>
+     
+  
+     
+   
+  
+      
+  
+  
+  
+      
+  
+  
+  
+  
+    
+  
+    
+  <div className='accordionContainer'>
+  
+  
+     
+  
+     
+  {/*
+         
+     {
+      
+       accordionData &&   accordionData.map((acc, index) => {
+             return (
+                 <div className="accordion"
+                    >
+                     <div className='accordionHeading'  onClick={() => handleActive(index)} >
+  
+                         <span className="addIcon"
+                             style={{
+                                 transform: `${accActive === index ? 'rotate(180deg)' :
+                                     'rotate(0deg)'}`
+                             }}>
+                             <RiArrowDownSLine size={25} />
+                         </span>
+                         <h3>{acc.title}</h3>
+                     </div>
+                     {
+                       accActive === index ? <div className="accordionContent">
+  
+  
+  
+  
+  {
+                             acc.accordianfor === 'Category' ? 
+  
+                             
+                             <div>
+  
+                                 {
+                                     acc.accordionContent.map((item,i)=>(
+  
+                                     <div className='colorlistcontainer'>
+  
+                                         <div className='colorlistinside'>
+                                         <input type='checkbox' id= {`checkcategory_${i}`}  value={item.category}  onClick={()=>checkboxClickCategory(item.category, i)}/>
+                                         <p>{item.category}</p>
+  
+                                          </div>
+                                        
+                                     
+  
+                                     </div>
+  
+  
+                                     ))
+                                 }
+                                
+  
+  
+                           </div>:<div></div>
+  
+                               }
+  
+  {
+                             acc.accordianfor === 'tags' ? 
+  
+                           
+  
+                          
+                             <div  >
+  
+      
+  
+                                 { 
+                                acc.accordionContent.map(item=>(
+                                         item.tagsvalue.map((it, i)=>(
+  
+                                             <div className='colorlistcontainer'>
+  
+                                             <div className='colorlistinside'>
+                                             <input type='checkbox' id= {`checktags_${i}`}  value={it}  onChange={(e)=>filterHandler(e, acc.accordianfor)}/>
+                                             <p>{it}</p>
+  
+                                              </div>
+                                            
+                                         
+  
+                                         </div>
+  
+  
+  
+                                         ))
+                                         
+  
+                                 
+  
+  
+                                     ))
+                                         }
+                                
+  
+  
+                           </div>: <div></div>
+  
+                            }
+  
+  
+  
+  
+  
+                            {
+                             acc.accordianfor === 'colorvalue' ? 
+  
+                             
+                             <div>
+  
+                                 {
+                                     acc.accordionContent.map((item)=>(
+                                         item.colordata.map((it,i)=>(
+  
+                                             <div className='colorlistcontainer'>
+  
+                                             <div className='colorlistinside'>
+                                              <input type='checkbox' id= {`checkcolor_${i}`}  value={it}  onChange={(e)=>filterHandler(e, acc.accordianfor)}/>
+                                             <p>{it}</p>
+  
+                                              </div>
+                                            
+                                         
+  
+                                         </div>
+  
+                                         ))
+  
+                                  
+  
+  
+                                     ))
+                                 }
+                                
+  
+  
+                           </div>:<div></div>
+  
+                            }
+  
+  
+  
+  {
+                             acc.accordianfor === 'Design' ? 
+  
+                             
+                             <div>
+  
+                                 {
+                                     acc.accordionContent.map((item,i)=>(
+  
+                                         item.designs.map((it,i)=>(
+  
+                                             <div className='colorlistcontainer'>
+  
+                                             <div className='colorlistinside'>
+                                             <input type='checkbox' id= {`check_${i}`}  value={it} onChange={filterHandler}/>
+                                             <p>{it}</p>
+  
+                                              </div>
+                                            
+                                         
+  
+                                         </div>
+  
+                                         ))
+  
+                                    
+  
+  
+                                     ))
+                                 }
+                                
+  
+  
+                           </div>:<div></div>
+  
+                            }
+  
+  
+  {
+                             acc.accordianfor === 'Collection' ? 
+  
+                             
+                             <div>
+  
+                                 {
+                                     acc.accordionContent.map((item)=>(
+  
+                                     item.collectionitems.map((it,i)=>(
+                                         <div className='colorlistcontainer'>
+  
+                                         <div className='colorlistinside'>
+                                         <input type='checkbox'  id= {`check_${i}`}  value={it}  onChange={filterHandler}/>
+                                         <p>{it}</p>
+  
+                                          </div>
+                                        
+                                     
+  
+                                     </div>
+  
+                                     ))
+  
+  
+                                     ))
+                                 }
+                                
+  
+  
+                           </div>:<div></div>
+  
+                            }
+  
+  
+  {
+                             acc.accordianfor === 'Price' ? 
+  
+                             
+                             <div>
+                                 <div>
+                                 <div className="range">
+         <MultiRangeSlider
+             min={5000}
+             max={100000}
+             step={5000}
+             minValue={minValue}
+             maxValue={maxValue}
+             barInnerColor= "rgb(19, 209, 187)"
+             ruler={false}
+           
+             onInput={(e) => {
+                 handleInput(e);
+             }}
+         />
+         <div className='rangeinput'>
+             <label>MinPrice:</label>
+          <input type='number' value={minValue}/>
+  
+         </div>
+         <div className='rangeinput'>
+             <label>MaxPrice:</label>
+          <input type='number' value={maxValue}/>
+  
+             </div>
+         
+      
+  
+  
+  
+     </div>
+                                 </div>
+  
+  
+  
+  
+                           </div>:<div></div>
+  
+                            }
+  
+  
+  
+  
+                            
+                         </div> : <div></div>
+                     }
+  
+  
+  
+                       
+                 </div>
+             )
+         })
+     }
+  
+  */}
+  </div>
+  
+  </div>
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+      </div>
+    )  
+
+  }  
+
+
+
 }
 
 export default Brand

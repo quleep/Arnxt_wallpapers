@@ -43,14 +43,20 @@ const Search = () => {
     const [filtercollection, setFilterCollection] = useState([])
 
     const [filterdata, setFilterData] = useState()
+    const [defaulttags, setDefaultTags] = useState()
 
-    const [defaulttags, setDefaultTags] = useState(false)
+    const history = useHistory()
+    
 
     const user= sessionStorage.getItem('user')
+    
+    if(!user){
+      history.push('/')
+    }
+
     const brandid= JSON.parse(user)
   
-    const brandidnew= brandid.brand.toLowerCase()
-    const history = useHistory()
+    const brandidnew=  brandid &&  brandid.data.brand.toLowerCase()
 
   
 
@@ -62,15 +68,29 @@ const location = useLocation()
 
 
 let newcat;
+useEffect(() => {
+  function handleContextMenu(e) {
+    e.preventDefault(); 
+  }
+ 
+  const rootElement = document.getElementById('my-component');
+  rootElement.addEventListener('contextmenu', handleContextMenu);
+ 
+
+  return () => {
+    rootElement.removeEventListener('contextmenu', handleContextMenu);
+  };
+}, []);
 
 useEffect(()=>{
 
  const body={
-    brand: brandidnew,
+    brand: brandidnew && brandidnew,
     tagName: location.state
  }
 
  axios.post(gettagsdataurl,body).then(res=>{
+ 
      
   let newdata=    res.data.filter((item)=>(
     item.subcategory === 'Wallpapers'
@@ -326,7 +346,7 @@ const closefilterbutton =()=>{
 
 
   return (
-    <div className= { defaulttags ?  'maindivcontainertags' : 'maindivcontainertagsdefault' }>
+    <div   className= { defaulttags ?  'maindivcontainertags' : 'maindivcontainertagsdefault' }>
                         <Navbar/>
 
           
@@ -335,7 +355,7 @@ const closefilterbutton =()=>{
 <div  style={{marginTop:'20px'}}>
 <div className='buttonfilterdiv'> 
       
-      <button class="filterlink" type="button" disabled={defaulttags ? true: false} onClick={filterbuttonClick} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+      <button class="filterlink" type="button" disabled={defaulttags ? true: false} onClick={()=> filterbuttonClick} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
 Filter <i class='bx bx-filter'></i></button>
       </div>
 </div>
@@ -356,7 +376,7 @@ Filter <i class='bx bx-filter'></i></button>
 
 
 
-    <div  className='productscontainer'  >
+    <div  className='productscontainer'id='my-component' >
 
      
         

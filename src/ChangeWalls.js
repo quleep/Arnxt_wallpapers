@@ -91,8 +91,10 @@ const ChangeWalls = () => {
    const location = useLocation()
 
     const history= useHistory()
+   
 
-
+    
+  
 
     const webcamRef = useRef(null);
     const [imgSrc, setImgSrc] = useState(null);
@@ -120,9 +122,13 @@ const ChangeWalls = () => {
  
 
     const user= sessionStorage.getItem('user')
+    if(!user){
+      history.push('/')
+    }
+
     const brandid= JSON.parse(user)
   
-    const brandidnew= brandid.brand.toLowerCase()
+    const brandidnew= brandid.data.brand.toLowerCase()
 
     const [accActive, setAccActive] = useState(false)
 
@@ -1314,9 +1320,24 @@ const closefilterbutton =()=>{
 }
 
 
+useEffect(() => {
+  function handleContextMenu(e) {
+    e.preventDefault(); 
+  }
+ 
+  const rootElement = document.getElementById('my-component');
+  rootElement.addEventListener('contextmenu', handleContextMenu);
+ 
+
+  return () => {
+    rootElement.removeEventListener('contextmenu', handleContextMenu);
+  };
+}, []);
+
+
  
   return (
-    <div  className=  {webar ? "maindivcontainerwebar" :'maindivcontainerwebardefault'}>
+    <div  id='my-component' className=  {webar ? "maindivcontainerwebar" :'maindivcontainerwebardefault'}>
         <Navbar/>
 
         <div className='mobilescreen'>
@@ -1345,7 +1366,7 @@ const closefilterbutton =()=>{
             </div>
 
             </div>
-            <div className='mobileimagecontainer'>
+            <div className='mobileimagecontainer'  id='my-component'>
             <div className='loadwebar' >
     <div className='load'>
 
@@ -1358,7 +1379,7 @@ const closefilterbutton =()=>{
               
 
               </div>
-              <div className='mobilefiltercontainer'  >
+              <div className='mobilefiltercontainer'  id='my-component'  >
                {
                 singleitem &&
                 <div>
@@ -1389,13 +1410,13 @@ const closefilterbutton =()=>{
 
                  
                   
-                       <div id={`mobdiv_${i}`}  className='mobdivcontainer'  >
+                       <div id={`mobdiv_${i}`}  className='mobdivcontainer'   >
                    
                     
                         
-                    <div className='mobileimage'   onClick={()=> handleMobileImage(item, i)} >
+                    <div className='mobileimage'    onClick={()=> handleMobileImage(item, i)} >
                    
-                    <img src= {item.imageurl[0]}/>
+                    <img src= {item.imageurl[0]} />
                    
 
                     </div>
@@ -1420,7 +1441,7 @@ const closefilterbutton =()=>{
     
 
         </div>
-        <div className='mainview'>
+        <div className='mainview'  >
 
           <div className='filteritemcontainer'>  
 
@@ -1443,7 +1464,7 @@ Filter <i class='bx bx-filter'></i></button>
              
             <div  className='' id='divsingle' >
             <label  htmlFor= 'checksingle'>
-              <div className='filterimagecontainer' >
+              <div className='filterimagecontainer'  id='my-component' >
              
                  <img src= { singleitem &&  singleitem.imageurl[0]}  />
                   <input type='checkbox'   className='checkinput' id= 'checksingle' value={singleitem} onClick={()=> checkboxSingle(singleitem)} />
@@ -1470,8 +1491,8 @@ Filter <i class='bx bx-filter'></i></button>
               <div className=''   >
 
              
-              <div  className='' >
-              <label  htmlFor= {`check_${i}`}>
+              <div  className=''  >
+              <label  htmlFor= {`check_${i}`} id='my-component' >
                 <div className='filterimagecontainer' id={`divselect_${i}`} >
                
                    <img src= {item.imageurl[0]}  />

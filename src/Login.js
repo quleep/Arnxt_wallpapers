@@ -50,6 +50,7 @@ const Login = () => {
 
         axios.post(loginurl, body).then(res=>{
             if(res.status === 200){
+                console.log(res.data)
                 sessionStorage.setItem('user', JSON.stringify(res.data))
 
                

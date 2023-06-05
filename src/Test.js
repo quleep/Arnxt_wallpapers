@@ -35,7 +35,47 @@ console.log(imagesrc)
             /*
       
 
+
+  <div className='categorytopcontainer'>
+              <div className='brandcontainer'>
+              <div className='brandimagecontainer'>
+            <img  src={brandimage} />
+  
+            </div>
+  
+              </div>
+              <div className='categoryitem'>
+              {
+                              catdata &&    catdata.map((item,i)=>(
+                                    <label htmlFor='' >
+                                     
+                                         <div className='navbarcategory'>
+                                         <h3 className={ i === 0 ? 'categorycontainer' : 'categorycontainertoggle'} onClick={()=>handlesubcategory(item, i)} >{item}</h3>
+
+
+                                         </div>
+                                       
+  
+                                         
+                                          
+                                          
+                                    
+                                      </label>
+  
+                                  ))
+                                    }
+               
+  
+              </div>
+  
+            </div>
+
+
+
 <div className='filterproductscontainer'>
+
+
+
 
 <div>
 <div  className='filtercontainer'>

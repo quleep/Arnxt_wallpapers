@@ -9,6 +9,8 @@ const Navbar = () => {
 
 
   const logoutHandler=()=>{
+
+    sessionStorage.removeItem('user')
     history.push('/')
 
   }
