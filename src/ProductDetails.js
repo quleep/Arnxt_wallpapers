@@ -83,7 +83,7 @@ useEffect(() => {
             <div>
                 <div className='mrpdiv'>
             <label>DIMENSION</label>
-                <p>  {Math.round(` ${ itemdetails && itemdetails.height * itemdetails.breadthprod * 10.764}`)}/sqft</p>
+                <p>  {Math.round(` ${ itemdetails && itemdetails.height * itemdetails.breadthprod * 10.764}`)} sqft</p>
 
                 </div>
 

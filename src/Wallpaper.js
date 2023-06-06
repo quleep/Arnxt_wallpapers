@@ -404,14 +404,14 @@ const closefilterbutton =()=>{
                        Math.round(` ${ item.height * item.breadthprod * 10.764}`)
                        
                        
-                       } /sqft   </p>
+                       } sqft  </p>
                        </span>
                      
                         <div class="product-bottom-details">
                             <div class="product-price"><small>₹{item.mrp}</small>₹{item.offerprice}</div>
                     
                             <div className='viewinar' >
-                                <button onClick={()=>handlearview(item)} >view in AR</button>
+                                <button onClick={()=>handlearview(item)} >View in AR</button>
                             </div>
                         </div>
                     </div>
