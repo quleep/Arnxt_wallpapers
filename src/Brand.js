@@ -5,6 +5,7 @@ import axios from 'axios';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import MultiRangeSlider from "multi-range-slider-react";
+import Swiper from 'swiper';
 
 import bestdeal from '../src/images/bestdeals.png';
 import toppicks from '../src/images/toppicks.png';
@@ -83,8 +84,6 @@ const Brand = () => {
 
     const ref= useRef()
 
-
-   
 
 
 
@@ -786,6 +785,8 @@ const categoryimage= [
 ]
 
 const handleScroll = () => {
+     let allimage= document.querySelectorAll('.imagedivtags')
+     let alltoggle= document.querySelectorAll('.imagedivtagstoggle')
 
   if(user){
     const scrollPosition = window.scrollY; // => scroll position
@@ -802,6 +803,24 @@ const handleScroll = () => {
   
   
   
+    }
+
+    console.log(scrollPosition)
+    
+    if(scrollPosition > 100){
+       for(let i=0; i< allimage.length; i++){
+        allimage[i].classList.add('show')
+       }
+       for(let i=0; i< alltoggle.length; i++){
+        alltoggle[i].classList.add('show')
+       }
+    } else{
+      for(let i=0; i< allimage.length; i++){
+        allimage[i].classList.remove('show')
+       }
+       for(let i=0; i< alltoggle.length; i++){
+        alltoggle[i].classList.remove('show')
+       }
     }
 
   }
@@ -893,6 +912,7 @@ console.log(rooms)
               </div>
   
             </div>
+
   
             <div className='viewinroom'>
             <div className='itemspara'>

@@ -108,10 +108,18 @@ body{
   display: flex;
  
   width: 100%;
-  height: 500px;
-  margin-top: 60px;
+  height: 100%;
+ 
   align-items: center;
   justify-content: center;
+}
+.loginmainbody{
+   height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: rgb(223, 218, 218);
 }
 
 .loginbox{
@@ -121,13 +129,32 @@ body{
  
   height: 400px;
   width: 600px;
- margin-top: 120px;
  margin-bottom: 120px;
  background-color: yellow;
  border-radius: 5px;
  box-shadow: 5px 5px 5px 5px gray;
- padding-top: 40px;
 
+
+}
+.logodiv{
+ display: flex;
+  width: 100%;
+  height: 200px;
+  border: 1px solid green;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+}
+.logoimagelogin{
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  height: 120px;
+  border: 1px solid red;
+}
+.logoimagelogin img{
+  width: 100%;
+  height: 100%;
 }
 .logindiv1{
   flex: 1;
@@ -793,8 +820,309 @@ height: 250px;
   box-shadow: 2px 2px 5px 5px rgb(201, 199, 199);
   cursor: pointer;
   padding: 20px;
+  opacity: 0;
+  transform:  translateY(100%);
+  transition: opacity 0.1s, transform 0.6s;
+  }
+
+.imagedivtags.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+.loginmaincontainer{
+  display: flex;
+  width:  1000px;
+  height: 800px;
+ 
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+  background-color:#FDF000 ;
+}
+.loginimagediv{
+  flex: 1;
+  background-color: #FDF000;
+}
+.logindetailsdiv{
+  flex: 1;
+background-color: #01091E;
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+
+}
+
+.logininput{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+ align-items: center;
+ justify-content: center;
+  
+}
+.loginiteminside{
+  display: flex;
+  width: 400px;
+  height: 600px;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  padding: 10px;
+}
+.loginimagecontainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+ 
+  align-items: center;
+  justify-content: center;
+}
+.loginimagecontainerinside{
+  display: flex;
+  width: 90% ;
+  height: 700px;
+ 
+  padding: 10px;
+  flex-direction: column;
+ 
+}
+.loginlogodiv{
+  flex: 1;
+  
+  margin: 10px;
+}
+.arnxtlogocontainer{
+  display: flex;
+  width: 200px;
+  height: 200px;
+  flex-wrap: wrap;
+}
+.arnxtlogocontainer img{
+  width: 100%;
+  height: 100%;
+}
+.loginlogodivinside{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.logindisplaydivinside{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+}
+.logindisplaydivinside img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.logindisplaydiv{
+  flex: 3;
+  
+}
+.loginicon{
+  flex: 1;
+  
+}
+.logininputfields{
+  flex: 2;
+ 
+  padding: 20px;
+}
+.loginbutton{
+  flex: 1;
+  
+}
+.loginiconinside{
+  display: flex;
+  margin: 20px;
+}
+.loginiconinside h4{
+  color: white;
+}
+.loginiconimage{
+  font-size: 20px;
+  color: white;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.loginiconpara{
+  display: flex;
+  margin: 20px;
+}
+.loginiconpara p{
+  color: white;
+  padding: 0px;
+}
+.logininputfieldemail{
+  display: flex;
+ 
+  height: 100px;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+}
+.logininputfieldemail label{
+  display: flex;
+  margin-bottom: 10px;
+  color: white;
+}
+.logininputfieldemail input{
+  height: 40px;
+  border-bottom: 1px solid white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+   caret-color: white;
+   background-color: transparent;
+   color: white;
+}
+.eyesymbol{
+  color: white;
+  margin-left: -20px;
+  margin-top: 10px;
+  cursor: pointer;
+  
+}
+.needhelpcontainer{
+  display: flex;
+  width: 100%;
+  height: 60px;
+ 
+  flex-wrap: wrap;
+  padding: 5px;
+  align-items: right;
+  justify-content: right;
+  
+}
+.submitbutton{
+  display: flex;
+  width: 100%;
+  height: 40px;
+  
+  flex-wrap: wrap;
+  
+  align-items: center;
+  justify-content: center;
+}
+.submitbuttoninside{
+  width: 300px;
+  height: 40px;
+ 
+}
+ .logininputbuttondiv{
+  display: flex;
+  
+  height: 100px;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+ }
+.needhelpinside{
  
  
+ display: flex;
+ 
+  height: 30px;
+  width: 150px;
+  
+  
+}
+.needhelpinside p{
+  color: white;
+  padding-left: 10px;
+ 
+  height: 100%;
+  width: 100%;
+}
+.rightarrow{
+  color:#FDF000  ;
+ 
+  margin-top: 5px;
+
+ 
+}
+.inputinside{
+  display: flex;
+}
+.inputinside input{
+  width: 100%;
+
+}
+.submitbuttoninside button{
+  width: 150px;
+  height: 30px;
+  border: none;
+  color: black;
+  background-color:#FDF000  ;
+  border-radius: 10px;
+}
+.logininputfieldemail input:focus{
+  outline: none;
+}
+.defaulttextcontainer{
+  display: flex;
+  width: 100%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+  
+}
+.defaulttext{
+  display: flex;
+   border: 2px dotted rgb(173, 173, 173); 
+  height: 120px;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.defaultinsidetext{
+  width: 300px;
+  height: 60px;
+  border: 1px dashed rgb(204, 199, 199);
+  
+}
+.defaultinsidetext p{
+  padding-top: 20px;
+  font-size: 12px;
+   font-weight:  300;
+   font-family: monospace;
+}
+
+.alertpopup {
+  position: absolute;
+  left: 900px;
+  top: 400px;
+  width: 300px;
+  height: 80px;
+  z-index: 999;
+  box-shadow: 2px 2px 2px 2px rgb(187, 181, 181);
+  background-color: rgb(228, 197, 197);
+  border-radius: 10px;
+  display: none;
+  padding-left: 20px;
+}
+.alertsymbol {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.alertpopup p {
+  font-size: 15px;
+  font-family: "Courier New";
+  color: red;
+  margin-top: 30px;
+}
+.imagedivonscroll{
+  transform: translateY(50px);
 }
 .imagedivtagstoggle{
   display: flex;
@@ -815,9 +1143,20 @@ height: 250px;
   box-shadow: 2px 2px 5px 5px rgb(201, 199, 199);
  
   padding: 20px;
+  opacity: 0;
+  transform:  translateY(100%);
+  transition: opacity 0.8s, transform 0.6s;
+  
+ 
+  
  
  
 }
+.imagedivtagstoggle.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .imagedivtags img{
   width: 100%;
   height: 100%;
@@ -1158,6 +1497,7 @@ border-bottom-color: transparent;
   flex-wrap: wrap;
   height: auto;
   margin-top: 80px;
+  z-index: 999;
  
 }
 .categorytopcontainertoggle{
@@ -1385,6 +1725,7 @@ a
 .viewinar{
   
   display: flex;
+  
  
 }
 
@@ -1839,6 +2180,7 @@ flex: 2;
   padding: 10px;
   border: 1px solid gray;
   border-radius: 10px;
+  padding-bottom: 30px;
   
 
  }
@@ -2289,9 +2631,19 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
-
+.eyedisplay{
+  display: none;
+}
 
 @media screen and (max-width: 600px) {
+.loginimagecontainerinside{
+  width: auto;
+  height: auto;
+}
+.logindisplaydivinside{
+  width: 200px;
+  height: 200px;
+}
   .roomscontainer{
     flex-direction: column;
   }
@@ -2451,4 +2803,140 @@ input::-webkit-inner-spin-button {
 
 }
 
+.round {
+  position: relative;
+}
+
+.round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+.filtercheckbox input[type="checkbox"]{
+display: none;
+ 
+  
+}
+.filtercheckbox {
+  position: relative;
+  border: 2px solid #66bb6a;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  
+
+}
+.checkboxadd {
+
+  background-image: url('/src/images/check-circle.svg') ;
+  background-position: center;
+  background-size: contain;
+}
+.arrowblinkdiv{
+  display: none;
+}
+.applytextdiv{
+  display: none;
+ position: absolute;
+ 
+  width: auto;
+  height: 40px;
+  left: 60%;
+  top: 280px;
+ 
+  
+}
+.applytextdiv p{
+   font-size: 15px;
+   font-family: monospace;
+   color: rgb(3, 3, 206);
+   font-weight: bold;
+}
+
+
+.arrows {
+  width: 60px;
+  height: 90px;
+  position: absolute;
+  left:  65%;
+  margin-left: -30px;
+  bottom: 20px;
+  
+  top:  200px;
+ 
+}
+
+.arrows path {
+  stroke: #4806b3;
+  fill: transparent;
+  stroke-width: 4px;  
+  animation: arrow 2s infinite;
+  -webkit-animation: arrow 2s infinite; 
+}
+
+@keyframes arrow
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+@-webkit-keyframes arrow /*Safari and Chrome*/
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+.arrows path.a1 {
+  animation-delay:-1s;
+  -webkit-animation-delay:-1s; /* Safari 和 Chrome */
+}
+
+.arrows path.a2 {
+  animation-delay:-0.5s;
+  -webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
+}
+
+.arrows path.a3 { 
+  animation-delay:0s;
+  -webkit-animation-delay:0s; /* Safari 和 Chrome */
+}
 

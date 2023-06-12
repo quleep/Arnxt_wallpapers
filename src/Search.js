@@ -114,11 +114,12 @@ useEffect(()=>{
 
 
 
-const handlearview=(item)=>{
+const handlearview=(item,e)=>{
     history.push({
         pathname: '/view',
         state: item
     })
+    e.stopPropagation()
   
 }
 
@@ -386,7 +387,7 @@ Filter <i class='bx bx-filter'></i></button>
 
          
 
-            <div class="product-card"   >
+            <div class="product-card"   onClick={()=>productdetails(item)} >
 
             <div class="product-tumb">
                 <img src={item.imageurl[0]} alt=""/>
@@ -394,7 +395,7 @@ Filter <i class='bx bx-filter'></i></button>
 
          
             <div class="product-details" >
-                <span class="product-catagory"  onClick={()=>productdetails(item)}>{item.productname}</span>
+                <span class="product-catagory" >{item.productname}</span>
                 
                <span  style={{display:'flex',  alignItems:'center', justifyContent:'center'}}>
                  <p style={{marginRight:'10px'}}>Roll Size</p>
@@ -415,7 +416,7 @@ Filter <i class='bx bx-filter'></i></button>
                     <div class="product-price"><small>₹{item.mrp}</small>₹{item.offerprice}</div>
             
                     <div className='viewinar' >
-                        <button onClick={()=>handlearview(item)} >View in AR</button>
+                        <button onClick={(e)=>handlearview(item,e)} >View in AR</button>
                     </div>
                 </div>
             </div>

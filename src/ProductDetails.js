@@ -35,7 +35,12 @@ useEffect(() => {
     };
   }, []);
 
-
+  const handlearview= (item)=>{
+    history.push({
+        pathname: '/view',
+        state: item
+    })
+  }
   return (
     <div>
         <Navbar/>
@@ -45,10 +50,12 @@ useEffect(() => {
 
             <div className='productimagedivinside'>
             <img src= {itemdetails && itemdetails.imageurl[0]}/>
-
+            <div className='viewinar' style={{marginTop:'10px'}} >
+                                <button onClick={(e)=>handlearview(itemdetails)} > View in AR</button>
+                            </div>
 
             </div>
-
+         
         </div>
         <div className='productdetailscontainer'>
             <div>

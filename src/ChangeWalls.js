@@ -5,13 +5,15 @@ import axios from 'axios';
 import Webcam from 'react-webcam'
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { FaCamera, FaTimes } from 'react-icons/fa';
+import { FaCamera, FaExclamationCircle, FaTimes } from 'react-icons/fa';
 
 import MultiRangeSlider from "multi-range-slider-react";
 
 import checked from '../src/Assets/checked.svg'
 import unChecked from '../src/Assets/unchecked.svg'
 import { useHistory, useLocation } from 'react-router-dom';
+import  checkbox from '../src/images/check-circle.svg';
+
 
 const filterdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/filterdata'
 
@@ -69,7 +71,7 @@ const ChangeWalls = () => {
     const [filterdesign, setFilterDesign] = useState([])
     const [filtercollection, setFilterCollection] = useState([])
 
-    const [filterdata, setFilterData] = useState()
+    const [filterdata, setFilterData] = useState('')
     const [imageurl, setImageUrl] = useState([])
 
     const [imageurlfinal, setImageUrlFinal] = useState([])
@@ -194,9 +196,11 @@ const ChangeWalls = () => {
 
   if(checked){
    
+      document.querySelector('#checkboxsingle').classList.add('checkboxadd')
 
     if(walldistancedesk === ''){
-      document.querySelector('.distancefield').style = 'border: 2px solid red'
+    document.querySelector('.distancefield').style = 'border: 1px solid red'
+       
       document.querySelector('.distanceerror').innerHTML = 'Required'
       setTimeout(() => {
 
@@ -208,11 +212,7 @@ document.querySelector('.loadwebardesk').style.display= 'none'
 
       return
   } 
-  else{
-    document.querySelector('.distancefield').style = 'border: none'
-
-  }
-
+ 
   document.querySelector('.loadwebardesk').style.display= 'block'
 
     setImageUrlFinal('')
@@ -221,7 +221,7 @@ document.querySelector('.loadwebardesk').style.display= 'none'
 
     
     const body={
-      image: imageurl[0],
+      image: imageurl,
       distance: walldistancedesk,
       url:  val.imageurl[0]
      
@@ -251,7 +251,8 @@ document.querySelector('.loadwebardesk').style.display= 'none'
   if(!checked){
     setCollectionArray('')
    
-    document.querySelector('#divsingle').style= 'border: none'
+    document.querySelector('#checkboxsingle').classList.remove('checkboxadd')
+
 
   }
 
@@ -335,13 +336,17 @@ document.querySelector('.loadwebardesk').style.display= 'none'
 
  }
 
+
+
 const checkboxClick=(val, len)=>{
+  
  
     let checked = false
    
  
     
-
+    document.querySelector('.arrowblinkdiv').style.display= 'none' 
+    document.querySelector('.applytextdiv').style.display= 'none' 
     
     if(document.querySelector(`#check_${len}:checked`)){
       checked = true;
@@ -351,9 +356,32 @@ const checkboxClick=(val, len)=>{
     }
 
     if(checked){
-      document.querySelector(`#divselect_${len}`).style= 'border: 2px solid #2e6180'
+      document.querySelector(`#divselect_${len}`).classList.add('checkboxadd')
+     
+
+      let get= document.getElementsByName('checkinputclick');
+
+      let allelement= document.querySelectorAll('.filtercheckbox')
+
+      for(let i =0; i< allelement.length; i++){
+        if(len !==i){
+          allelement[i].classList.remove('checkboxadd')
+
+        }
+      }
+     
+      for(let i= 0; i<get.length; i++){
+        if(len !== i){
+          get[i].checked= false;
+         
+     
+        }
+      
+     }
       
       if(walldistancedesk === ''){
+
+        
           document.querySelector('.distancefield').style = 'border: 2px solid red'
           document.querySelector('.distanceerror').innerHTML = 'Required'
           setTimeout(() => {
@@ -380,7 +408,7 @@ const checkboxClick=(val, len)=>{
 
      
       const body={
-        image: imageurl[0],
+        image: imageurl,
         distance: walldistancedesk,
         url:  val.imageurl[0]
        
@@ -408,13 +436,17 @@ const checkboxClick=(val, len)=>{
        
     
       }).catch(error =>{
-        console.log(error)
+    document.querySelector('.loadwebardesk').style.display= 'none'
+
+       window.alert('server issue')
       })
 
     }
+ 
     if(!checked){
       setCollectionArray('')
-      document.querySelector(`#divselect_${len}`).style= 'border: none'
+      document.querySelector(`#divselect_${len}`).classList.remove('checkboxadd')
+    
     
 
     }
@@ -917,13 +949,55 @@ const handleWallpaper=(val,len)=>{
   
 }
 
+const newtag= ['New']
+
+
+useEffect(()=>{
+
+   if(!location.state ){
+
+    const body={
+      brand: brandidnew,
+      tagvalue: newtag,
+      colorvalue: filtercolor,
+      collectionvalue: filtercollection,
+      designstyle: filterdesign,
+      maxprice: Number(maxprice),
+      minprice: Number(minprice)
+    }
+  
+    axios.post(filterdataurl, body).then(res=>{
+      if(res.status === 200){
+  
+       
+  
+     let newdata=    res.data.filter((item)=>(
+          item.subcategory === 'Wallpapers'
+        ))
+        setFilterData(newdata)
+      }
+  
+    }).catch(error=>{
+      console.log(error)
+    })
+
+  
+
+   }
+
+  
+   
+
+
+},[])
+
 
 
 
 
 const handleApplyFilter=()=>{
-
- 
+   setSingleItem('')   
+    
   const body={
     brand: brandidnew,
     tagvalue: filterTags,
@@ -942,6 +1016,7 @@ const handleApplyFilter=()=>{
    let newdata=    res.data.filter((item)=>(
         item.subcategory === 'Wallpapers'
       ))
+     
       setFilterData(newdata)
     }
 
@@ -962,7 +1037,7 @@ const closeCamera=()=>{
 
 }
 
-console.log(imgSrc)
+
 const handlePictureClick=()=>{
 
 
@@ -1114,8 +1189,8 @@ const handleImageUploadMobile=(e)=>{
 
 }
 
-const  handleImageUpload =(e)=>{
- 
+const  uploadFile =(e)=>{
+   console.log(e)
 
   let val= document.getElementById('fileinput').value;
   let indx = val.lastIndexOf(".") + 1;
@@ -1129,10 +1204,14 @@ const  handleImageUpload =(e)=>{
     files.forEach(file => {
      fileToBase64(file, (err, result) => {
        if (result) {
-
+        console.log(result)
+         document.querySelector('.defaulttextcontainer').style.display= 'none'
         document.querySelector('.defaultimagedesk').style.display= 'block' 
         document.querySelector('.processimagedesk').style.display= 'none' 
-   
+        document.querySelector('.arrowblinkdiv').style.display= 'block' 
+        document.querySelector('.applytextdiv').style.display= 'block' 
+
+           
     
        setImageUrl(result)
       
@@ -1166,10 +1245,14 @@ const  handleImageUpload =(e)=>{
   }
 
   else{
-    document.querySelector('.filemessage').innerHTML= 'Only .png, .jpg, .jpeg accepted'
+    document.querySelector('.defaulttextcontainer').style.display= 'flex'
+     
+      document.querySelector('.alertpopup').style.display = 'flex '
+     document.querySelector('.alerttext').innerHTML = 'Only jpg, jpeg, png files are supported'
     setTimeout(() => {
 
-    document.querySelector('.filemessage').innerHTML= ''
+      document.querySelector('.alertpopup').style.display = 'none '
+     document.querySelector('.alerttext').innerHTML = ''
 
       
     }, [3000]);
@@ -1177,6 +1260,8 @@ const  handleImageUpload =(e)=>{
 
 
 }
+
+
 
 
 const handleMobileImage=(item, len)=>{
@@ -1300,7 +1385,9 @@ document.querySelector('.processimage').style.display= 'block'
 }
 
 const filterbuttonClick =()=>{
+     
     setWebar(!webar)
+  
   document.querySelector('.container').classList.add('containertoggle')
 
   document.querySelector('.maindivcontainerwebardefault').classList.remove()
@@ -1359,7 +1446,7 @@ useEffect(() => {
 </div>
               </div>
               <div className='inputfordistance'>  
-              <input type='text' placeholder='distance from wall' className= 'distancefieldmob'  value={walldistancemob}   onChange={(e)=>setWallDistanceMob(e.target.value)} />
+              <input type='text' placeholder='distance from wall in feet' className= 'distancefieldmob'  value={walldistancemob}   onChange={(e)=>setWallDistanceMob(e.target.value)} />
               <div style={{marginTop:'10px'}} >
               <p className='distancefieldmobmessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
             </div>
@@ -1465,9 +1552,15 @@ Filter <i class='bx bx-filter'></i></button>
             <div  className='' id='divsingle' >
             <label  htmlFor= 'checksingle'>
               <div className='filterimagecontainer'  id='my-component' >
+              <div  >
+                  <label className='filtercheckbox' id='checkboxsingle'  >
+              
+                  <input type='checkbox'   className='checkinput' id= 'checksingle' value={singleitem} onClick={()=> checkboxSingle(singleitem)} />
+                  
+                  </label>
+                  </div>
              
                  <img src= { singleitem &&  singleitem.imageurl[0]}  />
-                  <input type='checkbox'   className='checkinput' id= 'checksingle' value={singleitem} onClick={()=> checkboxSingle(singleitem)} />
 
               </div>
               <div className='itemdetailscontainer'>
@@ -1493,10 +1586,23 @@ Filter <i class='bx bx-filter'></i></button>
              
               <div  className=''  >
               <label  htmlFor= {`check_${i}`} id='my-component' >
-                <div className='filterimagecontainer' id={`divselect_${i}`} >
+            
+                <div className='filterimagecontainer'  >
+                  <div  >
+                  <label className='filtercheckbox'  id={`divselect_${i}`} >
+                <input type='checkbox' name='checkinputclick'   id= {`check_${i}`} value={item} onClick={()=>checkboxClick(item,i)} />
+                  
+                  </label>
+                  </div>
+                
+                  
                
                    <img src= {item.imageurl[0]}  />
-                    <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=>checkboxClick(item,i)} />
+                
+                 
+            
+                     
+                 
   
                 </div>
                 <div className='itemdetailscontainer'>
@@ -1560,6 +1666,10 @@ Filter <i class='bx bx-filter'></i></button>
 
 </div>
 
+<div className='alertpopup'>
+     <span className='alertsymbol' ><FaExclamationCircle  style={{color:'red'}} /></span>  <p className='alerttext' ></p>
+    </div>
+
    <div  className='camdisplay'>
          
       
@@ -1573,8 +1683,30 @@ Filter <i class='bx bx-filter'></i></button>
            
          
          </div> 
+         <div className='arrowblinkdiv'>
+         <svg class="arrows">
+              <path class="a1" d="M0 0 L30 32 L60 0"></path>
+              <path class="a2" d="M0 20 L30 52 L60 20"></path>
+              <path class="a3" d="M0 40 L30 72 L60 40"></path>
+              
+            </svg>
+           
+         </div>
+         <div className='applytextdiv'> 
+         <p>Apply selected wallpaper here</p>
 
+         </div>
+        
 
+      <div  className='defaulttextcontainer'>
+      <div className='defaulttext'>
+         <div className='defaultinsidetext'>
+           <p>Capture your space or upload it’s image</p>
+         </div>
+      </div>
+
+      </div>
+   
  
   {
      
@@ -1612,12 +1744,12 @@ Filter <i class='bx bx-filter'></i></button>
             <div  className='buttonimage'>
             <div class="upload-btn-wrapper">
   <button class="btn">Upload Image</button>
-  <input type="file"  id='fileinput' name="myfile" onChange={handleImageUpload} />
+  <input type="file"  id='fileinput' name="myfile" onChange={ uploadFile} />
 </div>
             </div>
             
             <div className='inputfordistance'>  
-              <input type='text' placeholder='distance from wall' className='distancefield'  value={walldistancedesk} onChange= {(e)=>setWallDistanceDesk(e.target.value)} />
+              <input type='text' placeholder='distance from wall in feet' className='distancefield'  value={walldistancedesk} onChange= {(e)=>setWallDistanceDesk(e.target.value)} />
               <div style={{marginTop:'10px'}} >
               <p className='distanceerror' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
             </div>
