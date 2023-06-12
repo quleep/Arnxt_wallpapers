@@ -32,8 +32,12 @@ const Search = () => {
     const [designstylearray, setDesignStyleArray] = useState('')
     const [tagsarray, setTagsArray] = useState([])
     const [collectionarray, setCollectionArray] = useState('')
-    const [minprice, setMinPrice] = useState('');
-    const [maxprice, setMaxPrice] = useState('');
+    const [minvalue, setMinValue] = useState(2000)
+    const [maxvalue, setMaxValue] = useState(60000)
+    const [rangemin, setRangeMin] = useState(2000)
+    const [rangemax, setRangeMax] = useState(60000)
+    const [minprice, setMinPrice] = useState();
+    const [maxprice, setMaxPrice] = useState();
     const [filterTags, setFilterTags] = useState([])
 
     const [imageDataURL, setImageDataUrl] = useState('')
@@ -43,7 +47,7 @@ const Search = () => {
     const [filtercollection, setFilterCollection] = useState([])
 
     const [filterdata, setFilterData] = useState()
-    const [defaulttags, setDefaultTags] = useState()
+    const [defaulttags, setDefaultTags] = useState(false)
 
     const history = useHistory()
     
@@ -166,6 +170,8 @@ useEffect(()=>{
 
 
 const handlefilterclear=()=>{
+  setRangeMax(60000)
+  setRangeMin(2000)
     setFilterData('')
       setFilterTags([])
       setFilterColor([])
@@ -314,8 +320,10 @@ const filterDesignHandler = (event)=>{
 
 const handleInput = (e) => {
 
-    setMinPrice(e.minValue);
-    setMaxPrice(e.maxValue);
+  setMinPrice(e.minValue);
+  setMaxPrice(e.maxValue);
+  setRangeMax(e.maxValue)
+  setRangeMin(e.minValue)
 
 };
 const closemodal= ()=>{
@@ -356,7 +364,7 @@ const closefilterbutton =()=>{
 <div  style={{marginTop:'20px'}}>
 <div className='buttonfilterdiv'> 
       
-      <button class="filterlink" type="button" disabled={defaulttags ? true: false} onClick={()=> filterbuttonClick} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+      <button class="filterlink" type="button" disabled={defaulttags ? true: false} onClick={ filterbuttonClick} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
 Filter <i class='bx bx-filter'></i></button>
       </div>
 </div>
@@ -618,14 +626,16 @@ Price
                        <div>
                        <div className="range">
 <MultiRangeSlider
-   min={2000}
-   max={60000}
+   min= {minvalue}
+   max={maxvalue}
    step={100}
+   minValue= {rangemin}
+   maxValue={rangemax}
 
    barInnerColor= "rgb(19, 209, 187)"
    ruler={false}
  
-   onChange={(e) => {
+   onInput={(e) => {
        handleInput(e);
    }}
 />

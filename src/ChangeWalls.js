@@ -33,6 +33,7 @@ const getalldesginstyles= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.c
 const getallcolors= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getcolorstable'
 const getallcollections='https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/getcollectiontable'
 const getalltags= 'https://eh16rizdbi.execute-api.ap-south-1.amazonaws.com/production/alltagstable'
+const sendviewdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addviewdata'
 
 
 const ChangeWalls = () => {
@@ -124,6 +125,10 @@ const ChangeWalls = () => {
  
 
     const user= sessionStorage.getItem('user')
+
+    const userdata= JSON.parse(user)
+
+    
     if(!user){
       history.push('/')
     }
@@ -336,11 +341,25 @@ document.querySelector('.loadwebardesk').style.display= 'none'
 
  }
 
+ let date = new Date();
+
+ let lastId = 0;
+
+ function getId(){
+   let currentId = new Date().getTime();
+   if (lastId == currentId) {
+     currentId++;
+   }
+   lastId = currentId;
+   return lastId;
+}
+
+
 
 
 const checkboxClick=(val, len)=>{
   
- 
+   getId()
     let checked = false
    
  
@@ -422,6 +441,20 @@ const checkboxClick=(val, len)=>{
 
 
     document.querySelector('.loadwebardesk').style.display= 'none'
+
+        const bodyview={
+          Id : lastId,
+          merchantId: Number(val.merchant_Id),
+          productId: Number(val.product_Id),
+          userId: userdata.data.userID, 
+          viewtime:  lastId
+        }
+
+        axios.post(sendviewdataurl, bodyview).then(res=>{
+          console.log(res)
+        }).catch(error=>{
+          console.log(error)
+        })
 
       }
 
@@ -1044,6 +1077,8 @@ const handlePictureClick=()=>{
   const imgsrc= webcamRef.current.getScreenshot()
     setImageUrl(imgsrc)
    document.querySelector('.defaultimagedesk').style.display= 'block'
+   document.querySelector('.arrowblinkdiv').style.display= 'block'
+   document.querySelector('.applytextdiv').style.display= 'block'
   
   if(distancewall === ''){/*
     document.querySelector('.inp').style = 'border: 2px solid red'
@@ -1059,7 +1094,7 @@ document.querySelector('.displayurlcontainer').style.display= 'block'
     
 
    
-    setCameraOnStatus(true)
+    
   
 
 }
@@ -1076,6 +1111,9 @@ const openCamera=()=>{
   document.querySelector('.camdisplay').style.display= 'block'
  
   document.querySelector('.closecamera').style.display= 'block'
+  document.querySelector('.defaulttextcontainer').style.display = 'none'
+  document.querySelector('.arrowblinkdiv').style.display= 'none'
+  document.querySelector('.applytextdiv').style.display= 'none'
 
 
 
@@ -1191,6 +1229,10 @@ const handleImageUploadMobile=(e)=>{
 
 const  uploadFile =(e)=>{
    console.log(e)
+
+   document.querySelector('.camdisplay').style.display= 'none'
+ 
+   document.querySelector('.closecamera').style.display= 'none'
 
   let val= document.getElementById('fileinput').value;
   let indx = val.lastIndexOf(".") + 1;

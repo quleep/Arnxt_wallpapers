@@ -33,8 +33,8 @@ const Wallpaper = () => {
     const [designstylearray, setDesignStyleArray] = useState('')
     const [tagsarray, setTagsArray] = useState([])
     const [collectionarray, setCollectionArray] = useState('')
-    const [minprice, setMinPrice] = useState('');
-    const [maxprice, setMaxPrice] = useState('');
+    const [minprice, setMinPrice] = useState();
+    const [maxprice, setMaxPrice] = useState();
     const [filterTags, setFilterTags] = useState([])
 
     const [imageDataURL, setImageDataUrl] = useState('')
@@ -43,6 +43,11 @@ const Wallpaper = () => {
     const [filterdesign, setFilterDesign] = useState([])
     const [filtercollection, setFilterCollection] = useState([])
     const [defaultwallpaper, setDefaultWallpaper] = useState(false)
+    const [minvalue, setMinValue] = useState(2000)
+    const [maxvalue, setMaxValue] = useState(60000)
+    const [rangemin, setRangeMin] = useState(2000)
+    const [rangemax, setRangeMax] = useState(60000)
+    const [resetprice, setResetPrice] = useState(false)
 
     const [filterdata, setFilterData] = useState()
     const history = useHistory()
@@ -155,23 +160,41 @@ useEffect(()=>{
 
 
 },[])
+let minrangeval= 2000
+let maxrangeval= 60000
 
 
 const handlefilterclear=()=>{
+  
+  setRangeMax(60000)
+  setRangeMin(2000)
+    
     setFilterData('')
       setFilterTags([])
       setFilterColor([])
       setFilterCollection([])
       setFilterDesign([])
+   
+   
+      
+    
+   
   
       let get= document.getElementsByName('check');
   
   for(let i= 0; i<get.length; i++){
   
   get[i].checked= false;}
-    
-  }
+
   
+   
+  }
+ 
+  useEffect(()=>{
+    console.log(rangemax)
+    console.log(rangemin)
+  },[rangemax, rangemin])
+ 
   const handleWallpaper=(val,len)=>{
       let checked= false;
       if(document.querySelector(`#check_${len}:checked`)){
@@ -305,14 +328,20 @@ const filterDesignHandler = (event)=>{
 
 }
 
+
+
 const handleInput = (e) => {
+    console.log(e)
 
     setMinPrice(e.minValue);
     setMaxPrice(e.maxValue);
+    setRangeMax(e.maxValue)
+    setRangeMin(e.minValue)
+  
 
 };
 
-  
+
 
 const closemodal= ()=>{
     document.querySelector('.nodata').style.display= 'none'
@@ -610,15 +639,21 @@ const closefilterbutton =()=>{
       <div>
                                <div>
                                <div className="range">
-       <MultiRangeSlider
-           min={2000}
-           max={60000}
+
+        <form  >
+        <MultiRangeSlider
+           min= {minvalue}
+           max={maxvalue}
            step={100}
+           minValue= {rangemin}
+           maxValue={rangemax}
+           
        
            barInnerColor= "rgb(19, 209, 187)"
            ruler={false}
+           
          
-           onChange={(e) => {
+           onInput={(e) => {
                handleInput(e);
            }}
        />
@@ -632,6 +667,10 @@ const closefilterbutton =()=>{
         <input type='number' value={maxprice}  />
 
            </div>
+          
+          
+          </form>                        
+    
          
        
     

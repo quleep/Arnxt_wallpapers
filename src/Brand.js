@@ -5,6 +5,8 @@ import axios from 'axios';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import MultiRangeSlider from "multi-range-slider-react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import Swiper from 'swiper';
 
 import bestdeal from '../src/images/bestdeals.png';
@@ -13,7 +15,14 @@ import featured from '../src/images/featured.png';
 import collection from '../src/images/collections.png';
 import wallpaper from '../src/images/77308-1_2.jpg';
 import wallmurals from '../src/images/ED-20949_2.jpg';
+import image1 from '../src/images/HB-WB.jpeg';
+import image2 from '../src/images/Home-page_OPULENCE.jpg';
+import image3 from '../src/images/WhatsApp_Image_2023-01-20_at_11.18.49_AM.jpeg';
+
+
+
 import  woddenfloors from '../src/images/wooden-floor-tiles-work-with-per-sq-ft-with-labour-charge--703.jpg';
+
 
 
 
@@ -857,6 +866,49 @@ useEffect(() => {
   const uservalue= JSON.parse(usernew)
 
 console.log(rooms)
+
+useEffect(()=>{
+  /*
+  const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.querySelector('.slider-dots');
+ slides && slides.forEach((slide, index) => {
+  const dot = document.createElement('span');
+  dot.classList.add('slider-dot');
+  if (index === 0) {
+    dot.classList.add('active');
+  }
+  dot.addEventListener('click', () => {
+    goToSlide(index);
+   
+   
+  
+  });
+  dotsContainer &&  dotsContainer.appendChild(dot);
+});
+
+let currentSlide = 0;
+
+
+function nextSlide() {
+  goToSlide(currentSlide + 1);
+}
+
+function goToSlide(index) {
+     console.log(slides[index])
+     dotsContainer.querySelector('.active').classList.remove('active');
+     dotsContainer.querySelectorAll('.slider-dot')[index].classList.add('active');
+
+  
+}
+
+
+
+*/},[])
+
+
+
+
+
  
   if(uservalue && uservalue.token){
 
@@ -912,6 +964,44 @@ console.log(rooms)
               </div>
   
             </div>
+
+          <div  className='carouselcontainer'>
+          <Carousel 
+             showThumbs={true}
+             showStatus={false}
+             useKeyboardArrows
+             transitionTime={1000}
+          
+          
+            
+            >
+                <div className="">
+          <img
+            alt=""
+            src={image1}
+          />
+       
+        </div>
+        <div className="">
+          <img
+            alt=""
+            src={image2}
+          />
+      
+        </div>
+        <div className="">
+          <img
+            alt=""
+            src={image3}
+          />
+       
+        </div>
+            </Carousel>
+            
+
+          </div>
+          
+          
 
   
             <div className='viewinroom'>
