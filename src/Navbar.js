@@ -26,16 +26,16 @@ const Navbar = () => {
     <div>
 
       <div>
-      <nav class="navbar  fixed-top navbar-expand-lg py-4  navbar-light "  style={{backgroundColor:'rgb(45, 45, 146)'}}>
+      <nav class="navbar  fixed-top navbar-expand-lg py-4  navbar-light "  style={{backgroundColor:'rgb(221, 218, 218)'}}>
   <div class="container">
-    <a class="navbar-brand" href="#" style={{color:'white'}} >ARnxt</a>
-    <button class="navbar-toggler" type="button" style={{color:'white'}} data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#" style={{color:'black'}} >ARnxt</a>
+    <button class="navbar-toggler" type="button" style={{color:'black'}} data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon "  ></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" style={{color:'white'}} href="/home">Home</a>
+          <a class="nav-link active" aria-current="page" style={{color:'black'}} href="/home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"></a>
@@ -46,7 +46,7 @@ const Navbar = () => {
       </ul>
       <form class="d-flex">
      
-        <button class="btn btn-outline-success" type="submit"  onClick={logoutHandler}>Logout</button>
+        <button class="buttonlogout" type="submit"  onClick={logoutHandler}>Logout</button>
       </form>
     </div>
   </div>

@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import Navbarmain from './Navbarmain'
 import GoogleAnalytics from './GoogleAnalytics'
-import { FaArrowRight, FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
+import { FaArrowRight, FaCross, FaEye, FaEyeSlash, FaTimes, FaTimesCircle, FaUser } from 'react-icons/fa'
 import arnxtlogo from '../src/images/arnxtlogo.png';
 import loginimage from '../src/images/loginimage.png';
 
 
 
 const loginurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/users/loginweb'
+const needhelpurl= 'https://6z24cy50la.execute-api.ap-south-1.amazonaws.com/prod/needhelp'
 
 const Login = () => {
 
@@ -24,6 +25,11 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [userdata, setUserData] = useState();
     const [passwordtype, setPasswordType]  = useState('password') 
+    const [dropdownvalue, setDropDownValue] = useState('')
+    const [otherselect, setOtherSelect] = useState(false)
+    const [otherdetails, setOtherDetails] = useState('')
+    const [companyname, setCompanyName] = useState('')
+    const [emailid, setEmailId] = useState('')
 
     function  submitHandler (){
 
@@ -85,6 +91,51 @@ const Login = () => {
             setPasswordType('password')
         }
     }
+
+    useEffect(()=>{
+      if(dropdownvalue === 'others'){
+        setOtherSelect(true)
+       
+      }
+     if(dropdownvalue === 'Sign in not allowed' || dropdownvalue === 'Forgot Password'){
+      setOtherSelect(false)
+     }
+   
+    
+    },[dropdownvalue])
+
+  const timestamp = new Date().getTime()
+   const submitform= ()=>{
+    const body={
+       issue_id: timestamp.toString(),
+       company_name: companyname,
+       email_id: emailid,
+       issues_encountered: dropdownvalue
+    }
+    axios.post(needhelpurl, body).then(res=>{
+      if(res.status === 200){
+        document.querySelector('#needhelpmessage').innerHTML= 'Submitted Successfully'
+        setTimeout(() => {
+        document.querySelector('#needhelpmessage').innerHTML= ''
+          
+        }, 3000);
+      }
+    }).catch(error=>{
+      console.log(error)
+    })
+   }
+
+   const openHelpPopup=()=>{
+    document.querySelector('.loginmaincontainer').classList.add('popupopen')
+    document.querySelector('.needhelppopup').style.display= 'block'
+   }
+   const closeHelpPopup=()=>{
+    document.querySelector('.loginmaincontainer').classList.remove('popupopen')
+
+    document.querySelector('.needhelppopup').style.display= 'none'
+
+   }
+
   return (
     <div>
      
@@ -144,7 +195,7 @@ const Login = () => {
                 <div className='logininputbuttondiv'>
                     <div className='needhelpcontainer'> 
                     <div className='needhelpinside'>
-                      <p>Need help ?</p><FaArrowRight className='rightarrow'/>
+                      <p>Need help ?</p><FaArrowRight onClick={openHelpPopup} style={{cursor:'pointer'}} className='rightarrow'/>
                     </div>
 
                     </div>
@@ -166,29 +217,79 @@ const Login = () => {
                 </div>
        </div>
 
-       <div  className='logincontainer'  style={{display:'none'}}> 
-       <div className='loginbox'>
-       <div className='logodiv'>
-            <div className='logoimagelogin'>
-           
+   
 
-            </div>
+       <div className='needhelppopup'> 
+       <div className='closepopuplogin' onClick={closeHelpPopup}>
+          <FaTimesCircle  style={{color:'red', fontSize:'20px'}}/>
        </div>
-        <div className='logindiv1' >
-            <label>Login Id</label>
-            <input type='text' onChange={(e)=>setUserId(e.target.value)} />
-        </div>
-        <div className='logindiv2' >
-            <label>Password</label>
-            <input type='password'onChange={(e)=>setPassword(e.target.value)} />
-        </div>
-        <div className='logindiv3'>
-            <button type='submit'  onClick ={ ()=> { submitHandler() ; gaEventTracker('Login');}  }>Login</button>
-
-        </div>
-      
+       <div>
+       <div className='logininputfields'>
+                <div className='logininputfieldemail'>
+                    <label>Company Name</label>
+                    <input type='text' onChange={(e)=>setCompanyName(e.target.value)}/>
+                </div>
+                <div className='logininputfieldemail'>
+                    <label>Email Id</label>
+                    <div className='inputinside'>
+                    <input   type= 'email' onChange={(e)=>setEmailId(e.target.value)}  />
+               
 
 
+                    
+
+
+                    </div>
+                   
+                </div>
+                <div className='logininputfieldemail'>
+                    <label>Issue</label>
+                    <div className='issuedropdown'>
+                    <select onChange={(e)=>setDropDownValue(e.target.value)}  >
+                    <option  style={{display:'none'}}>choose...</option>
+
+                      <option value= 'Sign in not allowed'>Sign in not allowed</option>
+                      <option value= 'Forgot Password'>Forgot Password</option>
+                      <option value='others'>Others</option>
+
+
+                    </select>
+                    </div>
+                  
+                   
+                </div>
+                <div style={otherselect ? {display:'block'}: {display:'none'}}>
+                <div className='logininputfieldemail'>
+                    <label>Issue</label>
+                    <div className='inputinside'>
+                    <input   type= 'text'  onChange={(e)=>setDropDownValue(e.target.value)}  />
+               
+
+
+                    
+
+
+                    </div>
+                   
+                </div>
+
+                </div>
+              
+                <div className='logininputbuttondiv'>
+              
+                    <div className='submitbutton'> 
+                       <div className='submitbuttoninside'>
+                           <button  type='submit' onClick={submitform}  >Submit</button>
+                       </div>
+                    </div>
+                    <div className='helpmessage'>
+                    <p style={{color:'white', fontSize:'20px', fontFamily:'monospace'}}  id= 'needhelpmessage'></p>
+                      
+                    </div>
+                   
+                </div>
+
+              </div>
        </div>
 
        </div>

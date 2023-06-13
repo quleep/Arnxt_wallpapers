@@ -18,6 +18,8 @@ import wallmurals from '../src/images/ED-20949_2.jpg';
 import image1 from '../src/images/HB-WB.jpeg';
 import image2 from '../src/images/Home-page_OPULENCE.jpg';
 import image3 from '../src/images/WhatsApp_Image_2023-01-20_at_11.18.49_AM.jpeg';
+import aricon from '../src/images/image (2).png';
+
 
 
 
@@ -68,6 +70,8 @@ const Brand = () => {
     const [tagstable, setTagsTable] = useState();
 
     const [searchvalue, setSearchValue] = useState(false)
+const [currentIndex, setCurrentIndex] = useState(0);
+
 
 
     const [colorarray, setColorArray] = useState([])
@@ -905,9 +909,40 @@ function goToSlide(index) {
 
 */},[])
 
+let autoplayInterval = 3000
 
 
+const goToSlide = (index) => {
+  setCurrentIndex(index);
+};
 
+const goToPrevSlide = () => {
+  const index = (currentIndex - 1 + images.length) % images.length;
+  setCurrentIndex(index);
+};
+
+const goToNextSlide = () => {
+ 
+  const index = (currentIndex + 1) % images.length;
+  setCurrentIndex(index);
+};
+
+useEffect(() => {
+
+  
+  const autoplay = setInterval(goToNextSlide, autoplayInterval);
+
+  return () => {
+    clearInterval(autoplay);
+  };
+}, [currentIndex, autoplayInterval]);
+
+const images= [
+
+   image1,
+   image2,
+   image3
+]
 
  
   if(uservalue && uservalue.token){
@@ -966,6 +1001,35 @@ function goToSlide(index) {
             </div>
 
           <div  className='carouselcontainer'>
+            {
+
+<div className="carousel">
+
+<div className="carousel-images">
+  {images.map((image, index) => (
+    <img
+      key={index}
+      src={image}
+      alt={`Slide ${index}`}
+      style={index === currentIndex ? { flex: '1 0 100%', transform: `translateX( ${-100*index}%)`, transition: '2s ease' }: { flex: '1 0 100%', transform: ''}}
+     
+    />
+  ))}
+</div>
+
+<div className="carousel-dots">
+  {images.map((image, index) => (
+    <span
+      key={index}
+      className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
+      onClick={() => goToSlide(index)}
+    />
+  ))}
+</div>
+</div>
+
+             /*
+            
           <Carousel 
              showThumbs={true}
              showStatus={false}
@@ -998,7 +1062,7 @@ function goToSlide(index) {
         </div>
             </Carousel>
             
-
+  */}
           </div>
           
           
@@ -1012,7 +1076,7 @@ function goToSlide(index) {
               </span>
   
               <div className='trybutton'>
-                <button  type='submit' onClick={handleviewinar} >Try In Your Room <FaCamera/> </button>
+                <button  type='submit' onClick={handleviewinar} >Try In Your Room <span className='aricon'><img src={aricon}/></span> </button>
               </div>
             </div>
   

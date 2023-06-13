@@ -13,6 +13,11 @@ import checked from '../src/Assets/checked.svg'
 import unChecked from '../src/Assets/unchecked.svg'
 import { useHistory, useLocation } from 'react-router-dom';
 import  checkbox from '../src/images/check-circle.svg';
+import tryimage1 from '../src/images/1.jpg';
+import tryimage2 from '../src/images/2.jpg';
+import tryimage3 from '../src/images/5.jpg';
+
+
 
 
 const filterdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/filterdata'
@@ -1229,6 +1234,8 @@ const handleImageUploadMobile=(e)=>{
 
 const  uploadFile =(e)=>{
    console.log(e)
+   document.querySelector('.loadwebardesk').style.display= 'none'
+
 
    document.querySelector('.camdisplay').style.display= 'none'
  
@@ -1462,6 +1469,69 @@ useEffect(() => {
     rootElement.removeEventListener('contextmenu', handleContextMenu);
   };
 }, []);
+
+const getBase64FromUrl = async (url) => {
+  const data = await fetch(url);
+  const blob = await data.blob();
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob); 
+    reader.onloadend = () => {
+      const base64data = reader.result;   
+      resolve(base64data);
+    }
+  });
+}
+
+const handleTryImageOne=()=>{
+  getBase64FromUrl(tryimage1).then(res=>{
+    document.querySelector('.camdisplay').style.display= 'none'
+ 
+    document.querySelector('.closecamera').style.display= 'none'
+
+    document.querySelector('.defaulttextcontainer').style.display= 'none'
+    document.querySelector('.defaultimagedesk').style.display= 'block' 
+    document.querySelector('.processimagedesk').style.display= 'none' 
+    document.querySelector('.arrowblinkdiv').style.display= 'block' 
+    document.querySelector('.applytextdiv').style.display= 'block' 
+    setImageUrl(res)
+
+
+  }) 
+}
+
+const handleTryImageTwo=()=>{
+  getBase64FromUrl(tryimage2).then(res=>{
+    document.querySelector('.camdisplay').style.display= 'none'
+ 
+    document.querySelector('.closecamera').style.display= 'none'
+
+    document.querySelector('.defaulttextcontainer').style.display= 'none'
+    document.querySelector('.defaultimagedesk').style.display= 'block' 
+    document.querySelector('.processimagedesk').style.display= 'none' 
+    document.querySelector('.arrowblinkdiv').style.display= 'block' 
+    document.querySelector('.applytextdiv').style.display= 'block' 
+    setImageUrl(res)
+  }) 
+}
+const handleTryImageThree=()=>{
+  getBase64FromUrl(tryimage3).then(res=>{
+    document.querySelector('.camdisplay').style.display= 'none'
+ 
+    document.querySelector('.closecamera').style.display= 'none'
+
+    document.querySelector('.defaulttextcontainer').style.display= 'none'
+    document.querySelector('.defaultimagedesk').style.display= 'block' 
+    document.querySelector('.processimagedesk').style.display= 'none' 
+    document.querySelector('.arrowblinkdiv').style.display= 'block' 
+    document.querySelector('.applytextdiv').style.display= 'block' 
+    setImageUrl(res)
+  }) 
+}
+
+
+
+
 
 
  
@@ -1777,6 +1847,47 @@ Filter <i class='bx bx-filter'></i></button>
  
 
  </div>
+ <div className='defaultwallscontainer'>
+  <div >
+    <div className= 'trywall'>
+    <label onClick={handleTryImageOne} >
+       <div className='tryimagecontainer'>
+        <img  src={tryimage1}/>
+
+       </div>
+
+        </label>
+
+    </div>
+   
+  </div>
+  <div>
+  <div className= 'trywall'>
+    <label onClick={handleTryImageTwo} >
+       <div className='tryimagecontainer'>
+        <img  src={tryimage2}/>
+
+       </div>
+
+        </label>
+
+    </div>
+  </div>
+  <div>
+  <div className= 'trywall'>
+    <label onClick={handleTryImageThree} >
+       <div className='tryimagecontainer'>
+        <img  src={tryimage3}/>
+
+       </div>
+
+        </label>
+
+    </div>
+  </div>
+
+
+ </div>
 
   <div className='handleimagebuttons'>
   <div  className='buttonfilterdiv'>
@@ -1790,8 +1901,9 @@ Filter <i class='bx bx-filter'></i></button>
 </div>
             </div>
             
-            <div className='inputfordistance'>  
-              <input type='text' placeholder='distance from wall in feet' className='distancefield'  value={walldistancedesk} onChange= {(e)=>setWallDistanceDesk(e.target.value)} />
+            <div className='inputfordistance'> 
+            <label>Distance from wall (feet)</label> 
+              <input type='text' placeholder=' eg - 8 feet' className='distancefield'  value={walldistancedesk} onChange= {(e)=>setWallDistanceDesk(e.target.value)} />
               <div style={{marginTop:'10px'}} >
               <p className='distanceerror' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
             </div>
