@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
+import aricon from '../src/images/image (2).png';
+
 
 const ProductDetails = () => {
 
@@ -51,7 +53,7 @@ useEffect(() => {
             <div className='productimagedivinside'>
             <img src= {itemdetails && itemdetails.imageurl[0]}/>
             <div className='viewinar' style={{marginTop:'10px'}} >
-                                <button onClick={(e)=>handlearview(itemdetails)} > View in AR</button>
+                                <button onClick={(e)=>handlearview(itemdetails)} > View in AR <span className='ariconviewinar'><img src={aricon}/></span></button>
                             </div>
 
             </div>

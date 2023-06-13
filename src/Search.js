@@ -5,6 +5,8 @@ import { useHistory, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import MultiRangeSlider from "multi-range-slider-react";
 import { FaTimes } from 'react-icons/fa';
+import aricon from '../src/images/image (2).png';
+
 
 
 const getcatsubcaturl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getcategorysubcat'
@@ -424,7 +426,7 @@ Filter <i class='bx bx-filter'></i></button>
                     <div class="product-price"><small>₹{item.mrp}</small>₹{item.offerprice}</div>
             
                     <div className='viewinar' >
-                        <button onClick={(e)=>handlearview(item,e)} >View in AR</button>
+                        <button onClick={(e)=>handlearview(item,e)} >View in AR <span className='ariconviewinar'><img src={aricon}/></span>  </button>
                     </div>
                 </div>
             </div>

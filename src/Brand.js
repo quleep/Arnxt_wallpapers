@@ -798,7 +798,12 @@ const categoryimage= [
 ]
 
 const handleScroll = () => {
-     let allimage= document.querySelectorAll('.imagedivtags')
+     let allimage= document.querySelectorAll('.imagedivtags')  
+     let allimagerooms= document.querySelectorAll('.imagedivtagsrooms')
+     let allimagesearch= document.querySelectorAll('.imagedivtagssearch')
+
+
+
      let alltoggle= document.querySelectorAll('.imagedivtagstoggle')
 
   if(user){
@@ -835,6 +840,34 @@ const handleScroll = () => {
         alltoggle[i].classList.remove('show')
        }
     }
+
+    if(scrollPosition > 700){
+     
+     
+      for(let i=0; i< allimagerooms.length; i++){
+        allimagerooms[i].classList.add('show')
+      }
+     
+   } else{
+     for(let i=0; i< allimagerooms.length; i++){
+      allimagerooms[i].classList.remove('show')
+      }
+     
+   }
+
+   if(scrollPosition > 1100){
+   
+    
+    for(let i=0; i< allimagesearch.length; i++){
+      allimagesearch[i].classList.add('show')
+    }
+   
+ } else{
+   for(let i=0; i< allimagesearch.length; i++){
+    allimagesearch[i].classList.remove('show')
+    }
+   
+ }
 
   }
  
@@ -1163,7 +1196,7 @@ const images= [
                                          roomimage && roomimage.data.map( (itemnew ,j )=>(
                                              itemnew.roomname === item  ?
   
-                                             <div className='imagedivtags' >
+                                             <div className='imagedivtagsrooms' >
                                              <img src= {itemnew.iconurl}/>
                                              <p>{item}</p>
                                             
@@ -1209,7 +1242,7 @@ const images= [
                                           {
                                            tagsimages.map(itemnew=>(
                                               itemnew.tagname === item ?
-                                              <div className='imagedivtags'>
+                                              <div className='imagedivtagssearch'>
                                                    <img  src={itemnew.tagimage} />
                                                   <p>{itemnew.tagname}</p>
                                                 </div>:<p></p>
