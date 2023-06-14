@@ -481,7 +481,7 @@ const closefilterbutton =()=>{
         
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style={{fontFamily:'monospace'}}>Filter</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style={{fontFamily:'Lato, sans-serif'}}>Filter</h5>
     <div className='buttonfilter'>
     <button  type='submit' onClick={handlefilterclear} >Clear</button>
 
@@ -504,7 +504,7 @@ const closefilterbutton =()=>{
   <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         Search By
       </button>
     </h2>
@@ -536,7 +536,7 @@ const closefilterbutton =()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
        Colors
       </button>
     </h2>
@@ -568,7 +568,7 @@ const closefilterbutton =()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
         Design Styles
       </button>
     </h2>
@@ -600,7 +600,7 @@ const closefilterbutton =()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFour">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
        Collection
       </button>
     </h2>
@@ -631,7 +631,7 @@ const closefilterbutton =()=>{
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFive">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
        Price
       </button>
     </h2>

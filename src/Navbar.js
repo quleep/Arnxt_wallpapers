@@ -28,14 +28,14 @@ const Navbar = () => {
       <div>
       <nav class="navbar  fixed-top navbar-expand-lg py-4  navbar-light "  style={{backgroundColor:'rgb(221, 218, 218)'}}>
   <div class="container">
-    <a class="navbar-brand" href="#" style={{color:'black'}} >ARnxt</a>
+    <a class="navbar-brand" href="#" style={{color:'black', fontFamily:'Lato, sans-serif'}} >ARnxt</a>
     <button class="navbar-toggler" type="button" style={{color:'black'}} data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon "  ></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" style={{color:'black'}} href="/home">Home</a>
+          <a class="nav-link active" aria-current="page" style={{color:'black', fontFamily:'Lato, sans-serif'}} href="/home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"></a>
@@ -46,7 +46,7 @@ const Navbar = () => {
       </ul>
       <form class="d-flex">
      
-        <button class="buttonlogout" type="submit"  onClick={logoutHandler}>Logout</button>
+        <button class="buttonlogout" type="submit" style={{fontFamily :'Lato, sans-serif'}}  onClick={logoutHandler}>Logout</button>
       </form>
     </div>
   </div>

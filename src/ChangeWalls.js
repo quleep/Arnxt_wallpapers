@@ -1568,7 +1568,7 @@ const handleTryImageThree=()=>{
               <div className='inputfordistance'>  
               <input type='text' placeholder='distance from wall in feet' className= 'distancefieldmob'  value={walldistancemob}   onChange={(e)=>setWallDistanceMob(e.target.value)} />
               <div style={{marginTop:'10px'}} >
-              <p className='distancefieldmobmessage' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
+              <p className='distancefieldmobmessage' style={{color:'red', fontFamily:'Lato, sans-serif', fontSize:'18px'}}></p>
             </div>
             </div>
 
@@ -1913,7 +1913,7 @@ Filter <i class='bx bx-filter'></i></button>
             <label>Distance from wall (feet)</label> 
               <input type='text' placeholder=' eg - 8 feet' className='distancefield'  value={walldistancedesk} onChange= {(e)=>setWallDistanceDesk(e.target.value)} />
               <div style={{marginTop:'10px'}} >
-              <p className='distanceerror' style={{color:'red', fontFamily:'monospace', fontSize:'18px'}}></p>
+              <p className='distanceerror' style={{color:'red', fontFamily:'Lato, sans-serif', fontSize:'18px'}}></p>
             </div>
             </div>
           
@@ -1938,7 +1938,7 @@ Filter <i class='bx bx-filter'></i></button>
         
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style={{fontFamily:'monospace'}}>Filter</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style={{fontFamily:'Lato, sans-serif'}}>Filter</h5>
     <div className='buttonfilter'>
     <button  type='submit' onClick={handlefilterclear} >Clear</button>
 
@@ -1961,7 +1961,7 @@ Filter <i class='bx bx-filter'></i></button>
   <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed"  style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button class="accordion-button collapsed"  style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         Search By
       </button>
     </h2>
@@ -1993,7 +1993,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
        Colors
       </button>
     </h2>
@@ -2025,7 +2025,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
-      <button class="accordion-button collapsed" type="button" style={{fontFamily:'monospace'}} data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+      <button class="accordion-button collapsed" type="button" style={{fontFamily:'Lato, sans-serif'}} data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
         Design Styles
       </button>
     </h2>
@@ -2057,7 +2057,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFour">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
        Collection
       </button>
     </h2>
@@ -2088,7 +2088,7 @@ Filter <i class='bx bx-filter'></i></button>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingFive">
-      <button class="accordion-button collapsed" style={{fontFamily:'monospace'}}  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+      <button class="accordion-button collapsed" style={{fontFamily:'Lato, sans-serif'}}  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
        Price
       </button>
     </h2>

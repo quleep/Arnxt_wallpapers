@@ -209,7 +209,7 @@ const Login = () => {
 
               </div>
               <div className='loginbutton'>
-              <p style={{color:'red', fontFamily:'monospace', fontSize:'20px'}} id= 'loginmessage'></p>
+              <p style={{color:'red', fontFamily:'Lato, sans-serif', fontSize:'20px'}} id= 'loginmessage'></p>
                 </div>
                      </div>
 
@@ -283,7 +283,7 @@ const Login = () => {
                        </div>
                     </div>
                     <div className='helpmessage'>
-                    <p style={{color:'white', fontSize:'20px', fontFamily:'monospace'}}  id= 'needhelpmessage'></p>
+                    <p style={{color:'white', fontSize:'20px', fontFamily:'Lato, sans-serif'}}  id= 'needhelpmessage'></p>
                       
                     </div>
                    

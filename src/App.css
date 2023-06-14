@@ -81,7 +81,7 @@ body{
 
 .navbarinside a{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 
 .tablediv{
@@ -184,7 +184,7 @@ body{
 }
 .logindiv1 label{
   font-size: 25px;
-  font-family:  monospace;
+  font-family:  Lato, sans-serif;
   margin-right: 20px;
 }
 .logindiv2 input{
@@ -200,7 +200,7 @@ body{
 }
 .logindiv2 label{
   font-size: 25px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   margin-right: 20px;
 }
 .logindiv3 button{
@@ -219,7 +219,7 @@ body{
   background-color: transparent;
   color: black;
   border: 2px solid black;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 
 .imagecontainer{
@@ -297,7 +297,7 @@ height: 250px;
   border: 2px solid #0079bf;
   box-shadow: 2px 2px 2px 2px #adc1cc;
   border-radius: 10px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 .inputdistancefile:focus{
   outline: none;
@@ -371,7 +371,7 @@ height: 250px;
   background-color: #0079bf;
   border: none;
   color: white;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   cursor: pointer;
  
 }
@@ -389,7 +389,7 @@ height: 250px;
   background-color: #0079bf;
   border: none;
   color: white;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   cursor: pointer;
 
 }
@@ -398,7 +398,7 @@ height: 250px;
  
   color: red;
   font-size: 18px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   transition: visibility 0s 2s, opacity 2s linear;
 }
 
@@ -498,7 +498,7 @@ height: 250px;
 .logoutcontainer a {
   color: white;
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   cursor: pointer;
 }
 .logoutcontainer a:hover{
@@ -517,12 +517,12 @@ height: 250px;
 
 .cardproductheader label{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
  
 }
 .cardproductheader p{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 .cardproductbody{
   flex: 3;
@@ -542,12 +542,12 @@ height: 250px;
 }
 .cardproductfooter label{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 
 }
 .cardproductfooter p{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 
 }
 .cardproductfooter{
@@ -588,7 +588,7 @@ height: 250px;
 .rangeinput button{
   border: 2px solid gray;
   background-color: yellow;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   color: black;
   border-radius: 5px;
 }
@@ -751,7 +751,7 @@ height: 250px;
   padding: 8px 20px;
   border-radius: 10px;
   font-size: 12px;
- font-family: monospace;
+ font-family: Lato, sans-serif;
 
 }
 
@@ -764,7 +764,7 @@ height: 250px;
   padding: 8px 20px;
   border-radius: 10px;
   font-size: 12px;
- font-family: monospace;
+ font-family: Lato, sans-serif;
 
 }
 
@@ -777,7 +777,7 @@ height: 250px;
   padding: 8px 20px;
   border-radius: 10px;
   font-size: 12px;
- font-family: monospace;
+ font-family: Lato, sans-serif;
 
 }
 .divmaincontainer{
@@ -909,7 +909,7 @@ height: 250px;
 .issuedropdown select option{
   margin: 10px;
   font-size: 15px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
  
 }
 .loginmaincontainer{
@@ -1178,7 +1178,7 @@ border-bottom-left-radius: 20px;
   padding-top: 20px;
   font-size: 12px;
    font-weight:  300;
-   font-family: monospace;
+   font-family: Lato, sans-serif;
 }
 
 .alertpopup {
@@ -1270,19 +1270,19 @@ border-bottom-left-radius: 20px;
 
 }
 .imagedivtags p{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 20px;
 }
 .imagedivtagsrooms p{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 20px;
 }
 .imagedivtagssearch p{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 20px;
 }
 .imagedivtagstoggle p{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 20px;
 }
 .imagedivinside img{
@@ -1376,11 +1376,11 @@ border-bottom-left-radius: 20px;
 .mrpdiv label{
   font-size: 20px;
   margin-right: 10px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 .mrpdiv p{
   font-size: 15px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   margin-top: 5px;
 }
 .specificationdiv{
@@ -1390,7 +1390,7 @@ border-bottom-left-radius: 20px;
 
 .specificationdiv p{
   font-size: 15px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   text-align: justify;
 }
 .itemnamediv{
@@ -1398,7 +1398,7 @@ border-bottom-left-radius: 20px;
   padding-left: 10px;
 }
 .itemnamediv h2{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   text-transform: uppercase;
 
 }
@@ -1656,7 +1656,7 @@ border-bottom-color: transparent;
 }
 .itemspara h3{
   font-size: 25px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-weight: bold;
   padding: 10px;
 
@@ -1795,7 +1795,7 @@ a
     color: #363636;
     text-decoration: none;
     transition: 0.3s;
-    font-family: monospace;
+    font-family: Lato, sans-serif;
 }
 
 .product-details h4 a:hover {
@@ -1807,7 +1807,7 @@ a
     line-height: 22px;
     margin-bottom: 18px;
     color: #6d6c6c;
-    font-family: monospace;
+    font-family: Lato, sans-serif;
 }
 
 .product-bottom-details {
@@ -1843,7 +1843,7 @@ a
   background-color: transparent;
   border-radius: 10px;
   background-color: #d6cfcf;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 14px;
 
 }
@@ -2009,7 +2009,7 @@ a
 .colorlistinside p{
   margin-top: 15px;
   font-size: 15px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 .imageborder{
   border: 2px solid red;
@@ -2030,7 +2030,7 @@ a
   
 }
 .accordionContainer h2{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 20px;
   float: left;
 }
@@ -2085,7 +2085,7 @@ background-color: transparent;
  }
  .rangeinput label{
   font-size: 15px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   margin-top: 5px;
  
  }
@@ -2285,7 +2285,7 @@ flex: 2;
   border-radius: 10px;
   background-color: transparent;
   border: 2px solid rgb(153, 121, 121);
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 .buttonlogout:hover{
   border-radius: 20px;
@@ -2464,7 +2464,7 @@ height: 100%;
 .itemdetailscontainer p{
   font-size: 20px;
   font-weight: bold;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   color: gray;
 }
 .filtercontainermain {
@@ -2519,7 +2519,7 @@ height: 100%;
 .inputfordistance label{
   padding-right: 10px;
   font-size: 15px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
 }
 .inputfordistance input{
   border-radius: 10px;
@@ -2561,6 +2561,7 @@ height: 100%;
   
   border-radius: 10px;
   background-color: #f7f6f6;
+  padding: 5px;
    
  
 
@@ -2582,6 +2583,7 @@ height: 100%;
 .categorycontainertoggle>*{
   flex: 1 1 150px;
   border: 1px solid gray;
+  padding: 5px;
   
   border-radius: 10px;
   background-color: rgb(182, 182, 182);
@@ -2592,13 +2594,13 @@ height: 100%;
 }
 .categorycontainertoggle p{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
  
   padding-left: 20px;
 }
 .categorycontainertoggle h3{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   padding-left: 10px;
 padding-right: 10px;
 
@@ -2613,13 +2615,13 @@ padding-right: 10px;
 
 .categorycontainer p{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
  
   padding-left: 20px;
 }
 .categorycontainer h3{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   padding-left: 10px;
 padding-right: 10px;
 cursor: pointer;
@@ -2651,7 +2653,7 @@ cursor: pointer;
   border-radius: 10px ;
   background-color: #f7f6f6;
   color: black;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   border: 2px solid rgb(62, 62, 207);
 }
 
@@ -2791,7 +2793,7 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 .mobileimage p{
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   font-size: 15px;
 }
 .mobileimage img{
@@ -2812,7 +2814,7 @@ input::-webkit-inner-spin-button {
 }
 .nodata h2{
   font-size: 20px;
-  font-family: monospace;
+  font-family: Lato, sans-serif;
   padding-top: 60px;
 }
 .crossnodata{
@@ -3125,7 +3127,7 @@ display: none;
 }
 .applytextdiv p{
    font-size: 15px;
-   font-family: monospace;
+   font-family: Lato, sans-serif;
    color: rgb(3, 3, 206);
    font-weight: bold;
 }
