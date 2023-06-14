@@ -1900,7 +1900,13 @@ Filter <i class='bx bx-filter'></i></button>
    </div>
    
        </div>
+        <div className='tryimagetext'>
+          <p>Don't have a picture? Try our demo rooms instead</p>
+        </div>
+
+    
        <div className='defaultwallscontainer'>
+
   <div >
     <div className= 'trywall'>
     <label onClick={handleTryImageOne} >

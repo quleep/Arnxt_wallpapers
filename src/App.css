@@ -613,6 +613,7 @@ height: 250px;
   flex-direction: row;
   flex-wrap: wrap;
  
+ 
 }
 .filterproductscontainer>*{
   flex : 1 1 60px;
@@ -1159,6 +1160,21 @@ border-bottom-left-radius: 20px;
    justify-content: center;
   
 }
+.tryimagetext{
+  display: flex;
+  height: 60px;
+  width:  600px ;
+
+  margin-top: 20px;
+  padding-left: 25px;
+  padding-top: 20px;
+ 
+}
+.tryimagetext p{
+  font-size: 25px;
+  font-family: Lato, sans-serif;
+  font-weight: 200;
+}
 .defaulttext{
   display: flex;
    border: 2px dotted rgb(173, 173, 173); 
@@ -1358,6 +1374,7 @@ border-bottom-left-radius: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 30px;
+  
 }
 .productdetailscontainer>*{
   flex: 1 1 250px;
@@ -1748,13 +1765,16 @@ a
    
     margin-left: 45px;
     cursor: pointer;
-   
-   
-  
-   
+   }
+
+.defaultimagetextdiv{
+
+ 
+ height: 30px;
+ width: 400px;
+ border: 1px solid red;
+
 }
-
-
 
 
 .filterinside{
@@ -2179,11 +2199,12 @@ background-color: transparent;
 
 
 .filteritemcontainer{
-flex: 2;
+flex: 1;
   flex-wrap: wrap;
   height:  900px;
   margin: 10px;
   overflow: scroll;
+ 
   
   
  
@@ -2191,7 +2212,7 @@ flex: 2;
    
 }
 .maindivcontainerwebar{
-  margin-left: 400px;
+  margin-left: 350px;
   margin-top: 80px;
  
 }
@@ -2249,22 +2270,22 @@ flex: 2;
 }
 .containertoggle{
  
-  margin-left: 450px;
+  margin-left: 350px;
+  
+  padding-right: 40px;
 }
-
+.offcanvas{
+  width: 350px;
+}
 .displaycontainer{
-  flex: 4;
-  border: 2px solid rgb(187, 181, 181);
-  height: auto;
+  flex: 2;
+ 
+  height: 100%;
   margin: 10px;
   width: 700px;
   border-radius: 10px;
   flex-wrap: wrap;
-  background-color: #f1f1f1;
-   
- 
-
- 
+  
   
 }
 .buttonscontainer{
@@ -2302,6 +2323,7 @@ flex: 2;
   height: auto;
   flex-direction: row;
   flex-wrap: wrap;
+ 
  
  
  
@@ -2385,6 +2407,8 @@ flex: 2;
  flex-wrap: wrap;
  align-items: center;
  justify-content: center;
+
+ 
  
   
 }
@@ -2395,6 +2419,7 @@ flex: 2;
  padding: 20px;
   height:  600px;
   border: 2px solid rgb(138, 138, 138);
+  background-color: rgb(226, 224, 224) ;
   margin: 20px;
   flex-wrap: wrap;
   border-radius: 10px;
@@ -2411,7 +2436,7 @@ flex: 2;
   border: 1px solid rgb(117, 116, 116);
   border-radius: 10px;
   margin: 20px;
-  margin-top: 30px;
+ 
  
 }
 .defaultwallscontainer>*{
