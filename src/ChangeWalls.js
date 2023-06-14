@@ -1095,6 +1095,10 @@ const closeCamera=()=>{
   document.querySelector('.camdisplay').style.display= 'none'
  
   document.querySelector('.closecamera').style.display= 'none'
+document.querySelector('.displayurlinside').style.display= 'block'
+document.querySelector('.defaulttextcontainer').style.display = 'flex '
+
+
 
 
 
@@ -1119,7 +1123,7 @@ const handlePictureClick=()=>{
 document.querySelector('.closecamera').style.display= 'none'
 document.querySelector('.camdisplay').style.display= 'none'
 
-document.querySelector('.displayurlcontainer').style.display= 'block'
+document.querySelector('.displayurlinside').style.display= 'block'
 
     
 
@@ -1136,6 +1140,8 @@ document.querySelector('.displayurlcontainer').style.display= 'block'
 
 
 const openCamera=()=>{
+
+ 
  
   document.querySelector('.defaultimagedesk').style.display = 'none'
   document.querySelector('.camdisplay').style.display= 'block'
