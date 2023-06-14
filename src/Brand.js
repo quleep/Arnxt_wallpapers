@@ -19,6 +19,9 @@ import image1 from '../src/images/HB-WB.jpeg';
 import image2 from '../src/images/Home-page_OPULENCE.jpg';
 import image3 from '../src/images/WhatsApp_Image_2023-01-20_at_11.18.49_AM.jpeg';
 import aricon from '../src/images/image (2).png';
+import curtain from '../src/images/download (31).jpg';
+
+
 
 
 
@@ -789,12 +792,17 @@ const categoryimage= [
   },
   {
     
+    catimage: curtain
+  },
+  {
+   
     catimage: wallmurals
   },
   {
    
     catimage: woddenfloors
-  }
+  },
+
 ]
 
 const handleScroll = () => {

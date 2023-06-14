@@ -20,6 +20,8 @@ import tryimage3 from '../src/images/5.jpg';
 
 
 
+
+
 const filterdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/filterdata'
 
 const categoryimageurl= 'https://api.arnxt.com/model/allcategories'
@@ -246,6 +248,20 @@ document.querySelector('.loadwebardesk').style.display= 'none'
     axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
 
     if(res){
+      const bodyview={
+        Id : lastId,
+        source: 'Web',
+        merchantId: Number(val.merchant_Id),
+        productId: Number(val.product_Id),
+        userId: userdata.data.userID, 
+        viewtime:  lastId
+      }
+
+      axios.post(sendviewdataurl, bodyview).then(res=>{
+        console.log(res)
+      }).catch(error=>{
+        console.log(error)
+      })
   document.querySelector('.loadwebardesk').style.display= 'none'
 
   document.querySelector('.defaultimagedesk').style.display = 'none'
@@ -455,6 +471,7 @@ const checkboxClick=(val, len)=>{
 
         const bodyview={
           Id : lastId,
+          source: 'Web',
           merchantId: Number(val.merchant_Id),
           productId: Number(val.product_Id),
           userId: userdata.data.userID, 
@@ -1364,9 +1381,24 @@ const handleMobileImage=(item, len)=>{
     axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
 
     if(res){
+      const bodyview={
+        Id : lastId,
+        source: 'Web',
+        merchantId: Number(item.merchant_Id),
+        productId: Number(item.product_Id),
+        userId: userdata.data.userID, 
+        viewtime:  lastId
+      }
+
+      axios.post(sendviewdataurl, bodyview).then(res=>{
+        console.log(res)
+      }).catch(error=>{
+        console.log(error)
+      })
   document.querySelector('.loadwebar').style.display= 'none'
   document.querySelector('.defaultimage').style.display= 'none'
   document.querySelector('.processimage').style.display= 'block'
+  
 
 
     }
@@ -1425,6 +1457,20 @@ const handleMobileImageSingle=(val)=>{
   axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
 
   if(res){
+    const bodyview={
+      Id : lastId,
+      source: 'Web',
+      merchantId: Number(val.merchant_Id),
+      productId: Number(val.product_Id),
+      userId: userdata.data.userID, 
+      viewtime:  lastId
+    }
+
+    axios.post(sendviewdataurl, bodyview).then(res=>{
+      console.log(res)
+    }).catch(error=>{
+      console.log(error)
+    })
 document.querySelector('.loadwebar').style.display= 'none'
 document.querySelector('.defaultimage').style.display= 'none'
 document.querySelector('.processimage').style.display= 'block'
@@ -1768,10 +1814,10 @@ Filter <i class='bx bx-filter'></i></button>
           } 
        
 
-   
-
+  
    <div className='displayurlcontainer' >
-   <div  className='closecamera'>
+    <div className='displayurlinside'>
+    <div  className='closecamera'>
 
 <div   >
 
@@ -1789,8 +1835,7 @@ Filter <i class='bx bx-filter'></i></button>
 <div className='alertpopup'>
      <span className='alertsymbol' ><FaExclamationCircle  style={{color:'red'}} /></span>  <p className='alerttext' ></p>
     </div>
-
-   <div  className='camdisplay'>
+    <div  className='camdisplay'>
          
       
          <Webcam ref= {webcamRef} 
@@ -1803,6 +1848,7 @@ Filter <i class='bx bx-filter'></i></button>
            
          
          </div> 
+         
          <div className='arrowblinkdiv'>
          <svg class="arrows">
               <path class="a1" d="M0 0 L30 32 L60 0"></path>
@@ -1816,9 +1862,7 @@ Filter <i class='bx bx-filter'></i></button>
          <p>Apply selected wallpaper here</p>
 
          </div>
-        
-
-      <div  className='defaulttextcontainer'>
+         <div  className='defaulttextcontainer'>
       <div className='defaulttext'>
          <div className='defaultinsidetext'>
            <p>Capture your space or upload it’s image</p>
@@ -1826,36 +1870,31 @@ Filter <i class='bx bx-filter'></i></button>
       </div>
 
       </div>
-   
- 
-  {
+      {
      
-  <img className='defaultimagedesk' src={imageurl &&    imageurl}  /> 
-
- }
-
- 
- 
-  {
-    
-  <img  className='processimagedesk' src={imageurlfinal &&    imageurlfinal}  alt='image'/> 
-
- }
+     <img className='defaultimagedesk' src={imageurl &&    imageurl}  /> 
    
-
- 
- 
-
-    <div className='loadwebardesk' >
-    <div className='load'>
-
-</div>
-
-    </div>
- 
-
- </div>
- <div className='defaultwallscontainer'>
+    }
+   
+    
+    
+     {
+       
+     <img  className='processimagedesk' src={imageurlfinal &&    imageurlfinal}  alt='image'/> 
+   
+    }
+      
+   
+    
+    
+   
+       <div className='loadwebardesk' >
+       <div className='load'>
+   
+   </div>
+   
+       </div>
+       <div className='defaultwallscontainer'>
   <div >
     <div className= 'trywall'>
     <label onClick={handleTryImageOne} >
@@ -1896,8 +1935,7 @@ Filter <i class='bx bx-filter'></i></button>
 
 
  </div>
-
-  <div className='handleimagebuttons'>
+ <div className='handleimagebuttons'>
   <div  className='buttonfilterdiv'>
               <button type='submit' onClick={openCamera} > Take Picture    <FaCamera/> </button>
           
@@ -1922,6 +1960,30 @@ Filter <i class='bx bx-filter'></i></button>
 
   </div>
 
+      
+
+
+    </div>
+
+
+
+ 
+     
+        
+
+ 
+   
+ 
+
+ 
+
+ </div>
+
+
+
+ 
+
+ 
 
 
 

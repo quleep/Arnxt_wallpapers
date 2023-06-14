@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.32ed6546.css",
-    "main.js": "/static/js/main.adb3822c.js",
+    "main.css": "/static/css/main.5f67844b.css",
+    "main.js": "/static/js/main.c2ce416b.js",
     "static/js/787.98dafd6a.chunk.js": "/static/js/787.98dafd6a.chunk.js",
     "static/media/1.jpg": "/static/media/1.f6047fd1f9e4c9b5b31f.jpg",
     "static/media/2.jpg": "/static/media/2.542679b218b977fc3965.jpg",
@@ -17,17 +17,18 @@
     "static/media/77308-1_2.jpg": "/static/media/77308-1_2.677c1c55dfd4146e8373.jpg",
     "static/media/ED-20949_2.jpg": "/static/media/ED-20949_2.c9ee67b266b00dc78a3f.jpg",
     "static/media/wooden-floor-tiles-work-with-per-sq-ft-with-labour-charge--703.jpg": "/static/media/wooden-floor-tiles-work-with-per-sq-ft-with-labour-charge--703.dd618ade87d443920e03.jpg",
+    "static/media/download (31).jpg": "/static/media/download (31).41c7f11bc2b030a79138.jpg",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
     "static/media/checked.svg": "/static/media/checked.8f194263f4893b49556466c343e86cb1.svg",
     "static/media/unchecked.svg": "/static/media/unchecked.a239840051dde4ec951402064058d397.svg",
     "static/media/check-circle.svg": "/static/media/check-circle.943261aeb00e109c8976c6aa5060f2f9.svg",
-    "main.32ed6546.css.map": "/static/css/main.32ed6546.css.map",
-    "main.adb3822c.js.map": "/static/js/main.adb3822c.js.map",
+    "main.5f67844b.css.map": "/static/css/main.5f67844b.css.map",
+    "main.c2ce416b.js.map": "/static/js/main.c2ce416b.js.map",
     "787.98dafd6a.chunk.js.map": "/static/js/787.98dafd6a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.32ed6546.css",
-    "static/js/main.adb3822c.js"
+    "static/css/main.5f67844b.css",
+    "static/js/main.c2ce416b.js"
   ]
 }
