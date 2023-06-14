@@ -106,6 +106,35 @@ const Login = () => {
 
   const timestamp = new Date().getTime()
    const submitform= ()=>{
+
+    if(companyname === ''){
+      document.querySelector('#needhelpmessage').innerHTML= 'Company name required'
+      setTimeout(() => {
+        document.querySelector('#needhelpmessage').innerHTML= ''
+          
+        }, 3000);
+      return
+     
+
+    }
+    if(emailid === ''){
+      document.querySelector('#needhelpmessage').innerHTML= 'Emailid required'
+      setTimeout(() => {
+        document.querySelector('#needhelpmessage').innerHTML= ''
+          
+        }, 3000);
+      return
+
+    }
+    if(dropdownvalue === ''){
+      document.querySelector('#needhelpmessage').innerHTML= 'Please select and issue'
+      setTimeout(() => {
+        document.querySelector('#needhelpmessage').innerHTML= ''
+          
+        }, 3000);
+      return
+
+    }
     const body={
        issue_id: timestamp.toString(),
        company_name: companyname,
