@@ -77,7 +77,7 @@ const ChangeWalls = () => {
     const [filterdesign, setFilterDesign] = useState([])
     const [filtercollection, setFilterCollection] = useState([])
 
-    const [filterdata, setFilterData] = useState('')
+    const [filterdata, setFilterData] = useState('')  
     const [imageurl, setImageUrl] = useState([])
 
     const [imageurlfinal, setImageUrlFinal] = useState([])
@@ -94,6 +94,10 @@ const ChangeWalls = () => {
    const [walldistancedesk, setWallDistanceDesk] = useState('')
    const [walldistancemob, setWallDistanceMob] = useState('')
    const [webar, setWebar] = useState(false)
+   const [minvalue, setMinValue] = useState(2000)
+   const [maxvalue, setMaxValue] = useState(60000)
+   const [rangemin, setRangeMin] = useState(2000)
+   const [rangemax, setRangeMax] = useState(60000)
 
 
    const location = useLocation()
@@ -119,8 +123,10 @@ const ChangeWalls = () => {
 
     const handleInput = (e) => {
 
-        setMinPrice(e.minValue);
-        setMaxPrice(e.maxValue);
+      setMinPrice(e.minValue);
+      setMaxPrice(e.maxValue);
+      setRangeMax(e.maxValue)
+      setRangeMin(e.minValue)
 
    };
 
@@ -947,6 +953,8 @@ const handlepricebutton=()=>{
 
 
 const handlefilterclear=()=>{
+  setRangeMax(60000)
+  setRangeMin(2000)
   setFilterData('')
     setFilterTags([])
     setFilterColor([])
@@ -2091,14 +2099,16 @@ Filter <i class='bx bx-filter'></i></button>
                                <div>
                                <div className="range">
        <MultiRangeSlider
-           min={2000}
-           max={60000}
-           step={100}
+             min= {minvalue}
+             max={maxvalue}
+             step={100}
+             minValue= {rangemin}
+             maxValue={rangemax}
        
            barInnerColor= "rgb(19, 209, 187)"
            ruler={false}
          
-           onChange={(e) => {
+           onInput={(e) => {
                handleInput(e);
            }}
        />
