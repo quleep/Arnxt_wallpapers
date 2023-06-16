@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import MultiRangeSlider from "multi-range-slider-react";
 import { FaTimes } from 'react-icons/fa';
 import aricon from '../src/images/image (2).png';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -358,6 +359,20 @@ setDefaultRooms(!defaultrooms)
 
   return (
     <div   className= { defaultrooms ? 'maindivcontainerrooms ': 'maindivcontainerroomsdefault'}>
+          <Helmet>
+            <title>Rooms | ARnxt</title>
+            <meta
+              name="description"
+              content="India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features."
+            />
+            <meta
+              name="keywords"
+              content="
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+           "
+            />
+          </Helmet>
             <Navbar/>
 
                  <div  className='mainbrandbody'>

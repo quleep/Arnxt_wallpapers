@@ -16,6 +16,7 @@ import  checkbox from '../src/images/check-circle.svg';
 import tryimage1 from '../src/images/1.jpg';
 import tryimage2 from '../src/images/2.jpg';
 import tryimage3 from '../src/images/5.jpg';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -276,6 +277,9 @@ document.querySelector('.loadwebardesk').style.display= 'none'
        
   
     }).catch(error =>{
+      document.querySelector('.loadwebardesk').style.display= 'none'
+
+      window.alert('server issue')
       console.log(error)
     })
 
@@ -1399,6 +1403,9 @@ const handleMobileImage=(item, len)=>{
       axios.post(sendviewdataurl, bodyview).then(res=>{
         console.log(res)
       }).catch(error=>{
+        document.querySelector('.loadwebardesk').style.display= 'none'
+
+        window.alert('server issue')
         console.log(error)
       })
   document.querySelector('.loadwebar').style.display= 'none'
@@ -1475,6 +1482,9 @@ const handleMobileImageSingle=(val)=>{
     axios.post(sendviewdataurl, bodyview).then(res=>{
       console.log(res)
     }).catch(error=>{
+      document.querySelector('.loadwebardesk').style.display= 'none'
+
+      window.alert('server issue')
       console.log(error)
     })
 document.querySelector('.loadwebar').style.display= 'none'
@@ -1597,6 +1607,20 @@ const handleTryImageThree=()=>{
  
   return (
     <div  id='my-component' className=  {webar ? "maindivcontainerwebar" :'maindivcontainerwebardefault'}>
+          <Helmet>
+            <title>AR view | ARnxt</title>
+            <meta
+              name="description"
+              content="India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features."
+            />
+            <meta
+              name="keywords"
+              content="
+          
+          Augmented Reality, Augmented Reality in India, Augmented Reality Technology, Augmented reality product, Augmented reality app, Augmented reality apps, Augmented reality product for business, Augmented reality products for business, Augmented reality product for businesses, Augmented reality products for businesses, Augmented reality apps for android, Augmented reality app for android, Augmented reality apps for ios, Augmented reality app for ios, Augmented reality market place, Metaverse, metaverse technologies, ar technology, AR Technology, AR Technology in India, augmented realty app in India, Augmented Reality Technology App, Augmented Reality Technology App in India, augmented reality, metaverse technologies, metaverse technology, experiential commerce platform, Virtual Realty, Virtual Technology, Festive Metaverse Universe
+           "
+            />
+          </Helmet>
         <Navbar/>
 
         <div className='mobilescreen'>
