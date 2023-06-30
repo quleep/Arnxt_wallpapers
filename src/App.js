@@ -28,6 +28,8 @@ import ProductDetails from './ProductDetails';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import Viewar from './Viewar';
+import ViewarDetails from './ViewarDetails';
 
 const verifytoken= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/verifytoken'
 
@@ -103,8 +105,12 @@ function App() {
         <Route exact path="/home" component={Brand} />
         <Route exact path="/Wallpapers" component={Wallpaper} />
         <Route exact path="/wallarts" component={Wallpapers} />
+        <Route exact path="/details" component={ViewarDetails} />
+
 
         <Route exact path="/WallMurals" component={WallMurals} />
+        <Route exact path="/view3d" component={Viewar} />
+
         <Route exact path="/floor" component={Floors} />
 
         <Route exact path="/view" component={ChangeWalls} />

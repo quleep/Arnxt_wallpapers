@@ -61,6 +61,7 @@ const branddetailsurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/
 const roomtypeimageurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/rooms'
 const getroomsbybrandurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getroomsofbrand'
 const gettagsbybrandurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagsofbrand'
+const getbranddetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbranddetails'
 
 
 const Brand = () => {
@@ -96,6 +97,8 @@ const [currentIndex, setCurrentIndex] = useState(0);
     const [rooms, setRooms] = useState()
     const [roomimage, setRoomImage] = useState()
     const [tags, setTags] = useState()
+    const [itemtype, setItemType] = useState()
+    const [branddata, setBrandData] = useState()
 
     const history= useHistory()
 
@@ -114,6 +117,17 @@ const [currentIndex, setCurrentIndex] = useState(0);
    
 
 
+   function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); 
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+      if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res
+  }
+
  
 
     const user= sessionStorage.getItem('user')
@@ -129,9 +143,27 @@ const [currentIndex, setCurrentIndex] = useState(0);
    
     const brandidnew=   brandid && brandid.data.brand.toLowerCase()
   
-
+   
     const [accActive, setAccActive] = useState(false)
+    useEffect(()=>{
+      const brandbody={
+        brand: brandidnew
+      }
+    
+      axios.post(getbranddetails, brandbody).then(res=>{
+         res.data.forEach(item=>{
+           if(item.modelrequired === 'true'){
+            setBrandData(res.data)
+            setItemType('3d')
+           }
+         })
+      
+      }).catch(error=>{
+        console.log(error)
+      })
 
+    },[])
+    
 
     useEffect(()=>{
       const brandbody={
@@ -751,7 +783,15 @@ get[i].checked= false;}
 
 
 const handleviewinar=()=>{
+  if(itemtype === '3d'){
+    history.push({
+      pathname: `/view3d`,
+      state: brandidnew
+    })
+  } else{
     history.push('/view')
+  }
+    
 }
 
 

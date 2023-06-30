@@ -13,9 +13,9 @@ import checked from '../src/Assets/checked.svg'
 import unChecked from '../src/Assets/unchecked.svg'
 import { useHistory, useLocation } from 'react-router-dom';
 import  checkbox from '../src/images/check-circle.svg';
-import tryimage1 from '../src/images/1.jpg';
-import tryimage2 from '../src/images/2.jpg';
-import tryimage3 from '../src/images/5.jpg';
+import tryimage1 from '../src/images/31.jpg';
+import tryimage2 from '../src/images/32.jpg';
+import tryimage3 from '../src/images/33.jpg';
 import { Helmet } from 'react-helmet';
 
 

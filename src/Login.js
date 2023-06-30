@@ -8,11 +8,16 @@ import GoogleAnalytics from './GoogleAnalytics'
 import { FaArrowRight, FaCross, FaEye, FaEyeSlash, FaTimes, FaTimesCircle, FaUser } from 'react-icons/fa'
 import arnxtlogo from '../src/images/arnxtlogo.png';
 import loginimage from '../src/images/loginimage.png';
+import { useCookies } from 'react-cookie';
+
+import { isMobile, isTablet, isDesktop } from 'react-device-detect';
 
 
 
 const loginurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com/arnxt_prod/users/loginweb'
 const needhelpurl= 'https://6z24cy50la.execute-api.ap-south-1.amazonaws.com/prod/needhelp'
+const loginanalysisdata= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/logindata'
+
 
 const Login = () => {
 
@@ -30,9 +35,40 @@ const Login = () => {
     const [otherdetails, setOtherDetails] = useState('')
     const [companyname, setCompanyName] = useState('')
     const [emailid, setEmailId] = useState('')
+    const [devicetype, setDeviceType] = useState('')
+   
+    const [cookies, setCookie] = useCookies(['user']);
+
+    let lastId = 0;
+
+    function getId(){
+      let currentId = new Date().getTime();
+      if (lastId == currentId) {
+        currentId++;
+      }
+      lastId = currentId;
+      return lastId;
+  }  
+
+  let hasTouchscreen = 'ontouchstart' in window;
+
+  useEffect(()=>{
+    
+    
+    if(hasTouchscreen){
+      setDeviceType('Mobile')
+    } else{
+      setDeviceType('Desktop')
+    }
+   
+
+  },[])
+
+  let merchantid= crypto.randomUUID()
 
     function  submitHandler (){
-
+     
+         getId()
         if(userid === ''){
             document.querySelector('#loginmessage').innerHTML='loginid required'
             setTimeout(() => {
@@ -62,7 +98,24 @@ const Login = () => {
 
         axios.post(loginurl, body).then(res=>{
             if(res.status === 200){
-                console.log(res.data)
+              
+              setCookie('Name', merchantid, { path: '/' });
+
+              const newbody={
+                Id: lastId,
+                userID: res.data.data.userID,
+                deviceId: merchantid,
+                devicetype: devicetype,
+                source: 'Web',
+                date: timestamp.toString()
+
+              }
+              axios.post(loginanalysisdata, newbody).then(res=>{
+                console.log(res)
+              }).catch(error=>{
+                console.log(error)
+              })
+                
                 sessionStorage.setItem('user', JSON.stringify(res.data))
 
                

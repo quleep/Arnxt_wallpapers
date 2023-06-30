@@ -1585,6 +1585,98 @@ border-bottom-color: transparent;
 
 
 }
+.viewbrand{
+  width: 100%;
+  height: 100%;
+  
+  margin-top: 90px;
+ 
+}
+.viewar3d{
+  display: flex;
+  width: fit-content;
+  height: 95%;
+  margin: 30px;
+ 
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.viewar3d>*{
+  flex: 1 1 auto;
+  padding: 20px;
+  margin: 20px;
+  
+  align-items: center;
+  justify-content: center;
+}
+.detailsbutton{
+  display: flex;
+  margin-top: 20px;
+}
+.detailsbutton button{
+  border: none;
+  background-color: rgb(180, 180, 154);
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+}
+.viewar3d>* img{
+   width: 180px;
+   height: 250px;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   flex-wrap: wrap;
+  
+}
+.modelviewer{
+  display: flex;
+  margin-top: 90px;
+  width: 100%;
+
+  height: 500px;
+ 
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  
+
+}
+.modelviewer>*{
+  flex: 1 1 auto;
+
+  margin: 20px;
+ 
+  align-items: center;
+  justify-content: center;
+}
+.viewercontainer{
+  width: 100%;
+  height: 100%;
+}
+.viewerdiv{
+  flex: 1;
+  margin: 20px;
+  width: auto;
+  height: auto;
+
+}
+.itemdetailsdiv{
+  padding-top: 80px;
+  flex: 2;
+  margin: 20px;
+  width: 100%;
+  height: 100%;
+ 
+}
+.itemdetailsdiv>*{
+  flex: 1 1 250px;
+ 
+  margin: 10px;
+}
 
 .mainbrandbody{
  
@@ -2317,6 +2409,26 @@ flex: 1;
   border-radius: 20px;
   
 }
+.productdetails{
+  
+  display: flex;
+  flex-direction: row;
+  
+  margin: 10px;
+}
+.productdetails label{
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Lato, sans-serif;
+}
+.productdetails p{
+  
+  font-size: 15px;
+  margin-top: 5px;
+  text-align: justify;
+  font-family: Lato, sans-serif;
+}
 
 .filterobjectcontainer{
   display: flex;
@@ -2490,13 +2602,17 @@ padding-left: 40px;
 .tryimagecontainer{
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
+ 
+ 
+  
 }
 .tryimagecontainer img{
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  object-fit: contain;
+ 
 }
 .displayurlcontainer img{
 
