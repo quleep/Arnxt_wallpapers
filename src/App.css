@@ -982,10 +982,12 @@ border-bottom-left-radius: 20px;
   width: 200px;
   height: 200px;
   flex-wrap: wrap;
+ 
 }
 .arnxtlogocontainer img{
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 .loginlogodivinside{
   display: flex;
@@ -1001,11 +1003,14 @@ border-bottom-left-radius: 20px;
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
+  
+  padding-bottom: 80px;
 }
 .logindisplaydivinside img{
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  object-fit: contain;
+ 
 }
 .logindisplaydiv{
   flex: 3;
@@ -3476,12 +3481,15 @@ display: none;
    height: 500px;
   margin-bottom: 10px;
   overflow: hidden;
+  object-fit: contain;
+  
  
 }
 
 .carousel-image {
   flex: 1 0 100%;
   transition: 2s ease;
+ 
   
 
   
