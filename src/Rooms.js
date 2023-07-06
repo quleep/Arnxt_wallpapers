@@ -55,9 +55,18 @@ const Rooms = () => {
     const [defaultrooms, setDefaultRooms] = useState(false)
 
     const user= sessionStorage.getItem('user')
-    const brandid= JSON.parse(user)
+    let brandidnew;
+    let brandid;
+
+    if(user.includes('data')){
+      brandid= JSON.parse(user)
   
-    const brandidnew=  brandid && brandid.data.brand.toLowerCase()
+   brandidnew= brandid && brandid.data.brand.toLowerCase()
+    }
+    if(!user.includes('data')){
+      brandidnew = user
+    }
+
     const history = useHistory()
 
     if(!user){

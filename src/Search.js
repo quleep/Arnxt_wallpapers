@@ -61,9 +61,18 @@ const Search = () => {
       history.push('/')
     }
 
-    const brandid= JSON.parse(user)
+    let brandidnew;
+    let brandid;
+
+    if(user.includes('data')){
+      brandid= JSON.parse(user)
   
-    const brandidnew=  brandid &&  brandid.data.brand.toLowerCase()
+   brandidnew= brandid && brandid.data.brand.toLowerCase()
+    }
+    if(!user.includes('data')){
+      brandidnew = user
+    }
+
 
   
 

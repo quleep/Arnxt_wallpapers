@@ -3531,3 +3531,89 @@ display: none;
 .carousel-dot.active {
   background-color: #555;
 }
+.otp-field{
+  display: none;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  margin-bottom: 40px;
+}
+.otp-field label{
+  color: white;
+}
+.otp-field input{
+   outline: none;
+  width:   40px;
+  height: 40px;
+  margin: 5px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.errorlogin{
+  margin-top: 30px;
+}
+.otp-field input:focus{
+  outline: none;
+  
+}
+.otpfieldinput{
+ 
+  width: auto;
+  margin: 10px;
+}
+.otpbuttons button{
+  border: none;
+  background-color: yellow;
+  border-radius: 5px;
+  color: black;
+}
+.otpbuttons button{
+  margin: 5px;
+}
+.inputfieldregister{
+ 
+}
+.loginalternate a{
+ 
+ 
+  color: white;
+}
+.loginfields{
+  display: none;
+}
+.requiredfieldname{
+  font-size: 12px;
+  color: red;
+  margin-left: 5px;
+  display: none;
+  
+}
+.requiredfieldemail{
+  font-size: 12px;
+  color: red;
+  margin-left: 5px;
+  display: none;
+
+  
+}.requiredfieldpassword{
+  font-size: 12px;
+  color: red;
+  margin-left: 5px;
+  display: none;
+  
+}.requiredfieldpincode{
+  font-size: 12px;
+  color: red;
+  margin-left: 5px;
+  display: none;
+
+  
+}
+.requiredfieldmobile{
+  font-size: 12px;
+  color: red;
+  margin-left: 5px;
+  display: none;
+
+  
+}

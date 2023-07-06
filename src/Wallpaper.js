@@ -62,10 +62,19 @@ const Wallpaper = () => {
     history.push('/')
   }
 
+    let brandidnew;
+    let brandid;
 
-    const brandid= JSON.parse(user)
+    if(user.includes('data')){
+      brandid= JSON.parse(user)
   
-    const brandidnew= brandid && brandid.data.brand.toLowerCase()
+   brandidnew= brandid && brandid.data.brand.toLowerCase()
+    }
+    if(!user.includes('data')){
+      brandidnew = user
+    }
+
+   
 
   
 

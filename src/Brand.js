@@ -105,7 +105,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
     const ref= useRef()
 
 
-
+const location = useLocation()
 
     const handleInput = (e) => {
 
@@ -131,17 +131,23 @@ const [currentIndex, setCurrentIndex] = useState(0);
  
 
     const user= sessionStorage.getItem('user')
+    
 
 
     if(!user){
       history.push('/')
     
+    } 
+    let brandidnew;
+    let brandid
+    if(user && user.includes('data')){
+       brandid= JSON.parse(user)
+       brandidnew=   brandid && brandid.data.brand.toLowerCase()
     }
     
-    const brandid= JSON.parse(user)
- 
-   
-    const brandidnew=   brandid && brandid.data.brand.toLowerCase()
+    if(user && !user.includes('data')){
+      brandidnew= user
+    }
   
    
     const [accActive, setAccActive] = useState(false)
@@ -164,10 +170,21 @@ const [currentIndex, setCurrentIndex] = useState(0);
 
     },[])
     
+    let newbrand;
+    if(user.includes('data')){
+     newbrand = brandid && brandid.data.brand
+   }
+   
+   if(!user.includes('data')){
+     newbrand= user.charAt(0).toUpperCase() + user.slice(1).toLowerCase()
+   }
+  
 
     useEffect(()=>{
       const brandbody={
-        brandID: brandid && brandid.data.brand
+      
+
+        brandID: newbrand
       }
     
       axios.post(branddetailsurl, brandbody).then(res=>{
@@ -948,8 +965,15 @@ useEffect(() => {
 
    
   const  usernew = sessionStorage.getItem('user')
-    
-  const uservalue= JSON.parse(usernew)
+let uservalue;
+  if(usernew.includes('data')){
+     uservalue= JSON.parse(usernew)
+  }
+  if(!usernew.includes('data')){
+    uservalue= usernew
+ }
+  
+ 
 
 console.log(rooms)
 
@@ -1027,7 +1051,7 @@ const images= [
 ]
 
 
-  if(uservalue && uservalue.token){
+  if(typeof usernew === 'string'){
 
     return (
       <div>

@@ -139,17 +139,26 @@ const ChangeWalls = () => {
  
 
     const user= sessionStorage.getItem('user')
-
-    const userdata= JSON.parse(user)
+      let brandid;
+      let brandidnew;
+      let userdata;
+      if(user.includes('data')){
+        brandid= JSON.parse(user)
+  
+        brandidnew= brandid.data.brand.toLowerCase()
+        userdata= JSON.parse(user)
+      }
+      if(!user.includes('data')){
+        brandidnew = user
+      }
+  
 
     
     if(!user){
       history.push('/')
     }
 
-    const brandid= JSON.parse(user)
-  
-    const brandidnew= brandid.data.brand.toLowerCase()
+
 
     const [accActive, setAccActive] = useState(false)
 

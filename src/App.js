@@ -9,8 +9,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+ 
   Redirect,
   withRouter,
+  
   useHistory,
 } from "react-router-dom";
 import Wallpapers from './Wallpapers';
@@ -30,6 +32,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Viewar from './Viewar';
 import ViewarDetails from './ViewarDetails';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom';
 
 const verifytoken= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/verifytoken'
 
@@ -77,6 +80,11 @@ function App() {
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
+
+
+ 
+
+    
 
   return (
     <div className="App">
