@@ -968,10 +968,10 @@ useEffect(() => {
    
   const  usernew = sessionStorage.getItem('user')
 let uservalue;
-  if(usernew.includes('data')){
+  if(usernew && usernew.includes('data')){
      uservalue= JSON.parse(usernew)
   }
-  if(!usernew.includes('data')){
+  if(usernew && !usernew.includes('data')){
     uservalue= usernew
  }
   
