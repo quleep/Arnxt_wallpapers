@@ -142,13 +142,13 @@ const ChangeWalls = () => {
       let brandid;
       let brandidnew;
       let userdata;
-      if(user.includes('data')){
+      if(user && user.includes('data')){
         brandid= JSON.parse(user)
   
         brandidnew= brandid.data.brand.toLowerCase()
         userdata= JSON.parse(user)
       }
-      if(!user.includes('data')){
+      if(user && !user.includes('data')){
         brandidnew = user
       }
   

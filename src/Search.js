@@ -64,12 +64,12 @@ const Search = () => {
     let brandidnew;
     let brandid;
 
-    if(user.includes('data')){
+    if(user && user.includes('data')){
       brandid= JSON.parse(user)
   
    brandidnew= brandid && brandid.data.brand.toLowerCase()
     }
-    if(!user.includes('data')){
+    if(user && !user.includes('data')){
       brandidnew = user
     }
 

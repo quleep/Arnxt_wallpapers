@@ -99,6 +99,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
     const [tags, setTags] = useState()
     const [itemtype, setItemType] = useState()
     const [branddata, setBrandData] = useState()
+    const [carouselimages, setCarouselImages] = useState()
 
     const history= useHistory()
 
@@ -171,11 +172,11 @@ const location = useLocation()
     },[])
     
     let newbrand;
-    if(user.includes('data')){
+    if(user && user.includes('data')){
      newbrand = brandid && brandid.data.brand
    }
    
-   if(!user.includes('data')){
+   if(user && !user.includes('data')){
      newbrand= user.charAt(0).toUpperCase() + user.slice(1).toLowerCase()
    }
   
@@ -190,6 +191,7 @@ const location = useLocation()
       axios.post(branddetailsurl, brandbody).then(res=>{
         console.log(res)
         setBrandImage(res.data.infoImageUrl)
+        setCarouselImages(res.data.carouselUrls)
       }).catch(error=>{
         console.log(error)
       })
@@ -1126,7 +1128,7 @@ const images= [
 <div className="carousel">
 
 <div className="carousel-images">
-  {images.map((image, index) => (
+  {carouselimages && carouselimages.map((image, index) => (
     <img
       key={index}
       src={image}
@@ -1138,7 +1140,7 @@ const images= [
 </div>
 
 <div className="carousel-dots">
-  {images.map((image, index) => (
+  {carouselimages && carouselimages.map((image, index) => (
     <span
       key={index}
       className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
