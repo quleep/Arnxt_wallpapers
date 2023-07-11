@@ -231,6 +231,7 @@ width: 500px;
 height: 250px;
 }
 
+
 .wallpapercontainer{
   display: flex;
   align-items: center;
@@ -3274,6 +3275,7 @@ display: none;
   width: 25px;
   border-radius: 50%;
   cursor: pointer;
+
   
 
 }

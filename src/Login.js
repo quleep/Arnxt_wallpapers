@@ -10,6 +10,7 @@ import arnxtlogo from '../src/images/arnxtlogo.png';
 import loginimage from '../src/images/loginimage.png';
 import { useCookies } from 'react-cookie';
 
+
 import { isMobile, isTablet, isDesktop } from 'react-device-detect';
 
 
