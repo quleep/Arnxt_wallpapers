@@ -76,7 +76,7 @@ const Login = () => {
 
   },[])
 
-  let merchantid= crypto.randomUUID()
+
 
     function  submitHandler (){
      
@@ -111,12 +111,12 @@ const Login = () => {
         axios.post(loginurl, body).then(res=>{
             if(res.status === 200){
               
-              setCookie('Name', merchantid, { path: '/' });
+              setCookie('Name', '', { path: '/' });
 
               const newbody={
                 Id: lastId,
                 userID: res.data.data.userID,
-                deviceId: merchantid,
+                deviceId: '',
                 devicetype: devicetype,
                 source: 'Web',
                 date: timestamp.toString()
