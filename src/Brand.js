@@ -9,10 +9,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Swiper from 'swiper';
 
-import bestdeal from '../src/images/bestdeals.png';
-import toppicks from '../src/images/toppicks.png';
-import featured from '../src/images/featured.png';
-import collection from '../src/images/collections.png';
+import bafflefilter from '../src/images/71TAn+qay+L.jpg';
+import  thermalclean from '../src/images/download.jpg';
+import newfridge from '../src/images/21379_front_1200x1200_2.png';
+import highcapacity from '../src/images/istockphoto-1086056164-612x612.jpg';
 import wallpaper from '../src/images/77308-1_2.jpg';
 import wallmurals from '../src/images/ED-20949_2.jpg';
 import image1 from '../src/images/HB-WB.jpeg';
@@ -100,6 +100,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
     const [itemtype, setItemType] = useState()
     const [branddata, setBrandData] = useState()
     const [carouselimages, setCarouselImages] = useState()
+    const [categoryimg, setCategoryImg] = useState()
 
     const history= useHistory()
 
@@ -149,8 +150,8 @@ const location = useLocation()
     if(user && !user.includes('data')){
       brandidnew= user
     }
+
   
-   
     const [accActive, setAccActive] = useState(false)
     useEffect(()=>{
       const brandbody={
@@ -158,7 +159,9 @@ const location = useLocation()
       }
     
       axios.post(getbranddetails, brandbody).then(res=>{
+        console.log(res.data)
          res.data.forEach(item=>{
+         
            if(item.modelrequired === 'true'){
             setBrandData(res.data)
             setItemType('3d')
@@ -190,7 +193,8 @@ const location = useLocation()
     
       axios.post(branddetailsurl, brandbody).then(res=>{
         console.log(res)
-        setBrandImage(res.data.infoImageUrl)
+        setCategoryImg(res.data.categoryimages)
+        setBrandImage(res.data.iconUrl)
         setCarouselImages(res.data.carouselUrls)
       }).catch(error=>{
         console.log(error)
@@ -569,7 +573,7 @@ useEffect(()=>{
 
 },[])
 
-
+console.log(tags)
 
 function removerepeat(data){
   return [...new Set(data)]
@@ -643,30 +647,15 @@ catdata && catdata.map(item=>{
 
 
 const handlesubcategory=(item, len)=>{
-  if(len === 1){
-    return
-  }
-
-  if(len === 2){
-    return
-  }
-
-  if(len === 0){
+ 
+  
     history.push({
-      pathname: `/wallpapers`,
+      pathname: `/products`,
       state: item
   })
   
+   
 
-  }
-
-
- 
- 
-
-  
-  
- 
 
 
 }
@@ -813,7 +802,7 @@ const handleviewinar=()=>{
     
 }
 
-
+console.log(itemtype)
 useEffect(()=>{
   axios.get(roomtypeimageurl).then(res=>{
     setRoomImage(res.data)
@@ -828,20 +817,24 @@ console.log(roomimage)
 const tagsimages= [
 
   {
-    tagname: 'New',
-    tagimage:  collection
+    tagname: 'new',
+    tagimage:  newfridge
   },
   {
-    tagname: 'Best Deals',
-    tagimage: bestdeal
+    tagname: 'high capacity',
+    tagimage:  highcapacity
   },
   {
-    tagname: 'Featured',
-    tagimage: featured
+    tagname: 'thermal auto clean',
+    tagimage: thermalclean
   },
   {
-    tagname: 'Top Picks',
-    tagimage: toppicks
+    tagname: 'baffle filter',
+    tagimage: bafflefilter
+  },
+  {
+    tagname: 'elegant style',
+    
   }
 ]
 
@@ -978,6 +971,7 @@ let uservalue;
  
 
 console.log(rooms)
+console.log(catdata)
 
 useEffect(()=>{
   /*
@@ -1103,7 +1097,7 @@ const images= [
               {
                               catdata &&    catdata.map((item,i)=>(
                                     <label htmlFor='' >
-                                      <div className={ i === 0 ? 'categorycontainer' : 'categorycontainertoggle'}> 
+                                      <div className='categorycontainer'> 
                                          
                                        
                                          <h3 onClick={()=>handlesubcategory(item, i)} >{item}</h3>
@@ -1221,16 +1215,12 @@ const images= [
                                     <label htmlFor= {`check_${i}`} >
                                       <div  className=''> 
                                       <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=> handlesubcategory(item,i)} />
-                                       
-                                          
-                                              
                                            
-                                            
                                             {
-                                             categoryimage.map((itemnew, index)=>(
-                                               index === i ?
-                                               <div  className= { i === 0 ? 'imagedivtags': 'imagedivtagstoggle' }>
-                                               <img src={itemnew.catimage}/>
+                                            categoryimg &&  categoryimg.map((itemnew, index)=>(
+                                               itemnew.itemname === item ?
+                                               <div  className= 'imagedivtags'>
+                                               <img src={itemnew.itemvalue}/>
   
                                                <p  >{item}</p>
   
@@ -1239,17 +1229,7 @@ const images= [
   
                                             }
   
-                                          
-                                      
-                                   
-                                         
-                                                
-                                          
-                                        
-                                      
                                        
-                                        
-                                          
                                       </div>
                                       </label>
   
@@ -1260,14 +1240,6 @@ const images= [
   
                                           }
           
-         
-  
-      
-    
-          
-      
-  
-  
         </div>
         <div className='itemspara'>
              <h3>Visualise By Rooms</h3>
@@ -1333,7 +1305,7 @@ const images= [
                                               itemnew.tagname === item ?
                                               <div className='imagedivtagssearch'>
                                                    <img  src={itemnew.tagimage} />
-                                                  <p>{itemnew.tagname}</p>
+                                                  <p>{itemnew.tagname.charAt(0).toUpperCase() + itemnew.tagname.slice(1) }</p>
                                                 </div>:<p></p>
                                         
                                            ))

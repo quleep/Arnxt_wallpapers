@@ -69,7 +69,7 @@ const ViewarDetails = () => {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-         <QRCode value='http://localhost:3000'/>
+      <QRCode value= {`brand.arnxt.com/arview?id=${location.state}`}/>
           
       </div>
       <div class="modal-footer">
@@ -95,16 +95,20 @@ const ViewarDetails = () => {
                 <p>{`${glburl && glburl.productdetails[0].lengthprod} * ${glburl && glburl.productdetails[0].breadthprod} * ${glburl && glburl.productdetails[0].height} (L*B*H) `}</p>
                 </div>
                 <div className='productdetails'>
-                <label>Details:</label>
-                <p>{glburl && glburl.productdetails[0].specification}</p>
+                <label>Unit:</label>
+                <p>{glburl && glburl.productdetails[0].unit}</p>
                 </div>
+                <div className='productdetails'>
+                <label>Details:</label>
+                <p>{glburl && glburl.productdetails[0].Specification}</p>
+                </div>
+             
                 <div className='productdetails'>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 AR QR code
                </button>
        
                 </div>
-                
              
              
                </div>

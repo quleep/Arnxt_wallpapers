@@ -106,9 +106,7 @@ useEffect(()=>{
 
  axios.post(getroomsdataurl ,body).then(res=>{
 
-  let newdata=    res.data.filter((item)=>(
-    item.subcategory === 'Wallpapers'
-  ))
+    let newdata = res.data
      if(newdata.length === 0){
       document.querySelector('.nodata').style.display = 'block'
      }
@@ -129,6 +127,12 @@ useEffect(()=>{
 
 
 const handlearview=(item,e)=>{
+  if(item.modelrequired === 'true'){
+    history.push({
+      pathname: '/details',
+      state: item.product_Id
+  })
+   }else
     history.push({
         pathname: '/view',
         state: item
@@ -429,18 +433,8 @@ Filter <i class='bx bx-filter'></i></button>
                 <span class="product-catagory"  >{item.productname}</span>
                 
                <span  style={{display:'flex',  alignItems:'center', justifyContent:'center'}}>
-                 <p style={{marginRight:'10px'}}>Roll Size</p>
-               <p>
-               
-                
-                   
-                    
-                {
-           
-               Math.round(` ${ item.height * item.breadthprod * 10.764}`)
-               
-               
-               } sqft   </p>
+               <p style={{marginRight:'10px'}}>Dimension</p>
+                       <p> {`${item.lengthprod} * ${item.breadthprod} * ${item.height} (L*B*H) `} </p>
                </span>
              
                 <div class="product-bottom-details">

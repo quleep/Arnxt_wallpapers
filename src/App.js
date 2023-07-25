@@ -33,6 +33,7 @@ import { Helmet } from 'react-helmet';
 import Viewar from './Viewar';
 import ViewarDetails from './ViewarDetails';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom';
+import View from './View';
 
 const verifytoken= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/verifytoken'
 
@@ -111,7 +112,7 @@ function App() {
         <Route exact path="/walls" component={Wall} />
         <Route exact path="/camera" component={Camera} />
         <Route exact path="/home" component={Brand} />
-        <Route exact path="/Wallpapers" component={Wallpaper} />
+        <Route exact path="/products" component={Wallpaper} />
         <Route exact path="/wallarts" component={Wallpapers} />
         <Route exact path="/details" component={ViewarDetails} />
 
@@ -126,6 +127,8 @@ function App() {
         <Route exact path="/room" component={Rooms} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/productdetails" component={ProductDetails} />
+        <Route exact path="/arview" component={View} />
+
 
 
 

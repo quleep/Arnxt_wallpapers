@@ -28,8 +28,14 @@ const Viewar = () => {
           })
      },[])
      const handleclick =(item)=>{
+      if(item.modelrequired === 'true'){
         history.push({
-            pathname: `/details`,
+          pathname: '/details',
+          state: item.product_Id
+      })
+       }else
+        history.push({
+            pathname: '/view',
             state: item
         })
      }
@@ -47,10 +53,15 @@ const Viewar = () => {
                         <div>
                         <img src={item.imageurl[0]}/>
                         <div className='detailsbutton'>
-                <button type='submit' onClick={()=>handleclick(item.product_Id)} >viewdetails</button>
+                <button type='submit' onClick={()=>handleclick(item)} >View details</button>
               </div>
+            
                     </div>
+                    
+                   
                     ))
+
+                  
                 }
                
              

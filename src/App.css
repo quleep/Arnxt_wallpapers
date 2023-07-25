@@ -1350,6 +1350,7 @@ border-bottom-left-radius: 20px;
 .brandmodal img{
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .productdetailsdiv{
@@ -1602,7 +1603,7 @@ border-bottom-color: transparent;
   display: flex;
   width: fit-content;
   height: 95%;
-  margin: 30px;
+   margin: 10px;
  
   flex-direction: row;
   flex-wrap: wrap;
@@ -1611,16 +1612,19 @@ border-bottom-color: transparent;
  
 }
 .viewar3d>*{
-  flex: 1 1 auto;
-  padding: 20px;
-  margin: 20px;
-  
+  flex: 1 1 150px;
+  margin: 10px;
+  border: 2px solid rgb(206, 204, 204);
+   border-radius: 5px ;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 .detailsbutton{
   display: flex;
   margin-top: 20px;
+  align-items: center;
+  justify-content: center;
 }
 .detailsbutton button{
   border: none;
@@ -1630,38 +1634,37 @@ border-bottom-color: transparent;
   padding: 10px;
 }
 .viewar3d>* img{
-   width: 180px;
+   width: 250px;
    height: 250px;
-   align-items: center;
-   justify-content: center;
-   display: flex;
-   flex-wrap: wrap;
+   object-fit: contain;
+
+
   
 }
 .modelviewer{
   display: flex;
-  margin-top: 90px;
+  margin-top: 120px;
   width: 100%;
 
-  height: 500px;
+  height: auto;
  
   flex-direction: row;
   flex-wrap: wrap;
-
+ 
   
 
 }
 .modelviewer>*{
   flex: 1 1 auto;
-
+ 
   margin: 20px;
  
   align-items: center;
   justify-content: center;
 }
 .viewercontainer{
-  width: 100%;
-  height: 100%;
+  width:  auto;
+  height: 300px;
 }
 .viewerdiv{
   flex: 1;
@@ -1671,7 +1674,7 @@ border-bottom-color: transparent;
 
 }
 .itemdetailsdiv{
-  padding-top: 80px;
+  
   flex: 2;
   margin: 20px;
   width: 100%;
@@ -1737,6 +1740,9 @@ border-bottom-color: transparent;
 .brandcontainer{
   flex: 1;
   background-color: #f0ecec;
+  height: 120px;
+
+ 
  
 }
 .categoryitem{
@@ -2833,15 +2839,19 @@ cursor: pointer;
 
 .brandimagecontainer{
   display: flex;
-  width: 250px;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  
 
 }
 
 
 .brandimagecontainer img{
   width: 100%;
-  width:  100%;
+  height:  100%;
+  object-fit: contain;
+ 
 }
 
 
@@ -3028,6 +3038,9 @@ input::-webkit-inner-spin-button {
 }
 
 @media screen and (max-width: 600px) {
+  .productdetails button{
+    display: none;
+  }
 .loginimagecontainerinside{
   width: auto;
   height: auto;
@@ -3456,7 +3469,7 @@ display: none;
   flex-direction: column;
   align-items: center;
  
-  height: 500px;
+  height: 800px;
  
   
 }
@@ -3480,10 +3493,11 @@ display: none;
 
 .carousel-images {
   display: flex;
-   height: 500px;
+   height: auto;
   margin-bottom: 10px;
   overflow: hidden;
   object-fit: contain;
+
   
  
 }
@@ -3618,4 +3632,91 @@ display: none;
   display: none;
 
   
+}
+
+
+model-viewer {
+ 
+  overflow-x: hidden;
+}
+
+#ar-button {
+  background-image: url(https://cdn.glitch.global/66a9aadc-16d1-4ae0-b613-4d181051d3c1/ar_icon.png?v=1680846317848);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: 12px 50%;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  bottom: 2px;
+  padding: 0px 16px 0px 40px;
+  font-family: Roboto Regular, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  color:#4285f4;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  border: 1px solid #DADCE0;
+}
+
+#ar-button:active {
+  background-color: #E8EAED;
+}
+
+#ar-button:focus {
+  outline: none;
+}
+
+#ar-button:focus-visible {
+  outline: 1px solid #4285f4;
+}
+
+@keyframes circle {
+  from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes elongate {
+  from { transform: translateX(100px); }
+  to   { transform: translateX(-100px); }
+}
+
+.productsQuickView.qrModal .modal-dialog {
+  max-width: 400px;
+  width: 95vw;
+}
+.productsQuickView.qrModal .modal-content {
+  padding: 0px;
+  background: #011c4b;
+}
+
+
+model-viewer > #ar-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 175px;
+  animation: elongate 2s infinite ease-in-out alternate;
+  display: none;
+}
+
+model-viewer[ar-status="session-started"] > #ar-prompt {
+  display: block;
+}
+
+model-viewer > #ar-prompt > img {
+  animation: circle 4s linear infinite;
+}
+
+model-viewer > #ar-failure {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 175px;
+  display: none;
+}
+
+model-viewer[ar-tracking="not-tracking"] > #ar-failure {
+  display: block;
 }
