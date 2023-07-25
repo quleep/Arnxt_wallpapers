@@ -1099,7 +1099,7 @@ const images= [
                                     <label htmlFor='' >
                                       <div className='categorycontainer'> 
                                          
-                                       
+                                         
                                          <h3 onClick={()=>handlesubcategory(item, i)} >{item}</h3>
   
                                          

@@ -39,10 +39,17 @@ useEffect(() => {
   }, []);
 
   const handlearview= (item)=>{
-    history.push({
-        pathname: '/view',
-        state: item
+    if(item.modelrequired === 'true'){
+      history.push({
+        pathname: '/details',
+        state: item.product_Id
     })
+     }else
+      history.push({
+          pathname: '/view',
+          state: item
+      })
+      
   }
   return (
     <div>
@@ -91,23 +98,28 @@ useEffect(() => {
             </div>
             <div>  
                 <div className='mrpdiv'>
-                <label>MRP</label>
-                <p>{itemdetails && itemdetails.mrp}</p>
+                <label>MRP:</label>
+                <p> ₹ { itemdetails && itemdetails.mrp}</p>
 
                 </div>
               
             </div>
             <div>
             <div className='mrpdiv'>
-                <label>OFFER PRICE</label>
-                <p>{itemdetails && itemdetails.offerprice}</p>
+                <label>OFFER PRICE:</label>
+                <p>  ₹  {itemdetails && itemdetails.offerprice}</p>
 
                 </div>
             </div>
             <div>
                 <div className='mrpdiv'>
-            <label>DIMENSION</label>
-                <p>  {Math.round(` ${ itemdetails && itemdetails.height * itemdetails.breadthprod * 10.764}`)} sqft</p>
+            <label>DIMENSION:</label>
+            <p> {`${itemdetails && itemdetails.lengthprod} * ${itemdetails && itemdetails.breadthprod} * ${ itemdetails && itemdetails.height} (L*B*H) `} </p>
+
+                </div>
+                <div className='mrpdiv'>
+            <label>UNIT:</label>
+            <p> {itemdetails && itemdetails.unit} </p>
 
                 </div>
 

@@ -28,7 +28,7 @@ const Navbar = () => {
       <div>
       <nav class="navbar  fixed-top navbar-expand-lg py-4  navbar-light "  style={{backgroundColor:'rgb(221, 218, 218)'}}>
   <div class="container">
-    <a class="navbar-brand" href="#" style={{color:'black', fontFamily:'Lato, sans-serif'}} >ARnxt</a>
+    <a class="navbar-brand" href="#" style={{color:'black', fontFamily:'Lato, sans-serif'}} ></a>
     <button class="navbar-toggler" type="button" style={{color:'black'}} data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon "  ></span>
     </button>

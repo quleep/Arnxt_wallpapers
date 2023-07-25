@@ -1355,13 +1355,15 @@ border-bottom-left-radius: 20px;
 
 .productdetailsdiv{
   display: flex;
-  width: 90%;
-  height: 800px;
+  width: 100%;
+  height: auto;
   
   padding: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 90px;
+  
+  
 }
 .productimagecontainer{
   flex: 1;
@@ -1750,6 +1752,9 @@ border-bottom-color: transparent;
  
   background-color: #f0ecec;
   padding-top: 40px;
+  
+  
+  
 }
 .productscontainer{
   display: flex;
@@ -2731,6 +2736,7 @@ padding-left: 40px;
   gap: 10px;
  
   padding: 10px;
+  
  
  
 }
@@ -2741,6 +2747,7 @@ padding-left: 40px;
   border-radius: 10px;
   background-color: #f7f6f6;
   padding: 5px;
+ 
    
  
 
@@ -3633,7 +3640,25 @@ display: none;
 
   
 }
+.nav-item a:hover{
+  border-bottom: 2px solid rgb(95, 129, 95);
+}
+.imagedivtags:hover{
+  background-color: #bebebe;
+}
+.categorycontainer h3:hover{
+  background-color: #bebebe;
+}
+.trybutton button:hover{
+  background-color: #bebebe;
+}
+.imagedivtagsrooms:hover{
+  background-color: #bebebe;
+}
+.imagedivtagssearch:hover{
+  background-color: #bebebe;
 
+}
 
 model-viewer {
  
