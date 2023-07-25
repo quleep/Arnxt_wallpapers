@@ -3639,6 +3639,13 @@ model-viewer {
  
   overflow-x: hidden;
 }
+.modalcontainerar{
+  display: flex;
+  width: 400px;
+  height: 600px;
+ 
+  
+}
 
 #ar-button {
   background-image: url(https://cdn.glitch.global/66a9aadc-16d1-4ae0-b613-4d181051d3c1/ar_icon.png?v=1680846317848);
