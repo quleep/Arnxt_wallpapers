@@ -1789,7 +1789,7 @@ border-bottom-color: transparent;
   flex-wrap: wrap;
   height: auto;
   margin-top: 20px;
- 
+  
  
 }
 .itemspara h3{
@@ -2834,8 +2834,9 @@ cursor: pointer;
 }
 .viewinroom{
   display: flex;
-  height: 80px;
+  height: fit-content;
   width: auto;
+  
   
  
 }
@@ -2844,6 +2845,8 @@ cursor: pointer;
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 50px;
+  position: relative;
+  z-index: 1;
   
 }
 .trybutton button{
@@ -3057,6 +3060,7 @@ input::-webkit-inner-spin-button {
 }
 
 @media screen and (max-width: 600px) {
+
   .carouselcontainer{
     height: 300px;
    

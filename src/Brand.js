@@ -791,6 +791,7 @@ get[i].checked= false;}
 
 
 const handleviewinar=()=>{
+  console.log('hwlle')
   if(itemtype === '3d'){
     history.push({
       pathname: `/view3d`,
@@ -1191,12 +1192,14 @@ const images= [
              <FaArrowRight  className='icondiv'/>
               </span>
   
-              <div className='trybutton'>
-                <button  type='submit' onClick={handleviewinar} >Try In Your Room <span className='aricon'><img src={aricon}/></span> </button>
+              <div className='trybutton' >
+                <button  type='button' onClick={handleviewinar}>Try In Your Room <span className='aricon'><img src={aricon}/></span> </button>
+                
               </div>
             </div>
   
             </div>
+          
             <div className='itemspara'>
              <h3>Visualise By Category</h3>
              <span>
