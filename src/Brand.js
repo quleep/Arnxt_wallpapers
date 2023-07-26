@@ -1213,7 +1213,7 @@ const images= [
   
                                     
                                     <label htmlFor= {`check_${i}`} >
-                                      <div  className=''> 
+                                      <div  className='' > 
                                       <input type='checkbox'   className='checkinput' id= {`check_${i}`} value={item} onClick={()=> handlesubcategory(item,i)} />
                                            
                                             {
