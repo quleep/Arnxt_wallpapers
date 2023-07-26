@@ -362,6 +362,7 @@ console.log(userpassword)
 
 const params= new URLSearchParams(window.location.search)
 const newbrand = params.get('brand')
+const prodpage= params.get('brandpage')
 useEffect(()=>{
    if(typeof newbrand === 'string'){
     
@@ -371,6 +372,14 @@ useEffect(()=>{
       state: newbrand
   })
    }
+   if(typeof prodpage === 'string'){
+    
+    sessionStorage.setItem('user', prodpage)
+    history.push({
+     pathname: '/view3d',
+     state: prodpage
+ })
+  }
 },[])
 
   return (

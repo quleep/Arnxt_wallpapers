@@ -129,9 +129,6 @@ function App() {
         <Route exact path="/productdetails" component={ProductDetails} />
         <Route exact path="/arview" component={View} />
 
-
-
-
         </Switch>
       </Router>
       

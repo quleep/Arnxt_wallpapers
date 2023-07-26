@@ -791,7 +791,7 @@ get[i].checked= false;}
 
 
 const handleviewinar=()=>{
-  console.log('hwlle')
+  
   if(itemtype === '3d'){
     history.push({
       pathname: `/view3d`,
