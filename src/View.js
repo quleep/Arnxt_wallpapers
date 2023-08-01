@@ -8,6 +8,25 @@ const View = () => {
     const params= new URLSearchParams(window.location.search)
     const pid= params.get('id')
     const [glburl, setGlbUrl] = useState()
+
+    
+    const user= sessionStorage.getItem('user')
+    
+
+
+  
+    let brandidnew;
+    let brandid
+    let userdata
+    if(user && user.includes('data')){
+       userdata= JSON.parse(user)
+     
+    }
+    
+    if(user && !user.includes('data')){
+       userdata = user
+    }
+
     
     useEffect(()=>{
         axios.post(itemdetails, pid ).then(res=>{
@@ -35,7 +54,7 @@ const View = () => {
       source: 'Web',
       merchantId: Number(val.merchant_Id),
       productId: Number(val.product_Id),
-   
+      userId: userdata.data.userID, 
       viewtime:  lastId
     }
 
