@@ -12,6 +12,24 @@ import QRCode from "react-qr-code";
 
 const ViewarDetails = () => {
 
+  const user= sessionStorage.getItem('user')
+    
+
+
+  
+  let brandidnew;
+  let brandid
+  let userdata
+  if(user && user.includes('data')){
+     userdata= JSON.parse(user)
+   
+  }
+  
+  if(user && !user.includes('data')){
+     userdata = user
+  }
+
+
     
     const location = useLocation()
     const itemdetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
@@ -69,7 +87,7 @@ const ViewarDetails = () => {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <QRCode value= {`http://ec2-13-233-134-115.ap-south-1.compute.amazonaws.com:3000/arview?id=${location.state}`}/>
+      <QRCode value= {`http://ec2-13-233-134-115.ap-south-1.compute.amazonaws.com:3000/arview?id=${location.state}&user=${userdata}`}/>
           
       </div>
       <div class="modal-footer">

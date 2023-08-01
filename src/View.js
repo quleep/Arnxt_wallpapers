@@ -7,26 +7,11 @@ const View = () => {
     const sendviewdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addviewdata'
     const params= new URLSearchParams(window.location.search)
     const pid= params.get('id')
+    const uid = params.get('user')
     const [glburl, setGlbUrl] = useState()
 
     
-    const user= sessionStorage.getItem('user')
-    
-
-
-  
-    let brandidnew;
-    let brandid
-    let userdata
-    if(user && user.includes('data')){
-       userdata= JSON.parse(user)
-     
-    }
-    
-    if(user && !user.includes('data')){
-       userdata = user
-    }
-
+ 
     
     useEffect(()=>{
         axios.post(itemdetails, pid ).then(res=>{
@@ -54,7 +39,7 @@ const View = () => {
       source: 'Web',
       merchantId: Number(val.merchant_Id),
       productId: Number(val.product_Id),
-      userId: userdata.data.userID, 
+      userId:  uid,
       viewtime:  lastId
     }
 
