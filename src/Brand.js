@@ -675,6 +675,7 @@ const handleRoomsClick=(item)=>{
 
 }
 const handleTagsClick=(item)=>{
+  console.log(item)
 
   if(item.modelrequired === 'true'){
     history.push({
@@ -1110,7 +1111,9 @@ useEffect(()=>{
      })
 },[])
 
-
+console.log(newtagsdata)
+console.log(featuredtagsdata)
+console.log(toppickstagsdata)
 
   if(typeof usernew === 'string'){
 
@@ -1362,18 +1365,20 @@ useEffect(()=>{
             {
                                
                                
-                                  newtagsdata && newtagsdata.map((item,i)=>(
-                                    <label htmlFor= {`checktags_${i}`} >
-                                      <div> 
-                                      <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                
+                                    <label htmlFor= {`checktags`} >
+                                      <div  className='tagsproducts'> 
+                                      <input type='checkbox'   className='checkinput' id= {`checktags`}  />
                                           
                                           {
                                          
+                                              newtagsdata && newtagsdata.map((item,i)=>(
+                                                <div className='imagedivtagssearch' onClick={()=>handleTagsClick(item,i)} >
+                                                <img  src={item.imageurl[0]} />
+                                               <p>{item.productname}</p>
+                                             </div>
+                                              ))
                                              
-                                              <div className='imagedivtagssearch'>
-                                                   <img  src={item.imageurl[0]} />
-                                                  <p>{item.productname}</p>
-                                                </div>
                                         
                                         
   
@@ -1383,7 +1388,7 @@ useEffect(()=>{
                                       </div>
                                       </label>
   
-                                  ))
+                                
   
   
                             
@@ -1407,18 +1412,20 @@ useEffect(()=>{
             {
                                
                                
-                                  featuredtagsdata && featuredtagsdata.map((item,i)=>(
-                                    <label htmlFor= {`checktags_${i}`} >
-                                      <div> 
-                                      <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                
+                                    <label htmlFor= {`checktags`} >
+                                      <div className='tagsproducts'> 
+                                      <input type='checkbox'   className='checkinput' id= {`checktags`}  />
                                           
                                           {
-                                         
-                                              <div className='imagedivtagssearch'>
-                                                   <img  src={item.imageurl[0]} />
-                                                  <p>{item.productname }</p>
-                                                </div>
-                                        
+                                             featuredtagsdata && featuredtagsdata.map(item=>(
+                                              <div className='imagedivtagssearch' onClick={()=>handleTagsClick(item)}>
+                                              <img  src={item.imageurl[0]} />
+                                             <p>{item.productname }</p>
+                                           </div>
+                                   
+                                             ))
+                                             
                                        
   
                                           }
@@ -1427,7 +1434,7 @@ useEffect(()=>{
                                       </div>
                                       </label>
   
-                                  ))
+                               
   
   
                             
@@ -1450,18 +1457,21 @@ useEffect(()=>{
             {
                                
                                
-                                  toppickstagsdata && toppickstagsdata.map((item,i)=>(
-                                    <label htmlFor= {`checktags_${i}`} >
-                                      <div> 
-                                      <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                 
+                                    <label htmlFor= {`checktags`} >
+                                      <div className='tagsproducts'> 
+                                      <input type='checkbox'   className='checkinput' id= {`checktags`}  />
                                           
-                                          {
-                                          
-                                              <div className='imagedivtagssearch'>
-                                                   <img  src={item.imageurl[0]} />
-                                                  <p>{item.productname }</p>
-                                                </div>
-                                        
+                                          { 
+                                           
+                                          toppickstagsdata && toppickstagsdata.map((item,i)=>(
+                                            <div className='imagedivtagssearch'  onClick={()=>handleTagsClick(item,i)}>
+                                            <img  src={item.imageurl[0]} />
+                                           <p>{item.productname }</p>
+                                         </div>
+                                 
+                                          ))
+                                             
                                          
   
                                           }
@@ -1470,7 +1480,7 @@ useEffect(()=>{
                                       </div>
                                       </label>
   
-                                  ))
+                               
   
   
                             

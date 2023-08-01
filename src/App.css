@@ -1784,6 +1784,14 @@ border-bottom-color: transparent;
  
 
 }
+.tagsproducts{
+ 
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+}
 
 .itemspara{
   display: flex;
