@@ -22,6 +22,7 @@ const ViewarDetails = () => {
   let userdata
   if(user && user.includes('data')){
      userdata= JSON.parse(user)
+      userdata = userdata.data.userID
    
   }
   
@@ -87,7 +88,7 @@ const ViewarDetails = () => {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <QRCode value= {`http://ec2-13-233-134-115.ap-south-1.compute.amazonaws.com:3000/arview?id=${location.state}`}/>
+      <QRCode value= {`http://ec2-13-233-134-115.ap-south-1.compute.amazonaws.com:3000/arview?id=${location.state}&user=${userdata}`}/>
           
       </div>
       <div class="modal-footer">

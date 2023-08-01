@@ -39,7 +39,7 @@ const View = () => {
       source: 'Web',
       merchantId: Number(val.merchant_Id),
       productId: Number(val.product_Id),
-    
+       userID : uid,
       viewtime:  lastId
     }
 
