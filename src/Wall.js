@@ -412,16 +412,6 @@ const Wall = () => {
         document.querySelector('.loadingdivnew').style.display= 'none'
   
   
-  
-      
-  
-      
-  
-  
-  
-  
-      
-  
         }
        
     
@@ -653,21 +643,9 @@ const Wall = () => {
 </div>
      
   
-           
-        
-
       ))
-
-      
-    
-      
+ 
       }
-
-
-
-     
-
-     
 
 
     </div>

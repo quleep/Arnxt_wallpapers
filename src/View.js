@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 const View = () => {
     const modelRef =  useRef();
     const itemdetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingleitemdetails'
+    const sendviewdataurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/addviewdata'
     const params= new URLSearchParams(window.location.search)
     const pid= params.get('id')
     const [glburl, setGlbUrl] = useState()
@@ -16,7 +17,34 @@ const View = () => {
             console.log(error)
         })
      },[])
+     let lastId;
+     function getId(){
+      let currentId = new Date().getTime();
+      if (lastId == currentId) {
+        currentId++;
+      }
+      lastId = currentId;
+      return lastId;
+   }
+   
+   const handlewebview = (val)=>{
 
+    getId()
+    const bodyview={
+      Id : lastId,
+      source: 'Web',
+      merchantId: Number(val.merchant_Id),
+      productId: Number(val.product_Id),
+   
+      viewtime:  lastId
+    }
+
+    axios.post(sendviewdataurl, bodyview).then(res=>{
+      console.log(res)
+    }).catch(error=>{
+      console.log(error)
+    })
+   }
 
      
   return (
@@ -41,7 +69,7 @@ const View = () => {
               style={{width:'100%', height:'100%',padding:'10px'}}
               
            >
-               <button slot="ar-button" id="ar-button">
+               <button slot="ar-button" id="ar-button"  onClick={()=>handlewebview(glburl.productdetails[0])} >
             View in your space
           </button>
   

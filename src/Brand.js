@@ -62,6 +62,7 @@ const roomtypeimageurl= 'https://3ef9gn5kk2.execute-api.ap-south-1.amazonaws.com
 const getroomsbybrandurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getroomsofbrand'
 const gettagsbybrandurl= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/gettagsofbrand'
 const getbranddetails= 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getbranddetails'
+const gettagsdataurl = 'https://ymxx21tb7l.execute-api.ap-south-1.amazonaws.com/production/getsingletagdata'
 
 
 const Brand = () => {
@@ -101,6 +102,9 @@ const [currentIndex, setCurrentIndex] = useState(0);
     const [branddata, setBrandData] = useState()
     const [carouselimages, setCarouselImages] = useState()
     const [categoryimg, setCategoryImg] = useState()
+    const [newtagsdata, setNewTagsData] = useState()
+    const [featuredtagsdata, setFeaturedTagsData] = useState()
+    const [toppickstagsdata, setTopPicksTagsData] = useState()
 
     const history= useHistory()
 
@@ -672,11 +676,16 @@ const handleRoomsClick=(item)=>{
 }
 const handleTagsClick=(item)=>{
 
-  history.push({
-      pathname: '/search',
-      state: item
+  if(item.modelrequired === 'true'){
+    history.push({
+      pathname: '/details',
+      state: item.product_Id
   })
-
+   }else
+    history.push({
+        pathname: '/view',
+        state: item
+    })
 
 
 }
@@ -1047,6 +1056,61 @@ const images= [
    image3
 ]
 
+useEffect(()=>{
+
+  const body={
+    brand: brandidnew && brandidnew,
+    tagName: 'new'
+ }
+     axios.post(gettagsdataurl,  body).then(res=>{
+
+       let newval = res.data.filter((item,i)=>(
+        i < 4
+       )) 
+
+       setNewTagsData(newval)
+     }).catch(error=>{
+      console.log(error)
+     })
+},[])
+
+useEffect(()=>{
+
+  const body={
+    brand: brandidnew && brandidnew,
+    tagName: 'featured'
+ }
+
+     axios.post(gettagsdataurl,  body).then(res=>{
+      let newval = res.data.filter((item,i)=>(
+        i < 4
+       )) 
+
+       setFeaturedTagsData(newval)
+     }).catch(error=>{
+      console.log(error)
+     })
+},[])
+
+useEffect(()=>{
+
+  const body={
+    brand: brandidnew && brandidnew,
+    tagName: 'top picks'
+ }
+
+     axios.post(gettagsdataurl,  body).then(res=>{
+      let newval = res.data.filter((item,i)=>(
+        i < 4
+       )) 
+
+       setTopPicksTagsData(newval)
+     }).catch(error=>{
+      console.log(error)
+     })
+},[])
+
+
 
   if(typeof usernew === 'string'){
 
@@ -1289,7 +1353,7 @@ const images= [
   
             </div>
             <div className='itemspara'>
-             <h3>Explore Like Never Before</h3>
+             <h3>Explore the new trending products</h3>
              <span>
              <FaArrowRight  className='icondiv'/>
               </span>
@@ -1298,20 +1362,107 @@ const images= [
             {
                                
                                
-                                  tags && tags.map((item,i)=>(
+                                  newtagsdata && newtagsdata.map((item,i)=>(
                                     <label htmlFor= {`checktags_${i}`} >
                                       <div> 
                                       <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
                                           
                                           {
-                                           tagsimages.map(itemnew=>(
-                                              itemnew.tagname === item ?
+                                         
+                                             
                                               <div className='imagedivtagssearch'>
-                                                   <img  src={itemnew.tagimage} />
-                                                  <p>{itemnew.tagname.charAt(0).toUpperCase() + itemnew.tagname.slice(1) }</p>
-                                                </div>:<p></p>
+                                                   <img  src={item.imageurl[0]} />
+                                                  <p>{item.productname}</p>
+                                                </div>
                                         
-                                           ))
+                                        
+  
+                                          }
+                                          
+                                          
+                                      </div>
+                                      </label>
+  
+                                  ))
+  
+  
+                            
+                               
+                                         }
+          
+         
+              
+         
+  
+  
+            </div>
+
+            <div className='itemspara'>
+             <h3>Explore your most featured products</h3>
+             <span>
+             <FaArrowRight  className='icondiv'/>
+              </span>
+            </div>
+            <div className='roomscontainer'>
+            {
+                               
+                               
+                                  featuredtagsdata && featuredtagsdata.map((item,i)=>(
+                                    <label htmlFor= {`checktags_${i}`} >
+                                      <div> 
+                                      <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                          
+                                          {
+                                         
+                                              <div className='imagedivtagssearch'>
+                                                   <img  src={item.imageurl[0]} />
+                                                  <p>{item.productname }</p>
+                                                </div>
+                                        
+                                       
+  
+                                          }
+                                          
+                                          
+                                      </div>
+                                      </label>
+  
+                                  ))
+  
+  
+                            
+                               
+                                         }
+          
+         
+              
+         
+  
+  
+            </div>
+            <div className='itemspara'>
+             <h3>Explore your top seller products</h3>
+             <span>
+             <FaArrowRight  className='icondiv'/>
+              </span>
+            </div>
+            <div className='roomscontainer'>
+            {
+                               
+                               
+                                  toppickstagsdata && toppickstagsdata.map((item,i)=>(
+                                    <label htmlFor= {`checktags_${i}`} >
+                                      <div> 
+                                      <input type='checkbox'   className='checkinput' id= {`checktags_${i}`} value={item} onClick={()=>handleTagsClick(item,i)} />
+                                          
+                                          {
+                                          
+                                              <div className='imagedivtagssearch'>
+                                                   <img  src={item.imageurl[0]} />
+                                                  <p>{item.productname }</p>
+                                                </div>
+                                        
+                                         
   
                                           }
                                           

@@ -884,6 +884,7 @@ height: 250px;
   transition: opacity 0.1s, transform 0.6s;
   }
 
+
 .imagedivtagssearch.show{
   opacity: 1;
   transform: translateY(0);
@@ -1788,7 +1789,7 @@ border-bottom-color: transparent;
   display: flex;
   flex-wrap: wrap;
   height: auto;
-  margin-top: 20px;
+  margin-top: 40px;
   
  
 }
@@ -1857,6 +1858,7 @@ a
   flex-direction: row;
   align-items: center;
   justify-content: center;
+ 
   
 }
 
