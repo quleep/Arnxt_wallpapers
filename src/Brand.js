@@ -1061,7 +1061,8 @@ useEffect(()=>{
 
   const body={
     brand: brandidnew && brandidnew,
-    tagName: 'new'
+    tagName: 'new',
+     tagNameTwo: 'New'
  }
      axios.post(gettagsdataurl,  body).then(res=>{
 
@@ -1079,7 +1080,8 @@ useEffect(()=>{
 
   const body={
     brand: brandidnew && brandidnew,
-    tagName: 'featured'
+    tagName: 'featured',
+    tagNameTwo: 'Featured'
  }
 
      axios.post(gettagsdataurl,  body).then(res=>{
@@ -1097,7 +1099,8 @@ useEffect(()=>{
 
   const body={
     brand: brandidnew && brandidnew,
-    tagName: 'top picks'
+    tagName: 'top picks',
+    tagNameTwo: 'Top seller'
  }
 
      axios.post(gettagsdataurl,  body).then(res=>{

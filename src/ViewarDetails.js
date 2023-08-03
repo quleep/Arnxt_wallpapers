@@ -119,7 +119,7 @@ const ViewarDetails = () => {
                 </div>
                 <div className='productdetails'>
                 <label>Details:</label>
-                <p>{glburl && glburl.productdetails[0].Specification}</p>
+                <p>{glburl && glburl.productdetails[0].specification}</p>
                 </div>
              
                 <div className='productdetails'>
