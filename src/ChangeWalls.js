@@ -255,7 +255,7 @@ document.querySelector('.loadwebardesk').style.display= 'none'
      
     }
   
-    axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+    axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
 
     if(res){
       const bodyview={
@@ -344,7 +344,7 @@ document.querySelector('.loadwebardesk').style.display= 'none'
      
     }
   
-    axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+    axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
 
     if(res){
   document.querySelector('.loadwebar').style.display= 'none'
@@ -473,7 +473,7 @@ const checkboxClick=(val, len)=>{
        
       }
     
-      axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+      axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
 
       if(res){
         document.querySelector('.defaultimagedesk').style.display = 'none'
@@ -1178,7 +1178,7 @@ const handleImageClick=(val)=>{
    
   }
 
-  axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+  axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
     setImageUrlFinal(res.data.segmented_image_url)
 
   }).catch(error =>{
@@ -1397,7 +1397,7 @@ const handleMobileImage=(item, len)=>{
      
     }
   
-    axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+    axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
 
     if(res){
       const bodyview={
@@ -1476,7 +1476,7 @@ const handleMobileImageSingle=(val)=>{
    
   }
 
-  axios.post('http://13.233.124.197:5000/segment', body).then(res=>{
+  axios.post('https://wallchange.arnxt.com/segment', body).then(res=>{
 
   if(res){
     const bodyview={
