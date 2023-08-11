@@ -1114,9 +1114,7 @@ useEffect(()=>{
      })
 },[])
 
-console.log(newtagsdata)
-console.log(featuredtagsdata)
-console.log(toppickstagsdata)
+
 
   if(typeof usernew === 'string'){
 
@@ -1378,7 +1376,7 @@ console.log(toppickstagsdata)
                                               newtagsdata && newtagsdata.map((item,i)=>(
                                                 <div className='imagedivtagssearch' onClick={()=>handleTagsClick(item,i)} >
                                                 <img  src={item.imageurl[0]} />
-                                               <p>{item.productname}</p>
+                                               <p>{ item.productname.charAt(0).toUpperCase()+  item.productname.slice(1)}</p>
                                              </div>
                                               ))
                                              
@@ -1424,7 +1422,7 @@ console.log(toppickstagsdata)
                                              featuredtagsdata && featuredtagsdata.map(item=>(
                                               <div className='imagedivtagssearch' onClick={()=>handleTagsClick(item)}>
                                               <img  src={item.imageurl[0]} />
-                                             <p>{item.productname }</p>
+                                             <p>{item.productname.charAt(0).toUpperCase()+  item.productname.slice(1)}</p>
                                            </div>
                                    
                                              ))
@@ -1470,7 +1468,7 @@ console.log(toppickstagsdata)
                                           toppickstagsdata && toppickstagsdata.map((item,i)=>(
                                             <div className='imagedivtagssearch'  onClick={()=>handleTagsClick(item,i)}>
                                             <img  src={item.imageurl[0]} />
-                                           <p>{item.productname }</p>
+                                           <p>{item.productname.charAt(0).toUpperCase()+  item.productname.slice(1)}</p>
                                          </div>
                                  
                                           ))

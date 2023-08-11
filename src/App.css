@@ -1412,6 +1412,8 @@ border-bottom-left-radius: 20px;
 }
 .specificationdiv{
   padding-left: 10px;
+ 
+  width: 70%;
 }
 
 
@@ -3071,6 +3073,9 @@ input::-webkit-inner-spin-button {
 
 @media screen and (max-width: 600px) {
 
+  .specificationdiv{
+    width: 100%;
+  }
   .carouselcontainer{
     height: 300px;
    

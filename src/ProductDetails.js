@@ -91,7 +91,7 @@ useEffect(() => {
             </div>
             <div>
                 <div className='specificationdiv'>
-                <p>{itemdetails && itemdetails.Specification}</p>
+                <p>{itemdetails && itemdetails.specification}</p>
 
 
                 </div>
