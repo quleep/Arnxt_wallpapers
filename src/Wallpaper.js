@@ -387,7 +387,7 @@ const closefilterbutton =()=>{
   return (
     <div   className=  { defaultwallpaper ? 'maindivcontainerwallpaper': 'maindivcontainerwallpaperdefault' }>
           <Helmet>
-            <title>Wallpapers | ARnxt</title>
+            <title>Products | ARnxt</title>
             <meta
               name="description"
               content="India’s first Augmented reality market place where the company’s stand-out feature is its DIY(Do-It-Yourself) features."
