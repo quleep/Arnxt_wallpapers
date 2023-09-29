@@ -90,7 +90,7 @@ const View = () => {
           </div>
          
           <button id="ar-failure">
-            AR is not tracking!
+             Move your phone slowely
           </button>
   
            </model-viewer>

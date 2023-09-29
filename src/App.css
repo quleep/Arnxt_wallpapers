@@ -1657,6 +1657,10 @@ border-bottom-color: transparent;
 
   
 }
+model-viewer{
+  background: #eee;
+  overflow: hidden;
+}
 .modelviewer{
   display: flex;
   margin-top: 120px;
