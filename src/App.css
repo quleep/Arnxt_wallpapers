@@ -1415,6 +1415,17 @@ border-bottom-left-radius: 20px;
  
   width: 70%;
 }
+#controls {
+   position: absolute;
+  
+   bottom: 16px;
+   left: 16px;
+  max-width: unset;
+   transform: unset;
+   pointer-events: auto;
+  z-index: 100;
+  top: 0;
+  }
 
 
 .specificationdiv p{

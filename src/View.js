@@ -50,7 +50,9 @@ const View = () => {
     })
    }
 
-     
+  
+
+
   return (
     <div>
       
@@ -63,6 +65,8 @@ const View = () => {
                   
                   modes="scene-viewer quick-look webxr"
                    ar ar-scale = "fixed"
+                   autoplay
+                   ar-placement = {glburl && glburl.productdetails[0].placement}
                    environment-image="neutral"
                   camera-controls touch-action="pan-y"
                   
@@ -76,11 +80,15 @@ const View = () => {
                <button slot="ar-button" id="ar-button"  onClick={()=>handlewebview(glburl.productdetails[0])} >
             View in your space
           </button>
+          <div id="controls" className="dim">
+           
+                      </div>
+     
   
           <div id="ar-prompt">
             <img src="https://cdn.glitch.global/66a9aadc-16d1-4ae0-b613-4d181051d3c1/ar_hand_prompt.png?v=1680846318449"/>
           </div>
-  
+         
           <button id="ar-failure">
             AR is not tracking!
           </button>

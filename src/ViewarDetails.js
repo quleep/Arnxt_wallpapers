@@ -46,7 +46,8 @@ const ViewarDetails = () => {
         })
      },[])
 
-    
+ 
+     console.log(glburl && glburl.productdetails)  
   return (
     <div>
           <div className='navbardisplay'>
@@ -76,7 +77,8 @@ const ViewarDetails = () => {
              src= { glburl && glburl.modeldetails[0].glb}
                     
                     modes="scene-viewer quick-look webxr"
-                    
+                     autoplay
+                     ar-placement = {glburl && glburl.productdetails[0].placement}
                     auto-rotate ar
                     camera-controls
                     shadow-intensity="1"
